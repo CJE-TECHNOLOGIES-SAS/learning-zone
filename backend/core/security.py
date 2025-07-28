@@ -10,7 +10,7 @@ from dependencies.student_dependencie import get_student_services
 from fastapi import Depends, HTTPException, status
 from fastapi.security.oauth2 import OAuth2PasswordBearer
 from jose import jwt
-from services.student_services import StudentService
+from src.usecases.student_service import StudentService
 
 # Generación y manipulación del token
 

@@ -6,8 +6,8 @@ from database.config_db import get_session
 
 # Modulos externos
 from fastapi import Depends
-from repository.student_repository import StudentRepository
-from services.student_services import StudentService
+from src.infrastructure.persistence.student_repository import StudentRepository
+from src.usecases.student_service import StudentService
 from sqlalchemy.ext.asyncio import AsyncSession
 
 

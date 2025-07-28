@@ -16,7 +16,7 @@ from fastapi import APIRouter, Depends, HTTPException, status, Header
 from fastapi.responses import JSONResponse
 from services.utils.email_validator import EmailValidator
 from schemas.student_schemas import Email, ResetPassword
-from services.student_services import StudentService
+from src.usecases.student_service import StudentService
 from dependencies.student_dependencie import get_student_services
 
 router = APIRouter(prefix="/api/v1/student/password", tags=["Password"])

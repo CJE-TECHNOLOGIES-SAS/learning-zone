@@ -19,7 +19,7 @@ from schemas.student_schemas import (
     StudentResponse,
     UpdateProfile,
 )
-from services.student_services import StudentService
+from src.usecases.student_service import StudentService
 from .utils import generate_profile_prefix
 
 router = APIRouter(prefix="/api/v1/student", tags=["Students"])

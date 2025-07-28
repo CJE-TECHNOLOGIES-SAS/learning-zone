@@ -10,7 +10,7 @@ from schemas.notification_schemas import NotificationCreate
 from services.notification_services import NotificationService
 from core.security import get_current_student
 from models.student_model import Student
-from services.student_services import StudentService
+from src.usecases.student_service import StudentService
 from dependencies.student_dependencie import get_student_services
 
 # Módulos externos

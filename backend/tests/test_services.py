@@ -5,7 +5,7 @@ from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
 # Importa lo que sea necesario desde tu app
-from services.student_services import StudentService
+from src.usecases.student_service import StudentService
 from schemas.student_schemas import StudentRegister
 from models.student_model import Student
 from services.utils.email_sender import send_verification_email
@@ -50,15 +50,13 @@ def test_send_verification_email_success():
     student_name = "John Doe"
     mock_response = Mock(status_code=202)
 
-    with patch("backend.services.utils.email_sender.settings") as mock_settings:
+    with patch("services.utils.email_sender.settings") as mock_settings:
         mock_settings.sendgrid_api_key = "fake-api-key"
         mock_settings.sendgrid_template_id = "fake-template-id"
 
         with patch(
-            "backend.services.utils.email_sender.SendGridAPIClient"
-        ) as mock_client, patch(
-            "backend.services.utils.email_sender.Mail"
-        ) as mock_mail:
+            "services.utils.email_sender.SendGridAPIClient"
+        ) as mock_client, patch("services.utils.email_sender.Mail") as mock_mail:
 
             mock_instance = mock_client.return_value
             mock_instance.send.return_value = mock_response
@@ -86,13 +84,11 @@ def test_send_verification_email_success():
 
 
 def test_send_verification_email_exception():
-    with patch("backend.services.utils.email_sender.settings") as mock_settings:
+    with patch("services.utils.email_sender.settings") as mock_settings:
         mock_settings.sendgrid_api_key = "fake-api-key"
         mock_settings.sendgrid_template_id = "fake-template-id"
 
-        with patch(
-            "backend.services.utils.email_sender.SendGridAPIClient"
-        ) as mock_client:
+        with patch("services.utils.email_sender.SendGridAPIClient") as mock_client:
             mock_client.side_effect = Exception("API Key inválida")
 
             with patch("builtins.print") as mock_print:
@@ -103,13 +99,13 @@ def test_send_verification_email_exception():
 
 
 def test_send_verification_email_invalid_email():
-    with patch("backend.services.utils.email_sender.settings") as mock_settings:
+    with patch("services.utils.email_sender.settings") as mock_settings:
         mock_settings.sendgrid_api_key = "fake-api-key"
         mock_settings.sendgrid_template_id = "fake-template-id"
 
         with patch(
-            "backend.services.utils.email_sender.SendGridAPIClient"
-        ) as mock_client, patch("backend.services.utils.email_sender.Mail") as _:
+            "services.utils.email_sender.SendGridAPIClient"
+        ) as mock_client, patch("services.utils.email_sender.Mail") as _:
 
             mock_instance = mock_client.return_value
             mock_instance.send.side_effect = Exception("HTTP Error 400: Bad Request")
@@ -143,7 +139,7 @@ def test_has_mx_record_with_valid_domain():
     mock_resolve.__iter__ = Mock(return_value=iter([Mock()]))
 
     with patch(
-        "backend.services.utils.email_validator.dns.resolver.resolve",
+        "services.utils.email_validator.dns.resolver.resolve",
         return_value=mock_resolve,
     ):
         assert EmailValidator.has_mx_record(email) is True
@@ -151,7 +147,7 @@ def test_has_mx_record_with_valid_domain():
 
 def test_has_mx_record_with_invalid_domain():
     with patch(
-        "backend.services.utils.email_validator.dns.resolver.resolve",
+        "services.utils.email_validator.dns.resolver.resolve",
         side_effect=Exception(),
     ):
         assert EmailValidator.has_mx_record("user@fake.com") is False
@@ -164,7 +160,7 @@ def test_validate_email_valid_case():
     mock_resolve.__iter__ = Mock(return_value=iter([Mock()]))
 
     with patch(
-        "backend.services.utils.email_validator.dns.resolver.resolve",
+        "services.utils.email_validator.dns.resolver.resolve",
         return_value=mock_resolve,
     ):
         is_valid, message = EmailValidator.validate_email(email)
@@ -180,7 +176,7 @@ def test_validate_email_invalid_format():
 
 def test_validate_email_invalid_domain():
     with patch(
-        "backend.services.utils.email_validator.dns.resolver.resolve",
+        "services.utils.email_validator.dns.resolver.resolve",
         side_effect=Exception(),
     ):
         is_valid, message = EmailValidator.validate_email("user@noexiste.com")
@@ -193,7 +189,7 @@ def test_validate_email_invalid_domain():
 
 def test_generate_verification_token_returns_string():
     mock_uuid = Mock(return_value=uuid.UUID("550e8400-e29b-41d4-a716-446655440000"))
-    with patch("backend.services.utils.token_generator.uuid.uuid4", new=mock_uuid):
+    with patch("services.utils.token_generator.uuid.uuid4", new=mock_uuid):
         token = generate_verification_token()
         assert isinstance(token, str)
         assert token == "550e8400-e29b-41d4-a716-446655440000"
@@ -203,7 +199,7 @@ def test_generate_verification_token_unique():
     mock_uuid1 = Mock(return_value=uuid.UUID("550e8400-e29b-41d4-a716-446655440000"))
     mock_uuid2 = Mock(return_value=uuid.UUID("550e8400-e29b-41d4-a716-446655440001"))
     with patch(
-        "backend.services.utils.token_generator.uuid.uuid4",
+        "services.utils.token_generator.uuid.uuid4",
         side_effect=[mock_uuid1.return_value, mock_uuid2.return_value],
     ):
         token1 = generate_verification_token()
@@ -220,7 +216,7 @@ async def test_verify_code_valid():
     code = 12345
     mock_identification = Mock(id=1)
     with patch(
-        "backend.services.identification_service.IdentificationRepository.get_by_code",
+        "services.identification_services.IdentificationRepository.get_by_code",
         return_value=mock_identification,
     ):
         result = await IdentificationService.verify_code(session, code)
@@ -234,7 +230,7 @@ async def test_verify_code_valid():
 async def test_verify_code_invalid():
     session = AsyncMock(spec=AsyncSession)
     with patch(
-        "backend.services.identification_service.IdentificationRepository.get_by_code",
+        "services.identification_services.IdentificationRepository.get_by_code",
         return_value=None,
     ):
         result = await IdentificationService.verify_code(session, 99999)
@@ -247,11 +243,12 @@ async def test_verify_code_invalid():
 
 
 @pytest.mark.asyncio
-@patch("services.student_services.EmailValidator.validate_email")
+@patch("src.usecases.student_service.EmailValidator.validate_email")
 @patch(
-    "services.student_services.generate_verification_token", return_value="fake-token"
+    "src.usecases.student_service.generate_verification_token",
+    return_value="fake-token",
 )
-@patch("services.student_services.send_verification_email")
+@patch("src.usecases.student_service.send_verification_email")
 async def test_register_student_success(
     mock_send_email,
     mock_token,
@@ -270,7 +267,7 @@ async def test_register_student_success(
 
 
 @pytest.mark.asyncio
-@patch("services.student_services.EmailValidator.validate_email")
+@patch("src.usecases.student_service.EmailValidator.validate_email")
 async def test_register_student_invalid_email(
     mock_validate_email, mocked_repository, fake_student_register
 ):
