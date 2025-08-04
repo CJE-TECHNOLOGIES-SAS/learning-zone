@@ -1,30 +1,65 @@
+/**
+ * Redirige automáticamente a los usuarios según su rol.
+ */
+
 import { Navigate } from "react-router-dom";
 import { useUser } from "../modules/auth/Hooks/useAuth";
 
+// COMPONENTE PRINCIPAL
+
 /**
- * Redirige automáticamente según el rol del usuario.
- * No renderiza contenido visible.
+ * RoleRedirect - Redirección principal por roles
+ *
+ * Redirige según el rol del usuario después del login.
  */
 export default function RoleRedirect() {
-  const { user, role, isReady } = useUser();
-
-  // Esperar a que la información del usuario esté lista
-  if (!isReady) return null;
+  const { user, role } = useUser();
 
   // Usuario no autenticado
   if (!user || !role) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/landing" replace />;
   }
 
   // Redirección según rol
-  if (role === "teacher") {
-    return <Navigate to="/teacher/home-teacher" replace />;
+  switch (role) {
+    case "teacher":
+      return <Navigate to="/teacher/home-teacher" replace />;
+
+    case "student":
+      return <Navigate to="/student/home-student" replace />;
+
+    default:
+      return <Navigate to="/landing" replace />;
+  }
+}
+
+// ============================================================================
+// REDIRECCIÓN DESDE PÁGINA PRINCIPAL
+// ============================================================================
+
+/**
+ * HomeRoleRedirect - Redirección desde página principal
+ *
+ * Solo redirige si el usuario está logueado.
+ * Si no está logueado, permite ver la página normal.
+ */
+export function HomeRoleRedirect() {
+  const { user, role } = useUser();
+
+  // Usuario no autenticado - no redirigir
+  if (!user || !role) {
+    return null;
   }
 
-  if (role === "student") {
-    return <Navigate to="/student/home-student" replace />;
-  }
+  // Redirección según rol
+  switch (role) {
+    case "teacher":
+      return <Navigate to="/teacher/home-teacher" replace />;
 
-  // Rol desconocido
-  return <Navigate to="/" replace />;
+    case "student":
+      return <Navigate to="/student/home-student" replace />;
+
+    default:
+      return null;
+  }
 }

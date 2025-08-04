@@ -16,7 +16,7 @@ export default function RoutersPrivates() {
         <Route element={<AuthLayout />}>
 
           {/* Redirección inicial según el rol */}
-          <Route path="/redirect" element={<RoleRedirect />} />
+          <Route path="/" element={<RoleRedirect />} />
 
           {/* Rutas protegidas para profesores */}
           <Route element={<TeacherGuard />}>

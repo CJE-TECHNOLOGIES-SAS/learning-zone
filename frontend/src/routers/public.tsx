@@ -15,7 +15,6 @@ export default function RoutersPublic() {
   return (
         <Routes>
             <Route element={<PublicLayout />}>
-                <Route path="/" element={<LandingPage/>}/>
                 <Route path="/landing" element={<LandingPage/>}/>
                 <Route path="/register" element={<LoginAndRegister opcAuth={false} />}/>
                 <Route path="/confirmEmailRegister" element={<ConfirmEmailRegister/>}/>{/* ################## tener en cuenta para backend */}
