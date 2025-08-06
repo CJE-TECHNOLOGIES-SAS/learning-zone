@@ -8,6 +8,7 @@ import type { TCourse } from "../courses/types/Course";
 export default function UserPage() {
   const {student} = useUser()
   const {loadLessonsCourse,loadProgressLessons, progressLessons} = useCourseContext()
+  /* Agrehar en el contexto el loadCertificates */
   const handleBtnNavigate = useNavigationHandler()
 
 

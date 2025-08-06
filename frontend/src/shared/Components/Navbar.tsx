@@ -13,7 +13,7 @@ export default function Navbar() {
       particleDistances={[90, 10]}
       particleR={100}
       initialActiveIndex={0}
-      animationTime={600}
+      animationTime={330}
       timeVariance={300}
       colors={[1, 2, 3, 1, 2, 3, 1, 4]}
     />

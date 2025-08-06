@@ -184,7 +184,6 @@ export default function ExcelHomePage() {
             </g>
           );
         })()}
-        {/* Estrella animada */}
         <g
           style={{
             transform: `translate(${carPos.x - 20}px, ${carPos.y - 15}px) rotate(${carPos.angle}deg)`,

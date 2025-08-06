@@ -15,11 +15,13 @@ export type TCommentSend = Omit<TComment, 'id' | 'studentId' | 'nameStudent' | '
 export type TCommentDelete ={
   idComment:TComment['id'],
   token:string
+  idCourse:TComment['courseId']
 }
 export type TUpdateComment ={
   idComment:TComment['id'],
   token:string,
   text:TComment['text']
+  idCourse:TComment['courseId']
 }
 export type TUpdateDelete ={
   idComment:TComment['id'],

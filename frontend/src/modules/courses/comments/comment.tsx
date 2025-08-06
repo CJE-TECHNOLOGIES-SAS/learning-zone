@@ -9,8 +9,8 @@ import './styles/comment.css';
 import { BiSolidEditAlt } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { authStorage } from '../../../shared/Utils/authStorage';
-import { Socket } from 'socket.io-client';
 import toast from 'react-hot-toast';
+import { getSocket } from './socket';
 
 // ✅ Interfaz que define las propiedades que recibe el componente Comment
 // Esta interfaz extiende de TComment e incluye props adicionales para funcionalidad
@@ -43,6 +43,8 @@ export default function Comment({
   const [showReplyForm, setShowReplyForm] = useState(false); // Controlar formulario de respuesta
   const [showWindowInformation, setShowWindowInformation] = useState(false); // Controlar ventana de información
   const [textUpdate, setTextUpdate] = useState(text); // Texto temporal para edición
+  const socket = getSocket();  // Usamos la instancia compartida
+  
 
   // ✅ Función para eliminar un comentario (marcar como "eliminado")
   const handleDeleteComment = () => {
@@ -56,15 +58,12 @@ export default function Comment({
     // Crear objeto con datos para eliminar comentario
     const deleteComment: TDeleteComment = {
       idComment: id, // ID del comentario a eliminar
-      token // Token de autenticación
+      token, // Token de autenticación
+      idCourse:courseId
+
     }
-    
-    // Mostrar confirmación (temporal)
-    alert(`Eliminando comentario ${deleteComment.idComment}`);
-    console.log("Enviando comentario a eliminar:", deleteComment);
-    
     // Emitir evento al servidor para eliminar el comentario
-    Socket.emit('deleteComment', deleteComment);
+    socket.emit('deleteComment', deleteComment);
   }
   // ✅ Función para actualizar un comentario
   const handleUpdateComment = () => {
@@ -83,17 +82,15 @@ export default function Comment({
       toast.error('No has hecho cambios');
       return;
     }
-
     // Crear objeto con datos para actualizar comentario
     const updateComment: TUpdateComment = {
       idComment: id, // ID del comentario a actualizar
       token, // Token de autenticación
-      text: textUpdate // Nuevo texto del comentario
+      text: textUpdate, // Nuevo texto del comentario
+      idCourse:courseId
     }
-    
-    
     // Emitir evento al servidor para actualizar el comentario
-    Socket.emit('updateComment', updateComment);
+    socket.emit('updateComment', updateComment);
     
     // ✅ Cerrar el formulario después de enviar (control global)
     setOpenUpdateFormId(null);

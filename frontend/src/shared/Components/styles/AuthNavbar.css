@@ -37,7 +37,6 @@
     min-height: 50px; /* Alto mínimo para touch */
 }
 
-/* ===== ESTILOS POR FUNCIÓN CON COLORES DIFERENCIADOS ===== */
 
 /* Icono Home */
 .icon-home {
@@ -126,7 +125,7 @@
     }
     
     .icon-auth-navBar {
-        font-size: 42px; /* Tamaño original */
+        font-size: 36px; /* Tamaño original */
         padding: 10px; /* Padding original */
         min-width: 50px; /* Ancho mínimo original */
         min-height: 50px; /* Alto mínimo original */

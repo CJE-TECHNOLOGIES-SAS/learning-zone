@@ -19,6 +19,7 @@
   max-width: 900px;
   position: relative;
   overflow-x: hidden;
+  margin-top: -100px;
 }
 
 .carrusel-list {

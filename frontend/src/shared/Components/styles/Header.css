@@ -5,38 +5,20 @@
     flex-direction: column; /* En mobile: logo arriba, nombre abajo */
     justify-content: center;
     align-items: center;
-    padding: var(--spacing-md) var(--spacing-sm); /* 24px arriba/abajo, 16px izquierda/derecha */
+    padding: var(--spacing-sm) var(--spacing-sm); /* 24px arriba/abajo, 16px izquierda/derecha */
     box-shadow: 0px 4px 10px 3px rgba(0, 0, 0, 0.933);
     z-index: 10;
     gap: var(--spacing-sm); /* Espacio entre elementos */
     position: relative; /* Para posicionar el AuthNavbar */
+
 }
 
-/* ===== SECCIÓN LOGO Y NOMBRE ===== */
-.section-name-img {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-sm);
-}
-
-/* ===== LOGO ===== */
-.icon-lz {
-    width: 60px; /* Logo más pequeño en mobile */
-    height: auto;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.icon-lz:hover {
-    transform: scale(1.05);
-}
 
 /* ===== NOMBRE DE LA APP ===== */
 .name-app {
+    cursor: pointer;
     position: relative;
-    margin-left: 0; /* En mobile: sin margen izquierdo */
+    margin-left: -140px; /* En mobile: sin margen izquierdo */
     font-size: var(--font-size-3xl); /* 30px en mobile */
     font-weight: 700;
     padding: var(--spacing-xs) var(--spacing-md); /* 8px arriba/abajo, 24px izquierda/derecha */
@@ -49,7 +31,6 @@
     );
     background-clip: text;
     -webkit-background-clip: text;
-    display: inline-block;
     line-height: 1.2;
     border-radius: 30px;
     text-shadow: -6px 2px 0px rgba(255, 178, 78, 0.529);
@@ -62,7 +43,7 @@
 .word-zone {
     text-shadow: none;
     position: absolute;
-    top: 30px; /* Ajustado para mobile */
+    top: 20px; /* Ajustado para mobile */
     left: 140px; /* Ajustado para mobile */
     font-size: var(--font-size-2xl); /* 24px en mobile */
     font-weight: 600;
@@ -98,10 +79,6 @@
         gap: var(--spacing-md);
     }
     
-    .icon-lz {
-        width: 70px; /* Logo más grande en tablet */
-    }
-    
     .name-app {
         margin-left: var(--spacing-lg); /* 32px de margen izquierdo */
         font-size: var(--font-size-4xl); /* 36px en tablet */
@@ -110,7 +87,7 @@
     }
     
     .word-zone {
-        top: 36px; /* Posición original */
+        top: -326px; /* Posición original */
         left: 180px; /* Ajustado para tablet */
         font-size: var(--font-size-3xl); /* 30px en tablet */
         padding: var(--spacing-sm) var(--spacing-lg); /* 16px arriba/abajo, 32px izquierda/derecha */
@@ -120,23 +97,24 @@
 /* Desktop (1024px y superior) */
 @media (min-width: 1024px) {
     .header {
-        padding: var(--spacing-xl) var(--spacing-lg); /* 48px arriba/abajo, 32px izquierda/derecha */
+        padding: var(--spacing-md) var(--spacing-md); /* 48px arriba/abajo, 32px izquierda/derecha */
+        display: flex;
+        align-items: center;
     }
     
-    .icon-lz {
-        width: 80px; /* Logo original */
-    }
+
     
     .name-app {
-        margin-left: 160px; /* Margen original */
-        font-size: 48px; /* Tamaño original */
+        margin-left: 0px; /* Margen original */
+        font-size: 36px; /* Tamaño original */
         padding: 6px 20px; /* Padding original */
+        top: -10px;
     }
     
     .word-zone {
-        top: 36px; /* Posición original */
-        left: 210px; /* Posición original */
-        font-size: 42px; /* Tamaño original */
+        top: 26px; /* Posición original */
+        left: 160px; /* Posición original */
+        font-size: 36px; /* Tamaño original */
         padding: 6px 20px; /* Padding original */
     }
 }
@@ -148,23 +126,17 @@
         gap: var(--spacing-xs); /* Menos espacio entre elementos */
     }
     
-    .section-name-img {
-        gap: var(--spacing-xs);
-    }
-    
-    .icon-lz {
-        width: 50px; /* Logo más pequeño */
-    }
-    
+
     .name-app {
         font-size: var(--font-size-2xl); /* 24px en mobile pequeño */
         padding: var(--spacing-xs) var(--spacing-sm); /* 8px arriba/abajo, 16px izquierda/derecha */
         letter-spacing: 0.8px; /* Menos espaciado entre letras */
+        left: 26px;
     }
     
     .word-zone {
         top: 24px; /* Ajustado para mobile pequeño */
-        left: 100px; /* Ajustado para mobile pequeño */
+        left: 90px; /* Ajustado para mobile pequeño */
         font-size: var(--font-size-xl); /* 20px en mobile pequeño */
         padding: var(--spacing-xs) var(--spacing-sm); /* 8px arriba/abajo, 16px izquierda/derecha */
         transform: rotate(-0.5deg); /* Menos rotación */
@@ -176,14 +148,7 @@
     .header {
         padding: var(--spacing-xs); /* 8px en todos los lados */
     }
-    
-    .section-name-img {
-        gap: var(--spacing-xs);
-    }
-    
-    .icon-lz {
-        width: 45px; /* Logo aún más pequeño */
-    }
+
     
     .name-app {
         font-size: var(--font-size-xl); /* 20px en mobile muy pequeño */
@@ -215,18 +180,3 @@
     }
 }
 
-/* ===== MEJORAS DE ACCESIBILIDAD ===== */
-
-/* Focus visible para el logo */
-.icon-lz:focus {
-    outline: 2px solid var(--color-primary-blue);
-    outline-offset: 2px;
-    border-radius: 50%;
-}
-
-/* ===== ANIMACIONES SUAVES ===== */
-
-/* Transición suave para el logo */
-.icon-lz {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}

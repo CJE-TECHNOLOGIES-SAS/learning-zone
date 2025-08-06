@@ -19,6 +19,15 @@ export type TProgressCourse  = {
 };
 export type TProgressCourses = TProgressCourse[]
 
+
+/* Certifications */
+
+export type TCertificatesStudent ={
+    id: number,
+    certificate_name: string,
+    download_url: string,
+}
+
 // Modelo base de una lección
 export interface TLesson {
     id: number;

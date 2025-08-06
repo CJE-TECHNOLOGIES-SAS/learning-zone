@@ -33,7 +33,7 @@ export default function CommentPage({ courseId, nameCourse }: CommentPageProps) 
   const student = useMemo(() => authStorage.getUser(), []);
   const socket = getSocket();  // Usamos la instancia compartida
 
-    const handleBtnNavigate = useNavigationHandler()
+  const handleBtnNavigate = useNavigationHandler()
 
 
   useEffect(() => {

@@ -274,3 +274,55 @@
     font-size: 0.6rem;
   }
 }
+
+/* ===== TABLET (>=768px) ===== */
+@media (min-width: 768px) {
+  .container-card-course {
+    width: 260px;
+    padding: 1rem;
+  }
+  .image-course-card {
+    height: 180px;
+  }
+  .title-course-card {
+    font-size: 1.1rem;
+  }
+  .description-course-card {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== DESKTOP (>=1024px) ===== */
+@media (min-width: 1024px) {
+  .container-card-course {
+    width: 320px;
+    padding: 1.2rem;
+  }
+  .image-course-card {
+    height: 247px;
+  }
+  .title-course-card {
+    font-size: 1.2rem;
+  }
+  .description-course-card {
+    font-size: 0.95rem;
+  }
+}
+
+/* ===== MOBILE PEQUEÑO (<=480px) ===== */
+@media (max-width: 480px) {
+  .container-card-course {
+    width: 55%;
+    padding: 0.9rem;
+    border-radius: 14px;
+  }
+  .image-course-card {
+    height: 130px;
+  }
+  .title-course-card {
+    font-size: .8rem;
+  }
+  .description-course-card {
+    font-size: 0.6rem;
+  }
+}

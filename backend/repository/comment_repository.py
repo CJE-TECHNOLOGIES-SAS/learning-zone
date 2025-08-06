@@ -104,7 +104,7 @@ class CommentRepo:
 
             if comment:
                 comment_deleted = comment
-                comment_deleted.text = "Comentario eliminado exitosamente."
+                comment_deleted.text = "🚫 Comentario eliminado."
 
                 await self.db.delete(comment)
                 await self.db.commit()
