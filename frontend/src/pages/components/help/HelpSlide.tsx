@@ -1,12 +1,11 @@
 import './styles/Help.css';
 import HelpButtons from './HelpButtons';
 import Home from '../../../modules/dashboard/pages/Home';
-
-import image1 from '../../assets/Help/logo.png';
-import image2 from '../../assets/Help/cursos.png';
-import image3 from '../../assets/Help/notificaciones.png';
+import image1 from '../../assets/Help/logotipopro.png';
+import image2 from '../../assets/Help/cursoss.png';
+import image3 from '../../assets/Help/Notificaciones.png';
 import image4 from '../../assets/Help/perfil.png';
-import image5 from '../../assets/Help/ayuda.png';
+import image5 from '../../assets/Help/ayudass.png';
 import image6 from '../../assets/Help/footer.png';
 import image7 from '../../assets/Help/cursos2.png';
 
@@ -85,7 +84,6 @@ export default function HelpSlide({ index, setIndex, onSkip }: HelpSlideProps) {
             )}
             <br></br>
             
-
             <HelpButtons
               isLast={index === helpSteps.length - 1}
               onNext={() => setIndex(index + 1)}
