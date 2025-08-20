@@ -1,0 +1,50 @@
+.container-opc-register-student{
+    background-color: rgba(255, 255, 255, 0.91);
+    position: absolute;
+    top: 50%;
+    left: 46%;
+    padding: 2rem;
+    width: 50dvh;
+    max-height: 66dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    justify-content: center;
+    border-radius: 12px;
+    z-index: 1000;
+}
+.btn-cancel-register{
+    background-color: transparent;
+    align-self:flex-start;
+    color: rgb(0, 0, 0);
+    background-color: transparent;
+    font-size: 28px;
+
+}
+.title-container-opc-register-student{
+    font-size: 26px;
+    color: #000000;
+}
+.opcs-register-student{
+    display: flex;
+    gap: 12px;
+    padding: 1rem;
+}
+.btn-opc-register-student, .btn-opc-register-students{
+    color: #fff;
+    padding: .4rem;
+    border-radius: 10px;
+    font-size: 20px;
+    background: transparent;
+}
+.btn-opc-register-student{
+     border: 1px solid #ff9b38;
+     color: #ff9b38;
+
+
+}
+.btn-opc-register-students{
+    background-color: #ff9b38;
+
+}

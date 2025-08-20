@@ -21,7 +21,9 @@ import {
 } from "../../../shared/Components/ui/index"; // Ruta abreviada para usar alias de import
 import { COURSE_CATEGORY_LABELS } from "../../../shared/constant/CategoriesCourses";
 import { useFormUpdateCourse } from "../hooks/Courses/useFormUpdateCourse";
-
+import { IoArrowBackCircleSharp } from "react-icons/io5";
+import { useNavigationHandler } from "../../../hooks/useNavigationHandler";
+import '../styles/CourseEdit.css'
 // --------- LÓGICA ---------
 
 // --------- COMPONENTE PRINCIPAL ---------
@@ -35,6 +37,10 @@ export default function CourseEdit() {
     handleImageChange,
     handleSubmit
   } = useFormUpdateCourse();
+  console.log(formData)
+  const handleBtnNavigate = useNavigationHandler();
+
+
 
   return (
     <div className="container-form-course-teacher">
@@ -55,6 +61,16 @@ export default function CourseEdit() {
         )}
 
         <form onSubmit={handleSubmit} className="form-course-teacher">
+          {/* Botón de regreso */}
+            <button
+              className="btn-back-edit-course"
+              style={{
+                color: formData.paletteColors.accent,
+              }}
+              onClick={() => handleBtnNavigate('/back')}
+            >
+              <IoArrowBackCircleSharp />
+            </button>
           <Card>
             <CardHeader>
               <CardTitle>
@@ -92,10 +108,17 @@ export default function CourseEdit() {
               <div>
                 <Label>Categoría</Label>
                 <Input
-                  value={COURSE_CATEGORY_LABELS[formData.category]}
+                  value={COURSE_CATEGORY_LABELS[formData.category]?.label ?? '—'}
                   readOnly
+                  style={{
+                    color: COURSE_CATEGORY_LABELS[formData.category]?.color ?? '#000',
+                    fontWeight: 'bold',
+                    backgroundColor: '#f9f9f9',
+                    cursor: 'not-allowed',
+                  }}
                 />
               </div>
+
 
               <div>
                 <Label>Paleta de Colores</Label>

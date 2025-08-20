@@ -1,0 +1,27 @@
+.suggestion-title{
+    color:rgb(88, 49, 16);
+    border-bottom: 2px dashed #a47c48;
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
+    border-bottom: 2px dashed #a47c48;
+    text-align: center;
+
+}
+
+.suggestion-list{
+    color:black;
+    padding-bottom: 0.5rem;
+    font-size: 22px;
+    text-align: left
+
+}
+
+.suggestion-photo{
+    width: 490px;
+    height: 300px;
+    align-content: center;
+    display: block;        
+    margin: 0 auto;
+
+
+}

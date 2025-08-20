@@ -1,0 +1,134 @@
+
+
+
+  .selected-file-name {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #2563eb;
+    font-weight: 500;
+  }
+
+  .file-types-container {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+
+  .file-types-container h3 {
+    font-size: 1rem;
+    color: #bfd1ee;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .file-types-options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .file-type-option {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    color: #374151;
+    min-width: 80px;
+  }
+
+  .file-type-option:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Specific styles for each file type */
+  .docx-option {
+    border-color: #3b82f6;
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  }
+
+  .docx-option:hover {
+    border-color: #2563eb;
+    background: linear-gradient(135deg, #bfdbfe 0%, #93c5fd 100%);
+    color: #1e40af;
+  }
+
+  .docx-option:hover::after {
+    content: "";
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 82px;
+    height: 82px;
+    background-image: url('https://res.cloudinary.com/dhznpt8rr/image/upload/v1755200397/Captura_de_pantalla_2025-08-14_143708_eafvkd.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    border-radius: 4px;
+    padding: 4px;
+  }
+
+  .xlsx-option {
+    border-color: #10b981;
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  }
+
+  .xlsx-option:hover {
+    border-color: #059669;
+    background: linear-gradient(135deg, #a7f3d0 0%, #6ee7b7 100%);
+    color: #047857;
+  }
+
+  .xlsx-option:hover::after {
+    content: "";
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    background-image: url('https://res.cloudinary.com/dhznpt8rr/image/upload/v1755200397/Captura_de_pantalla_2025-08-14_143939_pfiw5c.png');
+    transform: translateX(-50%);
+    width: 82px;
+    height: 82px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 4px;
+  }
+
+  .txt-option {
+    border-color: #f59e0b;
+    background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+  }
+
+  .txt-option:hover {
+    border-color: #d97706;
+    background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+    color: #92400e;
+  }
+
+  .txt-option:hover::after {
+    content: "";
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 82px;
+    height: 82px;
+    background-image: url('https://res.cloudinary.com/dhznpt8rr/image/upload/v1755200397/Captura_de_pantalla_2025-08-14_143725_iu2g0v.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 4px;
+  }

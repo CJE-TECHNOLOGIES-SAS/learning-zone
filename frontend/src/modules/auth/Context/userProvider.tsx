@@ -5,11 +5,10 @@ import { authStorage } from "../../../shared/Utils/authStorage";
 import type { TUser, TUserRole } from "../../types/User";
 import { useNavigationHandler } from "../../../hooks/useNavigationHandler";
 import { GetStudentAPI } from "../Services/GetInformationStudent.server";
-import GetNotificationsAPI from "../../notifications/services/GetNotifications.server";
-import type { TNotifications } from "../../notifications/types/Notifications";
 import toast from "react-hot-toast";
 import { GetRoleUserAPI } from "../Services/GetRoleUser.server";
 import { GetTeacherAPI } from "../Services/GetInformationTeacher.server";
+import type { TNotificationsStudent } from "../../notifications/types/Notifications";
 
 // Props que recibe el Provider
 type Props = {
@@ -24,7 +23,7 @@ export const UserProvider = ({ children }: Props) => {
   const [user, setUser] = useState<TUser | null>(null);
   const [role, setRole] = useState<TUserRole | null>(null);
   const [token, setToken] = useState<string | null>(null);
-  const [notifications, setNotifications] = useState<TNotifications>([]);
+  const [notifications, setNotifications] = useState<TNotificationsStudent>([]);
   const [isReady, setIsReady] = useState(false);
 
   /**
@@ -88,7 +87,7 @@ const initSession = async (): Promise<boolean> => {
   useEffect(() => {
     const storedToken = authStorage.getToken();
     const storedUser = authStorage.getUser();
-    const storedNotifications = authStorage.getNotifications();
+    const storedNotifications = authStorage.getNotificationsStudent();
     const storedRole = authStorage.getRole();
 
     // Si hay token pero no se ha cargado toda la información, ejecutar initSession
@@ -114,7 +113,7 @@ const initSession = async (): Promise<boolean> => {
   const logout = () => {
     authStorage.removeToken();
     authStorage.removeUser();
-    authStorage.removeNotifications();
+    authStorage.removeNotificationsStudent();
     authStorage.removeCoursesStudent();
 
     setUser(null);

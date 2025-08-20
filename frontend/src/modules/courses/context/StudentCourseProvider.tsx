@@ -97,6 +97,64 @@ export const StudentCourseProvider = ({ children }: Props) => {
     }
   }, []);
 
+  // ✅ LISTENER DE EVENTOS: Escuchar cambios en localStorage para cursos filtrados (ESTUDIANTES)
+  useEffect(() => {
+    // Función que se ejecuta cuando detecta cambios en localStorage
+    const handleStorageChange = () => {
+      // Leer los cursos actuales del localStorage (pueden estar filtrados por categoría)
+      const storedCourses = authStorage.getCoursesStudent();
+      if (storedCourses) {
+        // Actualizar el contexto con los cursos del localStorage
+        // Esto sincroniza el contexto con los filtros aplicados desde ViewCategories
+        setCourses(storedCourses);
+      }
+    };
+
+    // Escuchar eventos de storage nativo (cambios desde otras pestañas/componentes)
+    // Este evento se dispara automáticamente cuando localStorage cambia
+    window.addEventListener('storage', handleStorageChange);
+
+    // También escuchar nuestro evento personalizado para cambios internos
+    // Este evento lo disparamos manualmente desde ViewCategories para estudiantes
+    window.addEventListener('coursesStudentUpdated', handleStorageChange);
+
+    // Cleanup: Remover listeners al desmontar el componente
+    // Esto previene memory leaks
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('coursesStudentUpdated', handleStorageChange);
+    };
+  }, []); // Se ejecuta solo una vez al montar el componente
+
+  // ✅ POLLING DE RESPALDO: Sistema de verificación automática cada 500ms (ESTUDIANTES)
+  useEffect(() => {
+    // Función que verifica si localStorage y contexto están sincronizados
+    const pollLocalStorage = () => {
+      // Leer cursos del localStorage (pueden estar filtrados por categoría)
+      const storedCourses = authStorage.getCoursesStudent();
+      // Contar cursos actuales en el contexto
+      const currentCoursesLength = courses.length;
+      // Contar cursos en localStorage
+      const storedCoursesLength = storedCourses ? storedCourses.length : 0;
+
+      // ⚠️ DETECCIÓN DE DESINCRONIZACIÓN: Si hay diferencia entre localStorage y contexto
+      // Esto puede pasar si los eventos no se dispararon correctamente
+      if (storedCourses && (currentCoursesLength !== storedCoursesLength)) {
+        // Sincronizar: Actualizar contexto con los datos de localStorage
+        // Esto garantiza que el dashboard del estudiante SIEMPRE muestre los cursos correctos
+        setCourses(storedCourses);
+      }
+    };
+
+    // Ejecutar polling cada 500ms (medio segundo)
+    // Este intervalo es suficientemente rápido para parecer instantáneo
+    // pero no tan rápido como para afectar el rendimiento
+    const interval = setInterval(pollLocalStorage, 500);
+
+    // Cleanup: Limpiar interval al desmontar el componente
+    // Esto previene que el polling continúe cuando el componente no existe
+    return () => clearInterval(interval);
+  }, [courses]); // Se ejecuta cuando cambian los cursos en el contexto
 
       /* Funcion que se encarga de mostrar el porcentaje completo */
     useEffect(() => {

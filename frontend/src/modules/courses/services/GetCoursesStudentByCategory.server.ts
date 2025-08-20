@@ -13,9 +13,17 @@ type GetCoursesCategoryAPIResponse = {
   courses: TCoursesStudents;
 };
 
-export default async function GetCoursesByCategoryAPI(category:TCourse['category']): Promise<TCoursesStudents> {
+export default async function GetCoursesStudentByCategoryAPI(category:TCourse['category']): Promise<TCoursesStudents> {
     try {
-        const response = await axios.get(`${VITE_GETCOURSES_ENDPOINT}/${category}`);
+        /* Construir endpoint siguiendo el patrón correcto y codificando la categoría */
+        // Codificar la categoría para manejar espacios y caracteres especiales
+        const encodedCategory = encodeURIComponent(category);
+
+        // Usar el patrón correcto: /courses/category/{category} en lugar de solo /{category}
+        const fullUrl = `${VITE_GETCOURSES_ENDPOINT}/category/${encodedCategory}`;
+        console.log('🔗 GetCoursesStudentByCategory - URL construida:', fullUrl);
+
+        const response = await axios.get(fullUrl);
 
         // Validar status code
         if (response.status !== 200) {

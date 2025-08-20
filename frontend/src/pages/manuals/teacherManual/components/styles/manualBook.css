@@ -1,0 +1,79 @@
+.book-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: 30px 15px;
+  box-sizing: border-box;
+}
+
+/* Estilo general de la página */
+.page {
+  position: relative;
+  background: linear-gradient(135deg, #faf3df, #f5deb3);
+  border: 10px solid transparent;
+  border-left: 50px solid #130b03;
+  border-radius: 10px;
+  font-family: 'Georgia', serif;
+  box-shadow:
+    inset -6px 0 10px rgba(0, 0, 0, 0.849),
+    5px 5px 15px rgba(212, 180, 180, 0.959);
+
+  max-width: 900px;   /* No crecer demasiado en pantallas grandes */
+  width: 100%;
+  margin: 20px auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Portada */
+.cover-page {
+  background: linear-gradient(135deg, #bda58f, #ce9d6b);
+  border: 10px double #050504;
+  border-left: 50px solid #050505;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+  max-width: 900px;
+  width: 100%;
+  margin: 20px auto;
+  box-sizing: border-box;
+}
+
+/* Contenido de cada página */
+.page-content {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+/* ====== RESPONSIVE ====== */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .page, .cover-page {
+    border-left: 25px solid #130b03;
+    padding: 15px;
+  }
+
+  .cover-page {
+    border-left: 25px solid #050505;
+  }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  .page, .cover-page {
+    border-left: 15px solid #130b03;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .cover-page {
+    border-left: 15px solid #050505;
+    font-size: 16px;
+  }
+}

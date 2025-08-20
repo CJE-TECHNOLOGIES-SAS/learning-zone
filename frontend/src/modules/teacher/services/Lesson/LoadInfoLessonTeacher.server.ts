@@ -2,7 +2,7 @@
 /* Serivicio que se encarga de obtener los cursos del estudiante */
 
 import axios from '../../../../api/axiosInstance';
-import type {TCourseTeacherResponse, TLessonContentResponse, TLessonTeacherResponse } from '../../types/Teacher';
+import type { TLessonContentResponse, TLessonTeacherResponse } from '../../types/Teacher';
 
 const VITE_TEACHER_ENDPOINT = import.meta.env.VITE_TEACHER_ENDPOINT;
 
@@ -11,20 +11,14 @@ const VITE_TEACHER_ENDPOINT = import.meta.env.VITE_TEACHER_ENDPOINT;
 type TGetLessonAPIResponse = {
   status: number;
   message: string;
-  lesson: TLessonContentResponse; /* Cambiar lo que recibe del backend: que seria todo, el contenido y la evaluacion ya que esto se mostrar en una page para actualizar el curso */
+  data: TLessonContentResponse; /* Cambiar lo que recibe del backend: que seria todo, el contenido y la evaluacion ya que esto se mostrar en una page para actualizar el curso */
 };
 
-type TGetLessonsAPIProps ={
-    idCourse:TCourseTeacherResponse['id'],
-    idLesson: TLessonTeacherResponse['id']
-}
 
-export default async function LoadInfoLessonTeacherAPI({idCourse, idLesson}:TGetLessonsAPIProps): Promise<TLessonContentResponse> {
+export default async function LoadInfoLessonTeacherAPI( idLesson: TLessonTeacherResponse['id']): Promise<TLessonContentResponse> {
     try {
-        const id_course = idCourse
         const id_lesson = idLesson
-        const response = await axios.get(`${VITE_TEACHER_ENDPOINT}/courses/${id_course}/lessons/${id_lesson}`);
-        console.log(response)
+        const response = await axios.get(`${VITE_TEACHER_ENDPOINT}/courses/lesson/${id_lesson}`);
 
         // Validar status code
         if (response.status !== 200) {
@@ -32,15 +26,15 @@ export default async function LoadInfoLessonTeacherAPI({idCourse, idLesson}:TGet
         }
 
         // Validar estructura de respuesta
-        const responseData = response.data as TGetLessonAPIResponse;
-        if (!responseData.lesson || !Array.isArray(responseData.lesson)) {
+/*         const responseData = response.data as TGetLessonAPIResponse;
+        if (!responseData || !Array.isArray(responseData)) {
             throw new Error('Respuesta del servidor inválida: estructura de datos incorrecta');
-        }
-
-        return responseData.lesson;
+        } */
+       console.log(response)
+        return response.data;
 
     } catch (error) {
-        console.error('Error en GetCourses:', error);
+        console.error('Error en getInfoLesson:', error);
         throw error;
     }
 }

@@ -5,14 +5,13 @@ import toast from "react-hot-toast";
 import { educationalPalettes, type TColorPalette, type TPaletteNames } from "../../../../shared/theme/ColorPalettesCourses";
 import type { TCourseTeacherSend } from "../../types/Teacher";
 import type { TCourse } from "../../../courses/types/CourseStudent";
-import CreateCourseAPI from "../../services/Course/CreateCourse.server";
 import UpdateCourseAPI from "../../services/Course/UpdateCourse.server";
 import { useTeacherCourseContext } from "../useCourseTeacher";
 import { authStorage } from "../../../../shared/Utils/authStorage";
 
 export function useFormUpdateCourse() {
   const { courseId } = useParams();
-  const { refreshCoursesTeacher, loadInfoCourse, course } = useTeacherCourseContext();
+  const { refreshCoursesTeacher, loadInfoCourse, courseTeacher } = useTeacherCourseContext();
   const id_course = Number(courseId);
   const navigate = useNavigate();
 
@@ -24,12 +23,12 @@ export function useFormUpdateCourse() {
     palette: TPaletteNames;
     paletteColors: TColorPalette;
   }>({
-    name: course?.name!,
-    description:course?.description!,
-    category: course?.category!, // por defecto
-    image: course?.image!,
-    palette: course?.name_palette || "vibrantLearning",
-    paletteColors: educationalPalettes[course?.name_palette || "vibrantLearning"]
+    name: courseTeacher!.name,
+    description:courseTeacher!.description,
+    category: courseTeacher!.category!, // por defecto
+    image: courseTeacher!.image!,
+    palette: courseTeacher!.name_palette || "vibrantLearning",
+    paletteColors: educationalPalettes[courseTeacher!.name_palette || "vibrantLearning"]
   });
 
   const [errors, setErrors] = useState<Partial<Record<keyof typeof formData, string>>>({});

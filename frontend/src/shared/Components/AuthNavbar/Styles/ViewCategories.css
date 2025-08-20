@@ -1,48 +1,61 @@
 /* ===== VIEW CATEGORIES ===== */
 .container-view-categories {
   position: absolute;
-  right: 24px;
-  top: 360px;
+  right: 200px;
+  top: 340px;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
-  background-color: #f6f2eef1;
-  padding: var(--spacing-md);
+  padding: var(--spacing-xs);
   border-radius: 16px;
   z-index: 5900;
   width: 50vw;
   min-width: 180px;
   max-width: 320px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 11px rgba(0, 0, 0, 0.273);
+  overflow-y: auto;
+  max-height: 30dvh;
+  background-image: url('https://videos.openai.com/vg-assets/assets%2Ftask_01k0szvndsf84rjg902dgrwecq%2F1753219124_img_0.webp?st=2025-08-14T23%3A45%3A34Z&se=2025-08-21T00%3A45%3A34Z&sks=b&skt=2025-08-14T23%3A45%3A34Z&ske=2025-08-21T00%3A45%3A34Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=vZXRFGH6GIbhvXHwtcn%2Bjxpdf0myJnCFCn%2F2eQtylh8%3D&az=oaivgprodscus');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* Ocultar scrollbar en todos los navegadores */
+  scrollbar-width: none; /* Firefox */
+}
+
+.container-view-categories::-webkit-scrollbar {
+  display: none; /* Chrome, Safari y Edge */
 }
 
 .btn-category {
   cursor: pointer;
-  padding: 0.5rem 0.2rem;
+  padding: 0.6rem 0.4rem;
   width: 100%;
   border: none;
   border-radius: 10px;
-  color: #fff;
+  color: #ffff;
   transition: 0.3s ease-in-out;
   font-size: 0.95rem;
-  background-color: rgb(18, 56, 92);
-  box-shadow: 10px 5px 5px  #868181;
+
 }
 
 .btn-category:hover {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
 }
 
 
 /* ===== TABLET (>=768px) ===== */
 @media (min-width: 768px) {
   .container-view-categories {
-    right: 90px;
-    top: 270px;
+    right: 210px;
+    top: 310px;
     padding: var(--spacing-lg);
     gap: var(--spacing-md);
     max-width: 290px;
     border-radius: 18px;
+    max-height: 30dvh;
+
 
   }
   .btn-category {
@@ -56,11 +69,12 @@
 /* ===== DESKTOP (>=1024px) ===== */
 @media (min-width: 1024px) {
   .container-view-categories {
-    right: 420px;
-    top: 210px;
-    padding: 4rem;
+    right: 250px;
+    top: 220px;
+    padding: 2rem;
     gap: 30px;
     max-width: 420px;
+    max-height: 40dvh;
 
     border-radius: 20px;
   }
@@ -75,12 +89,13 @@
 @media (max-width: 480px) {
   .container-view-categories {
     right: 34px;
-    top: 140px;
+    top: 340px;
     padding: var(--spacing-xs);
     gap: var(--spacing-xs);
     width: 32vw;
     min-width: 120px;
     max-width: 99vw;
+    max-height: 20dvh;
     border-radius: 10px;
   }
   .btn-category {

@@ -1,0 +1,28 @@
+
+
+.evaluation-title{
+    color:rgb(88, 49, 16);
+    border-bottom: 2px dashed #a47c48;
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
+    border-bottom: 2px dashed #a47c48;
+     text-align: center;
+
+}
+
+.manual-list{
+    color:black;
+    padding-bottom: 0.5rem;
+    font-size: 22px;
+    text-align: left
+
+}
+
+.evaluation-photo{
+    width: 455px;
+    height: 280px;
+    align-content: center;
+    display: block;        /* Necesario para margin auto en imágenes */
+    margin: 0 auto;
+
+}

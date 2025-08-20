@@ -1,4 +1,4 @@
-import type { TNotifications } from "../notifications/types/Notifications";
+import type { TNotifications, TNotificationsStudent } from "../notifications/types/Notifications";
 /* Representa el modelo donde esta consentimiento  */
 export type TStudentConsent ={
     accepted: boolean;
@@ -95,7 +95,7 @@ export type TUserContext = {
   setRole: React.Dispatch<React.SetStateAction<UserRole | null>>; // ← NUEVO
 
   // Mantiene: notificaciones
-  notifications: TNotifications;
+  notifications: TNotificationsStudent;
   setNotifications: React.Dispatch<React.SetStateAction<TNotifications>>;
   numberNotifications: number;
   initSession: ()=>Promise<boolean>

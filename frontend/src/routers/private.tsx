@@ -17,7 +17,7 @@ export default function RoutersPrivates() {
       {/* Wrapper general que protege todas las rutas privadas */}
       <Route element={<PrivateRouters />}>
         <Route element={<AuthLayout />}>
-          <Route path="/" element={<LandingPage/>}/>
+          <Route path="/" element={<LandingPage />} />
 
 
           {/* Redirección inicial según el rol */}
@@ -39,11 +39,11 @@ export default function RoutersPrivates() {
           <Route element={<StudentGuard />}>
             <Route path="/student/*" element={
               <StudentCourseProvider>
-                 <StudentRoutes />
+                <StudentRoutes />
               </StudentCourseProvider>
-             } />
+            } />
           </Route>
-          <Route path="/help" element={<Help/>}/>
+          <Route path="/help" element={<Help />} />
 
           {/* Rutas compartidas (pueden estar protegidas) */}
           {sharedRoutes}

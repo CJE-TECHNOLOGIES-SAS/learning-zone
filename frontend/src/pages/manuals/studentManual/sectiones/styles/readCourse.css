@@ -1,0 +1,28 @@
+.read-course-title{
+    color:rgb(88, 49, 16);
+    border-bottom: 2px dashed #a47c48;
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
+    border-bottom: 2px dashed #a47c48;
+     text-align: center;
+
+}
+
+.read-course-list{
+    color:black;
+    padding-bottom: 0.5rem;
+    font-size: 22px;
+    text-align: left
+
+}
+
+.container {
+    display: flex;
+    justify-content: space-between; /* una a cada extremo */
+    align-items: center; /* centradas verticalmente si tienen diferente altura */
+}
+
+.course-photo, .lessons-photo {
+    width: 320px;
+    height: 210px;
+}

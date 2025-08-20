@@ -1,0 +1,86 @@
+.book-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 50vh;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1000px; /* límite para pantallas grandes */
+  margin: 0 auto;
+}
+
+.page {
+  position: relative;
+  background: linear-gradient(135deg, #e2d1a1, #eeeae3);
+  border: 8px solid transparent;
+  border-left: 40px solid #130b03;
+  border-radius: 10px;
+  font-family: 'Georgia', serif;
+  box-shadow:
+    inset -6px 0 10px rgba(0, 0, 0, 0.849), 
+    5px 5px 15px rgba(212, 180, 180, 0.959);
+  width: 100%;
+  max-width: 900px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.cover-page {
+  background: linear-gradient(135deg, #64482e, #cfa881);
+  border: 8px double #050504;
+  border-left: 40px solid #050505;
+  font-weight: bold;
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 1.8rem;
+}
+
+.page-content {
+  width: 100%;
+  height: auto;
+  overflow-y: auto;
+  box-sizing: border-box;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* ---------------- RESPONSIVIDAD ---------------- */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .page {
+    border-left: 25px solid #130b03;
+    padding: 15px;
+    font-size: 0.95rem;
+  }
+
+  .cover-page {
+    font-size: 1.5rem;
+    padding: 20px;
+  }
+}
+
+/* Móviles */
+@media (max-width: 600px) {
+  .book-container {
+    padding: 20px 10px;
+  }
+
+  .page {
+    border-left: 15px solid #130b03;
+    font-size: 0.9rem;
+    padding: 12px;
+  }
+
+  .cover-page {
+    font-size: 1.2rem;
+    padding: 15px;
+  }
+
+  .page-content {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}

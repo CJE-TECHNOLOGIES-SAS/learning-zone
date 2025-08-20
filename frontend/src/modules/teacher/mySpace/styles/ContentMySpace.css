@@ -1,0 +1,23 @@
+.view-myspace{
+    padding: 24;
+    height: 100%;
+    width: 100%;
+}
+/* Contenedor del contenido principal - ocupa el espacio restante */
+.content-my-space {
+    width: 100%;
+    background-color: #fff;
+}
+/* Agregarle fondos a esos */
+.user-view {
+}
+
+.students-view {
+}
+
+.statistics-view {
+}
+
+.notifications-view {
+
+}

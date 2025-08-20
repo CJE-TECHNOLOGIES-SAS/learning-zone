@@ -5,5 +5,8 @@ export type TNotification ={
     title:string,
     message:string,
     date:string
+    id_teacher:number
 }
-export type TNotifications = TNotification[];
+// Listados
+export type TNotificationsStudent = TNotification[];
+export type TNotificationsTeacher = TNotification[];

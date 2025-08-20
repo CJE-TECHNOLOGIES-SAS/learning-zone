@@ -25,7 +25,7 @@ const ComplaintForm = ({ onSuccess }: ComplaintFormProps) => {
 
   return (
     <form onSubmit={handleSubmit} className="complaint-form">
-      <h2>Datos estudiante</h2>
+      <h2>Completar con tus datos</h2>
 
       <label htmlFor="nombre">Nombre completo:</label>
       <input

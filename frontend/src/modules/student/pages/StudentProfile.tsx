@@ -38,7 +38,7 @@ export default function StudentProfile() {
                     {progress.name_course}
                   <span className="number-process">{progress.completed_lessons}/{progress.all_lessons}</span>
 
-                  <span className="span-status-course" style={{'background':progress.status === 'completed'? '#59A9FF':'#FF7659'}}>{progress.status === 'completed'? 'Completo':'En progreso'}</span></p>
+                  <span className="span-status-course" style={{'background':progress.status === 'complete'? '#59A9FF':'#FF7659'}}>{progress.status === 'complete'? 'Completo':'En progreso'}</span></p>
 
 
 

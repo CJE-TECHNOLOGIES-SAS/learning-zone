@@ -1,35 +1,39 @@
-.header-course{
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.btn-chat-course{
-    background-color: transparent;
-    color: var(--color-text-light);
-    font-size: 42px;
-}
-.title-course{
-    font-size: 32px;
-    font-weight: 800;
-    letter-spacing: 1.3px;
+.header-course {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .6rem;
 }
 
+.btn-chat-course {
+  background-color: transparent;
+  color: var(--color-text-light);
+  font-size: 42px;
+}
 
-.container-progress{
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    width: 10%;
-    text-align: center;
-    position: relative;
+.title-course {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 1.3px;
 }
-.progress-course-number{
-    color: var(--color-text-light);
-    font-size: 24px;
-    letter-spacing: 1.4px;
-    font-weight: 600;
+
+.container-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 10%;
+  text-align: center;
+  position: relative;
 }
+
+.progress-course-number {
+  color: #000;
+  font-size: 24px;
+  letter-spacing: 1.4px;
+  font-weight: 600;
+}
+
 .progress-bar-bg {
   width: 100%;
   border-bottom: 12px solid #fff;
@@ -38,27 +42,11 @@
   border-radius: 12px;
 }
 
-.progress-bar-fill-Word {
-  border-bottom: 12px solid #48e;
+.progress-bar-fill {
+  border-bottom: 12px solid var(--progress-color, #48e);
   position: absolute;
   top: 30px;
   border-radius: 12px;
   transition: width 0.4s ease;
-  box-shadow: 4px 0px 0px 1px #41aaf059;
-}
-.progress-bar-fill-Excel {
-  border-bottom: 12px solid rgb(161, 238, 68);
-  position: absolute;
-  top: 30px;
-  border-radius: 12px;
-  transition: width 0.4s ease;
-  box-shadow: 4px 0px 0px 1px #87f0415d;
-}
-.progress-bar-fill-Power-Point {
-  border-bottom: 12px solid rgb(238, 156, 68);
-  position: absolute;
-  top: 30px;
-  border-radius: 12px;
-  transition: width 0.4s ease;
-  box-shadow: 4px 0px 0px 1px #f0964162;
+  box-shadow: 4px 0px 0px 1px var(--progress-shadow, rgba(0, 0, 0, 0.1));
 }

@@ -1,0 +1,23 @@
+.cover-page-title {
+    color: black
+}
+
+.paragraph-cover-page {
+    color: black
+}
+
+.cover-page {
+    color: black;
+    justify-content: center;
+}
+
+.cover-logo {
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+    display: block;
+}
+
+.paragraph-cover-page {
+    font-size: 25px;
+}

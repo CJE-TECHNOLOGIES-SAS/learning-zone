@@ -13,7 +13,8 @@
 
 /* Contenedor principal de la evaluación (dinámico con palette) */
 .container-evaluation-lesson {
-  max-width: 800px;
+  min-width: 500px;
+  max-width: 900px;
   margin: 12rem auto;
   padding: 2.5rem 2rem;
   border-radius: 16px;
@@ -35,7 +36,6 @@
   margin-bottom: 2rem;
   padding: 1.2rem 0.5rem;
   border-radius: 10px;
-  border: 1px solid;
   box-shadow: 0 2px 8px rgba(0,0,0,0.01);
 }
 
@@ -99,6 +99,7 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.01);
   text-transform: none;
   letter-spacing: 0;
+  color: #fff;
 }
 
 /* Modal de puntaje */

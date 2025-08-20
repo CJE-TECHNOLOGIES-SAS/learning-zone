@@ -48,15 +48,7 @@
     transform: scale(1.1); /* Efecto de escala en hover */
 }
 
-/* Icono Categories */
-.icon-categories {
-    color: #75fb94;
-}
 
-.icon-categories:hover {
-    color: #28b647;
-    transform: scale(1.1);
-}
 
 /* Icono Help */
 .icon-help {

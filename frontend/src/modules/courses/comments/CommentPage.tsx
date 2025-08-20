@@ -1,5 +1,5 @@
-import { useEffect, useState,  useMemo } from 'react';
-import { getSocket } from './socket';             // YA NO default
+import { useEffect, useState } from 'react';
+import { getSocket } from './socket';
 import Comment from './comment';
 import CommentForm from './commentForm';
 import UserList from './userList';
@@ -10,85 +10,54 @@ import type { TStudent } from '../../types/User';
 import toast from 'react-hot-toast';
 import { IoArrowBackCircleSharp } from 'react-icons/io5';
 import { useNavigationHandler } from '../../../hooks/useNavigationHandler';
+import type { TCourseTeacherResponse } from '../../teacher/types/Teacher';
 
 interface CommentPageProps {
   courseId: number;
   nameCourse: string;
+  palette: TCourseTeacherResponse['palette']; // { brand, surface, text, accent }
 }
 
-export default function CommentPage({ courseId, nameCourse }: CommentPageProps) {
-  // Estado para almacenar todos los comentarios del curso
+export default function CommentPage({ courseId, nameCourse, palette }: CommentPageProps) {
   const [comments, setComments] = useState<TComment[]>([]);
-
-  // Estado para almacenar la lista de todos los estudiantes
   const [allStudents, setAllStudents] = useState<TStudentAllComents[]>([]);
-
-  // Estado para almacenar los IDs de estudiantes conectados
   const [listStudentsConnects, setListStudentsConnects] = useState<TStudent['id'][]>([]);
-
-  // ✅ NUEVO: Estado global para controlar qué formulario de actualización está abierto
-  // Solo un formulario puede estar abierto a la vez
   const [openUpdateFormId, setOpenUpdateFormId] = useState<number | null>(null);
-/*   const prevConnectedIds = useRef<TStudent['id'][]>([]); */
-  const student = useMemo(() => authStorage.getUser(), []);
-  const socket = getSocket();  // Usamos la instancia compartida
 
-  const handleBtnNavigate = useNavigationHandler()
+  const student = authStorage.getUser();
+  const socket = getSocket();
+  const handleBtnNavigate = useNavigationHandler();
 
+  // Valores directos de la paleta (con pequeño fallback por si viniera undefined)
+  const brand  = palette?.brand  ?? '#3b82f6';
+  const surface= palette?.surface?? '#ffffff';
+  const text   = palette?.text   ?? '#111827';
+  const accent = palette?.accent ?? '#f59e0b';
 
   useEffect(() => {
-    // Cargar la lista de estudiantes desde el almacenamiento local
     const allstudentsStorage = authStorage.getAllStudents();
     setAllStudents(allstudentsStorage || []);
 
-    // Unirse al chat del curso específico
     socket.emit('join', {
       name: student?.name,
       courseId,
       token: authStorage.getToken(),
     });
 
-    // ✅ Listener: Recibir la lista inicial de comentarios
-    socket.on('commentList', (comments: TComment[]) => {
-      setComments(comments);
-    });
-
-    // ✅ Listener: Recibir la lista de estudiantes conectados
-    socket.on('listStudentsConnects', (data: TStudent['id'][] | []) => {
-      setListStudentsConnects(data);
-    });
-
-    // ✅ Listener: Recibir nuevos comentarios en tiempo real
-    socket.on('newComment', (comment: TComment) => {
-      if (comment.courseId === courseId) {
-        // Agregar el nuevo comentario al final de la lista
-        setComments(prev => [...prev, comment]);
-        // Mostrar toast de confirmación si el comentario es del usuario actual
-        if (comment.nameStudent === student?.name) {
-          toast.success('¡Tu comentario fue enviado y ya es visible para todos!');
-        }
+    socket.on('commentList', (c: TComment[]) => setComments(c));
+    socket.on('listStudentsConnects', (ids: TStudent['id'][] | []) => setListStudentsConnects(ids));
+    socket.on('newComment', (c: TComment) => {
+      if (c.courseId === courseId) {
+        setComments(prev => [...prev, c]);
+        if (c.nameStudent === student?.name) toast.success('¡Tu comentario fue enviado y ya es visible para todos!');
       }
     });
-
-    // ✅ Listener: Recibir comentarios actualizados (eliminados o editados)
-    socket.on('commentUpdated', (updatedComment: TComment) => {
-      // Actualizar solo el comentario específico en la lista
-      setComments(prev => prev.map(comment =>
-        comment.id === updatedComment.id ? updatedComment : comment
-      ));
+    socket.on('commentUpdated', (u: TComment) => {
+      setComments(prev => prev.map(c => (c.id === u.id ? u : c)));
     });
+    socket.on('commentSuccess', (d: { message: string }) => toast.success(d.message));
+    socket.on('commentError', (d: { message: string }) => toast.error(d.message));
 
-    // ✅ Listener: Recibir confirmaciones de acciones exitosas
-    socket.on('commentSuccess', (data: { message: string }) => {
-      toast.success(data.message);
-    });
-
-    // ✅ Listener: Recibir errores de acciones
-    socket.on('commentError', (data: { message: string, details?: string }) => {
-      toast.error(data.message);
-    });
-
-    // Limpieza de listeners cuando el componente se desmonta
     return () => {
       socket.off('commentList');
       socket.off('newComment');
@@ -99,49 +68,88 @@ export default function CommentPage({ courseId, nameCourse }: CommentPageProps) 
     };
   }, [student?.name, courseId]);
 
-  // ✅ useEffect: Actualizar el estado de conexión de los estudiantes
   useEffect(() => {
-    // Solo actualizar si hay estudiantes y la lista de conectados es válida
     if (allStudents.length === 0 || !Array.isArray(listStudentsConnects)) return;
-
-    // Actualizar el estado de conexión de cada estudiante
-    setAllStudents(prev =>
-      prev.map(student => ({
-        ...student,
-        // Marcar como conectado si su ID está en la lista de conectados
-        stateConnect: listStudentsConnects.includes(student.id),
-      }))
-    );
+    setAllStudents(prev => prev.map(s => ({ ...s, stateConnect: listStudentsConnects.includes(s.id) })));
   }, [listStudentsConnects]);
 
-
-
   return (
-    <div className={`comment-page ${nameCourse.toLowerCase()}`}>
-      <button className="btn-back-comment" onClick={()=>handleBtnNavigate('/back')}>{<IoArrowBackCircleSharp/>}</button>
+    <div
+      className="comment-page"
+      style={{
+        background: surface,           // fondo dinámico
+        color: text                    // color de texto global
+      }}
+    >
+      <button
+        className="btn-back-comment"
+        onClick={() => handleBtnNavigate('/back')}
+        style={{ color: accent }}      // icono back con color accent
+        aria-label="Volver"
+        title="Volver"
+      >
+        <IoArrowBackCircleSharp />
+      </button>
 
-      <div className="left">
-        <h2 className='title-comment'>Comentarios {nameCourse}</h2>
-        <div className={`comments ${nameCourse.toLowerCase()}`}>
-        {/* Renderizar solo los comentarios principales (no respuestas) */}
-        {comments
-          .filter(c => c.parentId === null) // Solo comentarios sin padre (principales)
-          .map(c => (
-            <Comment
-              key={c.id}
-              {...c} // Pasar todas las propiedades del comentario
-              allComments={comments} // Lista completa para recursividad
-              courseId={courseId}
-              allStudents={allStudents}
-              currentUserId={student!.id} // ID del usuario actual para permisos
-              openUpdateFormId={openUpdateFormId} // Estado global del formulario abierto
-              setOpenUpdateFormId={setOpenUpdateFormId} // Función para controlar formularios
-            />
-          ))}
+      {/* panel izquierdo */}
+      <div
+        className="left"
+        style={{
+          background: surface,
+          boxShadow: `0 6px 18px ${brand}1f`,
+        }}
+      >
+        {/* título con degradado SOLO en texto */}
+        <h2
+          className="title-comment"
+          style={{
+            background: `linear-gradient(90deg, ${brand} 0%, ${accent} 70%)`,
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            color: text // fallback
+          }}
+        >
+          Comentarios {nameCourse}
+        </h2>
+
+        {/* listado de comentarios */}
+        <div
+          className="comments"
+          style={{
+            background: surface,
+            boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.02)',
+          }}
+        >
+          {comments
+            .filter(c => c.parentId === null)
+            .map(c => (
+              <Comment
+                key={c.id}
+                {...c}
+                allComments={comments}
+                courseId={courseId}
+                allStudents={allStudents}
+                currentUserId={student!.id}
+                openUpdateFormId={openUpdateFormId}
+                setOpenUpdateFormId={setOpenUpdateFormId}
+              />
+            ))}
         </div>
-        <CommentForm courseId={courseId} />
+
+        <div style={{ borderTop: `1px solid ${accent}33`, paddingTop: 12 }}>
+          <CommentForm courseId={courseId} />
+        </div>
       </div>
-      <div className={`right ${nameCourse.toLowerCase()}`}>
+
+      {/* panel derecho */}
+      <div
+        className="right"
+        style={{
+          background: `linear-gradient(180deg, ${surface}F2 0%, ${brand}0D 100%)`,
+          border: `1px solid ${accent}33`,
+          boxShadow: `0 6px 18px ${brand}1f`,
+        }}
+      >
         <UserList students={allStudents} />
       </div>
     </div>

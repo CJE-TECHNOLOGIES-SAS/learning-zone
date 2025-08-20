@@ -14,12 +14,18 @@ export default function RightPanel({ onClose }: RightPanelProps) {
         </button>
       )}
 
-      <h2 className="panel-title">Sobre Nosotros</h2>
+      <h2 className="panel-title">Misión</h2>
       <p className="panel-description">
-        Somos un equipo de desarrolladores conformado por aprendices del programa Análisis y Desarrollo de Software del SENA.
-        Nacemos como una iniciativa formativa con el objetivo de aplicar nuestros conocimientos
-        en la creación de soluciones tecnológicas funcionales, accesibles e innovadoras.
+        Brindar acceso a herramientas educativas digitales de calidad para estudiantes de zona rural, fortaleciendo sus competencias 
+        tecnológicas y promoviendo una educación inclusiva, económica y transformadora.
       </p>
+
+      <h2 className="panel-title">Visión</h2>
+      <p className="panel-description">
+        Ser un aplicativo líder en educación digital rural, reconocida por mejorar las oportunidades 
+        académicas y laborales de los jóvenes mediante el uso de tecnología innovadora y accesible.
+      </p>
+
 
       <div className="panel-section">
         <h3>Habilidades:</h3>

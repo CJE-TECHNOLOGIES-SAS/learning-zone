@@ -1,0 +1,136 @@
+/* ===== ESTILOS DEL ITEM DE NOTIFICACIÓN DEL PROFESOR ===== */
+
+.container-notification {
+  width: 100%;
+  background-color: var(--color-text-light);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  margin: 0.6rem auto;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.container-notification:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Encabezado con título y fecha */
+.header-notification {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+  gap: 16px;
+}
+
+.title-notification {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-dark-blue);
+  margin: 0;
+}
+
+.date-notification {
+  font-size: 0.85rem;
+  color: var(--color-neutral-gray);
+  font-weight: 500;
+}
+
+/* Cuerpo con mensaje e ícono */
+.body-notification {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.message-notification {
+  flex: 1;
+  max-width: 200px;
+  font-size: 0.95rem;
+  color: var(--color-neutral-dark-gray);
+  margin-right: 10px;
+  line-height: 1.4;
+  border-bottom: 1px dashed var(--color-neutral-light-gray);
+  padding-bottom: 3px;
+  word-wrap: break-word; /* Evita que textos largos desborden */
+}
+
+/* Botón de eliminación */
+.btn-delete-notification {
+  background-color: transparent;
+  border: none;
+  font-size: 1.6rem;
+  color: var(--color-vibrant-red-orange);
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.btn-delete-notification:hover {
+  transform: scale(1.2);
+  color: #c0392b;
+}
+
+.btn-toggle-message {
+  background: none;
+  border: none;
+  color: var(--color-primary-blue);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0;
+  margin-top: 4px;
+  align-self: flex-start;
+}
+
+/* ===== TABLET (>=768px) ===== */
+@media (min-width: 768px) {
+  .container-notification {
+    padding: 1.5rem 2rem;
+    max-width: 520px;
+  }
+  .title-notification {
+    font-size: 1.5rem;
+  }
+  .message-notification {
+    max-width: 320px;
+    font-size: 1.05rem;
+  }
+}
+
+/* ===== DESKTOP (>=1024px) ===== */
+@media (min-width: 1024px) {
+  .container-notification {
+    max-width: 600px;
+    padding: 2rem 2.5rem;
+  }
+  .title-notification {
+    font-size: 1.7rem;
+  }
+  .message-notification {
+    max-width: 300px;
+    font-size: 1.1rem;
+  }
+}
+
+/* ===== MOBILE PEQUEÑO (<=480px) ===== */
+@media (max-width: 480px) {
+  .container-notification {
+    padding: 0.7rem 0.5rem;
+    border-radius: 8px;
+  }
+  .title-notification {
+    font-size: 1.05rem;
+  }
+  .date-notification {
+    font-size: 0.7rem;
+  }
+  .message-notification {
+    max-width: 48vw;
+    font-size: 0.85rem;
+    padding-bottom: 1px;
+  }
+  .btn-delete-notification {
+    font-size: 1.2rem;
+  }
+}

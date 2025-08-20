@@ -6,20 +6,19 @@ import { authStorage } from '../../../shared/Utils/authStorage';
 import type { TStudentAllComents } from '../comments/types';
 import { useNavigate } from 'react-router-dom';
 import { useStudentCourseContext } from '../hooks/useCourse';
-import type { TCourse } from '../types/CourseStudent';
+import type { TCourse, TCourseStudent } from '../types/CourseStudent';
 
-// Props del componente: recibe título dinámico
 interface THeaderCourseProps {
   title: string;
-  idCourse:TCourse['id']
+  idCourse: TCourse['id'],
+  palette: TCourseStudent['palette'];
 }
 
-export default function HeaderCourse({ title, idCourse }: THeaderCourseProps) {
+export default function HeaderCourse({ title, idCourse, palette }: THeaderCourseProps) {
   const { progress } = useStudentCourseContext();
   const navigate = useNavigate();
 
   const handleComment = async () => {
-    // Cargar estudiantes para comentarios
     const students = await GetAllStudentsCommentsAPI();
     const studentStorage: TStudentAllComents[] = students.map(student => ({
       id: student.id,
@@ -31,24 +30,48 @@ export default function HeaderCourse({ title, idCourse }: THeaderCourseProps) {
       stateConnect: false,
     }));
     authStorage.setAllStudents(studentStorage);
-    const courseId = idCourse;
-    if (courseId) {
-      navigate(`/student/comments/${courseId}`);
-    } else {
-      alert('No se encontró el curso correspondiente.');
-    }
+    if (idCourse) navigate(`/student/comments/${idCourse}`);
+    else alert('No se encontró el curso correspondiente.');
   };
 
   return (
-    <div className="header-course">
-      <button className="btn-chat-course" onClick={handleComment}>
+    <div className="header-course"
+    style={{boxShadow: `0 0 10px ${palette.accent}`}}>
+      <button
+        className="btn-chat-course"
+        onClick={handleComment}
+        style={{ color: palette.accent }}
+      >
         <BsChatLeftTextFill style={{ background: 'none' }} />
       </button>
-      <h2 className={`title-course ${title}`}>Curso básico de {title}</h2>
+
+      <h2
+        className="title-course"
+        style={{ color: palette.text }}
+      >
+        Curso de {title}
+      </h2>
+
       <div className="container-progress">
-        <p className="progress-course-number">{progress}</p>
-        <span className="progress-bar-bg"></span>
-        <span className={`progress-bar-fill-${title}`} style={{ width: `${progress}%` }}></span>
+        <p
+          className="progress-course-number"
+          style={{ color: palette.text }}
+        >
+          {progress}
+        </p>
+
+        <span
+          className="progress-bar-bg"
+          style={{ borderBottomColor: palette.surface}}
+        />
+
+        <span
+          className="progress-bar-fill"
+          style={{
+            width: `${progress}%`,
+            borderBottomColor: palette.brand
+          }}
+        />
       </div>
     </div>
   );

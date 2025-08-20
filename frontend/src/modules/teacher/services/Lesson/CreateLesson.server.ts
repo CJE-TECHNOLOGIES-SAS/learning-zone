@@ -58,15 +58,15 @@ export default async function CreateLessonAPI({
     }
 
     // Validar estructura de respuesta
-    const responseData = response.data as TCreateLessonAPIResponse;
+   /*  const responseData = response.data as TCreateLessonAPIResponse; */
    /*  if (!responseData || !Array.isArray(responseData.message)) {
       throw new Error(
         "Respuesta del servidor inválida: estructura de datos incorrecta"
       );
       } */
-      console.log(responseData)
+      console.log(response)
 
-    return responseData;
+    return response.data;
   } catch (error) {
     console.error("Error en createLesson:", error);
     throw error;

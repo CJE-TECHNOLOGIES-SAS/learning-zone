@@ -1,0 +1,151 @@
+/* ===== CONTENEDOR GENERAL ===== */
+.container-control-table {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+  margin: 1rem 0 1.25rem 0;
+}
+
+/* ===== FORM ===== */
+.form-search-table {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ===== FLOATING LABEL (igual patrón que Login.css) ===== */
+.container-label-input-search {
+  position: relative;
+  flex: 1 1 260px;
+  min-width: 260px;
+}
+
+/* input */
+.container-label-input-search input {
+  width: 100%;
+  padding: 15px 10px 5px 10px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: transparent;
+  font-size: 1rem;
+  color: #b7b3b3;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* focus */
+.container-label-input-search input:focus {
+  outline: none;
+  border-color: #f2f7fc;
+}
+
+/* label */
+.container-label-input-search label {
+  letter-spacing: 1.4px;
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  color: var(--color-text-light);
+  font-size: 16px;
+  pointer-events: none;
+  transition: transform 0.3s ease, font-size 0.3s ease, color 0.3s ease, padding 0.3s ease;
+  transform-origin: left top;
+}
+
+/* Flota si hay foco o si el placeholder no está mostrado (hay contenido) */
+.container-label-input-search input:focus + label,
+.container-label-input-search input:not(:placeholder-shown) + label {
+  color: var(--color-text-light);
+  padding: 0 .7rem;
+  background-color: var(--color-dark-blue);
+  transform: translateY(-26px) scale(0.85);
+  font-size: 20px;
+  width: auto;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== BOTONES ===== */
+.btn-search,
+.btn-delete-all {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s ease;
+  height: 46px;
+}
+
+/* Buscar: azul */
+.btn-search {
+  background-image: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: #fff;
+  background-size: 200% auto;
+}
+.btn-search:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.25);
+}
+
+/* Eliminar todo: rojo */
+.btn-delete-all {
+  background-image: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #fff;
+  background-size: 200% auto;
+}
+.btn-delete-all:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(220, 38, 38, 0.25);
+}
+
+/* Disabled states */
+.btn-search:disabled,
+.btn-delete-all:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .form-search-table {
+    max-width: 560px;
+    gap: 10px;
+  }
+
+  .container-label-input-search {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+
+  .btn-search,
+  .btn-delete-all {
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-search-table {
+    max-width: 420px;
+    gap: 8px;
+  }
+
+  .btn-search,
+  .btn-delete-all {
+    width: 100%;
+  }
+}

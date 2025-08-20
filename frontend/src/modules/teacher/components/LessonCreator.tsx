@@ -97,7 +97,6 @@ export default function LessonCreate() {
                   }
                   className="select-native"
                 >
-                  <option value="text">Texto</option>
                   <option value="video">Video</option>
                   <option value="image">Imagen</option>
                 </select>

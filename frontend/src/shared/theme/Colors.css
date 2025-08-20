@@ -114,12 +114,4 @@
     */
 
     /* Colores de cursos */
-    --color-main-powerPoint :#EC5A00;
-    --color-main-excel : #0D9E34;
-    --color-main-word : #007AFF;
-    --color-shadow-dark: rgba(0, 0, 0, 0.4);
-
-   --color-chat-powerPoint: #FF914D;
-   --color-chat-excel:      #4CD964;
-   --color-chat-word:       #4DA6FF;
 }

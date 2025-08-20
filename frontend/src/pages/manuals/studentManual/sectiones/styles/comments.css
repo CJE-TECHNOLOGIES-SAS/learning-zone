@@ -1,0 +1,17 @@
+.comments-title{
+    color:rgb(88, 49, 16);
+    border-bottom: 2px dashed #a47c48;
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
+    border-bottom: 2px dashed #a47c48;
+    text-align: center;
+
+}
+
+.comments-photo{
+    width: 655px;
+    height: 280px;
+    align-content: center;
+    display: block;     
+    margin: 0 auto;
+}

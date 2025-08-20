@@ -38,7 +38,7 @@ export default function CardCourse({ id, image, name, description, status, palet
       }}
     >
       {/* Imagen del curso */}
-      <img className="image-course-card" src={image} alt={`Imagen de ${name}`} style={{ borderBottom: `1px solid ${palette.accent}` }} />
+      <img className="image-course-card" src={image} alt={`Imagen de ${name}`} />
 
       {/* Título del curso */}
       <h3 className="title-course-card" style={{ color: palette.brand }}>

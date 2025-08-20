@@ -1,0 +1,41 @@
+.acces-section-container{
+    color:black
+
+}
+
+.acces-section-title{
+    color:rgb(88, 49, 16);
+    border-bottom: 2px dashed #a47c48;
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
+    border-bottom: 2px dashed #a47c48;
+     text-align: center;
+}
+
+
+.acces-section-list{
+    color:black;
+    padding-bottom: 0.5rem;
+    font-size: 22px;
+    text-align: left
+
+}
+
+.acces-section{
+    width: 325px;
+    height: 170px;
+    align-content: center;
+    display: block;       
+    margin: 0 auto;
+
+}
+
+.accesplatform-section{
+    width: 355px;
+    height: 140px;
+    align-content: center;
+    display: block;        
+    margin: 0 auto;
+
+
+}

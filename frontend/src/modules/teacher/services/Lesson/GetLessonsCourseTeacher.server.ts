@@ -3,7 +3,6 @@
 /* Servicio que solicita los cursos de una categoria en especifico */
 /* Serivicio que se encarga de obtener los cursos del estudiante */
 
-import toast from 'react-hot-toast';
 import axios from '../../../../api/axiosInstance';
 import type { TCourse } from '../../../courses/types/CourseStudent';
 import type { TLessonsTeacherResponse } from '../../types/Teacher';

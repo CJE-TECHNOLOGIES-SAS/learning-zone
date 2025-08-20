@@ -265,7 +265,7 @@ async def get_lesson(
     lesson = await teacher_services.get_lesson_by_id(lesson_id)
     if not lesson:
         raise HTTPException(status_code=404, detail="Lección no encontrada.")
-    return lesson
+    return {"id": lesson.id, "name": lesson.name, "content": lesson.content}
 
 
 @router.put(

@@ -102,7 +102,6 @@ export default function EvaluationPage() {
         style={{
           color: palette.accent,
           backgroundColor: palette.surface,
-          border: `1px solid ${palette.accent}`,
         }}
         onClick={() => handleBtnNavigate('/back')}
       >
@@ -112,7 +111,6 @@ export default function EvaluationPage() {
       {/* Pregunta principal */}
       <h2
         className="question-evaluation"
-        style={{ color: palette.brand }}
       >
         {evaluation.question}
       </h2>

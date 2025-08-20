@@ -8,7 +8,7 @@ import UpdateIsPublishedAPI from "../services/Course/UpdateIsPublished.server";
 import DeleteCourseAPI from "../services/Course/DeleteCourse.serve";
 import toast from "react-hot-toast";
 /* icons */
-import { IoAddOutline } from "react-icons/io5";
+import { IoAddOutline, IoArrowBackCircleSharp } from "react-icons/io5";
 import { FiEdit3 } from "react-icons/fi";
 import { MdOutlineDelete } from "react-icons/md";
 import GetCourseTeacherAPI from "../services/Course/GetCourseTeacher.server";
@@ -20,7 +20,7 @@ export default function CourseManagement() {
   const {
     lessons,
     loadInfoCourse,
-    course,
+    courseTeacher,
     refreshCoursesTeacher,
     loadLessonsCourse,
   } = useTeacherCourseContext();
@@ -49,10 +49,10 @@ export default function CourseManagement() {
   // Sincronizar el estado local con el curso cargado
   useEffect(() => {
     window.scrollTo(0, 0); // 📌 Lleva el scroll al inicio
-    if (course) {
-      setIsPublished(course.is_published);
+    if (courseTeacher) {
+      setIsPublished(courseTeacher.is_published);
     }
-  }, [course]);
+  }, [courseTeacher]);
 
   const handleClickAggLesson = () => {
     authStorage.removeFormLessonInfo();
@@ -115,14 +115,23 @@ export default function CourseManagement() {
     navigate(`/teacher/courses`);
   };
 
-  const palette = course?.palette || {
+
+  const palette = courseTeacher?.palette || {
     brand: "#000",
     surface: "#fff",
     text: "#000",
     accent: "#ccc",
   };
+  const catInfo = courseTeacher?.category
+  ? COURSE_CATEGORY_LABELS[courseTeacher.category as keyof typeof COURSE_CATEGORY_LABELS]
+  : undefined;
+  if (!courseTeacher) {
+  return <div className="skeleton-course">Cargando curso…</div>;
+}
+
 
   return (
+
     <div
       className="container-management-course-teacher"
       style={{
@@ -133,25 +142,36 @@ export default function CourseManagement() {
         borderRadius: "10px",
       }}
     >
+      {/* Botón de regreso */}
+      <button
+        className="btn-back-teacher-course"
+        style={{
+          color: 'black',
+        }}
+        onClick={() => navigate('/teacher/home-teacher')}
+      >
+        <IoArrowBackCircleSharp />
+      </button>
+
       <header className="header-crud-course-teacher">
         <img
           className="image-course-header-teacher"
-          src={course?.image}
-          alt={`Imagen del curso ${course?.name}`}
+          src={courseTeacher?.image}
+          alt={`Imagen del curso ${courseTeacher?.name}`}
         />
         <div className="container-info-course">
-          <span
-            className="category-management-course"
-            style={{ color: palette.accent }}
-          >
-            {Object.entries(COURSE_CATEGORY_LABELS).map(([key, label]) =>
-              course?.category === key ? label : null
-            )}
-          </span>
+        <span
+          className="category-management-course"
+          style={{ background: catInfo?.color ?? palette.accent }}
+        >
+          {catInfo?.label ?? courseTeacher?.category ?? '—'}
+        </span>
+
+
           <h2 className="title-course" style={{ color: palette.brand }}>
-            {course?.name}
+            {courseTeacher?.name}
           </h2>
-          <p className="description-course">{course?.description}</p>
+          <p className="description-course">{courseTeacher?.description}</p>
         </div>
 
         <div className="crud-actions">

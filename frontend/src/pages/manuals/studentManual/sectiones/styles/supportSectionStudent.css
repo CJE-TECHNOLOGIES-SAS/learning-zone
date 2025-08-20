@@ -1,0 +1,32 @@
+.support-section-title{
+    color:rgb(88, 49, 16);
+    border-bottom: 2px dashed #a47c48;
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
+    border-bottom: 2px dashed #a47c48;
+
+}
+
+.email{
+    color:black;
+    padding-bottom: 0.5rem;
+    font-size: 22px;
+
+}
+
+.support-hour{
+    color:black;
+    padding-bottom: 0.5rem;
+    font-size: 22px;
+
+}
+
+.myteam-photo{
+    width: 490px;
+    height: 300px;
+    align-content: center;
+    display: block;        
+    margin: 0 auto;
+
+
+}

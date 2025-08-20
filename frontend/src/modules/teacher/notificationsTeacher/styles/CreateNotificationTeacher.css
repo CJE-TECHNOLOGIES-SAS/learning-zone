@@ -1,0 +1,261 @@
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.container-create-notification{
+    position: absolute;
+    left: 36rem;
+    top:14rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    z-index: 1000;
+}
+.container-form-create-notification {
+    box-shadow: 10px 10px 10px 1px #393a3a8e;
+    border-radius: 12px;
+    padding: 3rem;
+    display: flex;
+    background-color: #fff;
+
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    align-items: stretch;
+    justify-content: center;
+}
+
+/* ===== HEADER ===== */
+.title-create-notification {
+  color: var(--color-text-dark);
+  font-size: 2rem;
+  margin: 0.5rem 0 0.25rem;
+  text-align: center;
+}
+
+/* Botón volver */
+.btn-back-create-notification {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  color: #000000;
+  font-size: 2.2rem;
+  cursor: pointer;
+  transition: transform .2s ease, color .2s ease;
+}
+.btn-back-create-notification:hover {
+  transform: translateY(-2px);
+  color: var(--color-mint-green);
+}
+
+/* ===== FLOATING LABEL (input + textarea) ===== */
+.container-label-input-n {
+  position: relative;
+  margin-top: 26px;
+  width: 100%;
+}
+
+/* Campo de texto */
+.container-label-input-n input,
+.container-label-input-n textarea {
+  width: 100%;
+  padding: 15px 12px 7px 12px; /* top right bottom left */
+  border-radius: 10px;
+  border: none;
+  border-right: 2px solid #767e7f8e;
+  border-bottom: 2px solid #767e7f8e;
+  background-color: transparent;
+  font-size: 1rem;
+  color: #565252;
+  transition: border-color 0.3s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+  resize: vertical; /* solo aplica a textarea */
+}
+
+/* Focus state */
+.container-label-input-n input:focus,
+.container-label-input-n textarea:focus {
+  outline: none;
+  border-color: #f2f7fc;
+  box-shadow: 0 0 0 3px rgba(242, 247, 252, 0.1);
+}
+
+/* Label */
+.container-label-input-n label {
+  letter-spacing: 1.2px;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: var(  --color-text-dark);
+  font-size: 16px;
+  pointer-events: none;
+  transform-origin: left top;
+  transition: transform 0.25s ease, font-size 0.25s ease, color 0.25s ease, background-color 0.25s ease, padding 0.25s ease;
+}
+
+/* Estado flotante (focus o tiene contenido) */
+.container-label-input-n input:focus + label,
+.container-label-input-n input.has-content + label,
+.container-label-input-n textarea:focus + label,
+.container-label-input-n textarea.has-content + label {
+  color: var(--color-text-light);
+  padding: 0 .6rem;
+  background-color: var(--color-dark-blue);
+  transform: translateY(-26px) scale(0.85);
+  font-size: 18px;
+  width: auto;
+  max-width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== ESTADO DE ERROR ===== */
+.error {
+  display: block;
+  margin-top: 6px;
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.btn-create-notification {
+  background-image: linear-gradient(to right, #314755 0%, #26a0da  51%, #314755  100%);
+  margin-top: 8px;
+  padding: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  color: #ffffff;
+  font-size: 20px;
+  border: none;
+  font-weight: 700;
+}
+.btn-create-notification:hover {
+  background-position: right center;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,.2);
+}
+.btn-create-notification:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .container-form-create-notification {
+    position: absolute;
+    width: 300px;
+    top: 4rem;
+    right: 16rem;
+    padding: 2rem;
+    gap: 14px;
+    max-width: 520px;
+  }
+  .title-create-notification {
+    font-size: 1.8rem;
+  }
+  .container-label-input-n {
+    margin-top: 22px;
+  }
+  .container-label-input-n input,
+  .container-label-input-n textarea {
+    font-size: 0.95rem;
+    padding: 14px 10px 6px 10px;
+  }
+  .container-label-input-n label {
+    font-size: 15px;
+    top: 11px;
+    left: 10px;
+  }
+  .container-label-input-n input:focus + label,
+  .container-label-input-n input.has-content + label,
+  .container-label-input-n textarea:focus + label,
+  .container-label-input-n textarea.has-content + label {
+    font-size: 17px;
+    transform: translateY(-24px) scale(0.85);
+  }
+  .btn-create-notification {
+    font-size: 18px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .container-form-create-notification {
+    top: 0;
+    right: 18rem;
+    gap: 12px;
+    max-width: 360px;
+  }
+  .title-create-notification {
+    font-size: 1.5rem;
+  }
+  .container-label-input-n {
+    margin-top: 18px;
+  }
+  .container-label-input-n input,
+  .container-label-input-n textarea {
+    font-size: 0.9rem;
+  }
+  .container-label-input-n label {
+    font-size: 14px;
+    top: 10px;
+    left: 8px;
+  }
+  .container-label-input-n input:focus + label,
+  .container-label-input-n input.has-content + label,
+  .container-label-input-n textarea:focus + label,
+  .container-label-input-n textarea.has-content + label {
+    font-size: 16px;
+    transform: translateY(-22px) scale(0.85);
+  }
+  .btn-create-notification {
+    font-size: 16px;
+    padding: 0.9rem;
+  }
+}
+
+/* Mobile muy pequeño */
+@media (max-width: 360px) {
+  .container-form-create-notification {
+    padding: 1rem;
+    gap: 10px;
+    max-width: 320px;
+  }
+  .title-create-notification {
+    font-size: 1.35rem;
+  }
+  .container-label-input-n input,
+  .container-label-input-n textarea {
+    font-size: 0.85rem;
+    padding: 10px 8px 4px 8px;
+  }
+  .container-label-input-n label {
+    font-size: 13px;
+    top: 8px;
+    left: 8px;
+  }
+  .container-label-input-n input:focus + label,
+  .container-label-input-n input.has-content + label,
+  .container-label-input-n textarea:focus + label,
+  .container-label-input-n textarea.has-content + label {
+    font-size: 15px;
+    transform: translateY(-20px) scale(0.85);
+  }
+  .btn-create-notification {
+    font-size: 14px;
+  }
+}

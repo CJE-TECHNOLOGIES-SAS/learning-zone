@@ -1,0 +1,84 @@
+
+.admin-register-student-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 12px;
+}
+
+.admin-register-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+}
+
+.admin-register-input-container {
+  position: relative;
+  margin-bottom: 1.2rem;
+}
+
+.admin-register-input {
+  width: 100%;
+  padding: 12px;
+  border: 1.6px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.admin-register-input:focus {
+  border-color: #2563eb;
+}
+
+.admin-register-label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  background-color: white;
+  padding: 0 4px;
+  font-size: 0.9rem;
+  color: #666;
+  pointer-events: none;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Efecto flotante del label */
+.admin-register-input.has-content + .admin-register-label,
+.admin-register-input:focus + .admin-register-label {
+  top: -8px;
+  font-size: 0.75rem;
+  color: #2563eb;
+}
+
+.admin-register-error {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: #e63946;
+}
+
+.btn-register-admin-submit {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.btn-register-admin-submit:hover:not(:disabled) {
+  background-color: #1e4ed8;
+}
+
+.btn-register-admin-submit:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+}

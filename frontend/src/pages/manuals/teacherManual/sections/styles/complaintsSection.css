@@ -1,0 +1,20 @@
+.manual-subsection {
+    color:rgb(0, 0, 0)
+}
+
+.complaint-list {
+    color:black;
+    padding-bottom: 0.5rem;
+    font-size: 22px;
+    text-align: left
+}
+
+.complaints-Section-title{
+    color:rgb(88, 49, 16);
+    border-bottom: 2px dashed #a47c48;
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
+    border-bottom: 2px dashed #a47c48;
+     text-align: center;
+    
+}

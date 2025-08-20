@@ -6,12 +6,14 @@ import CommentPageWrapper from "../modules/courses/comments/CommentPageWrapper";
 import HomeStudent from "../modules/student/pages/HomeStudent";
 import StudentProfile from "../modules/student/pages/StudentProfile";
 import CourseHomePage from "../modules/courses/pages/HomeCourse";
+import Help from "../pages/Help";
 
 export default function StudentRoutes() {
   return (
     <Routes>
       {/* rutas del estudiante */}
       <Route path="home-student" element={<HomeStudent />} />
+      <Route path="help" element={<Help />} />
       <Route path="profile-student" element={<StudentProfile />} />
       <Route path="course/:id/:nameCourse" element={<CourseHomePage />} />
       <Route path="content-page" element={<ContentPage />} />

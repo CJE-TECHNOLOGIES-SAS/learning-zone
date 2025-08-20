@@ -17,6 +17,10 @@ import { useEffect } from "react";
 import { authStorage } from "../../../shared/Utils/authStorage";
 import { useFormUpdateLessons } from "../hooks/useFormUpdateLesson";
 import "../styles/LessonCreator.css"; // mismas clases que el de crear
+import { IoArrowBackCircleSharp } from "react-icons/io5";
+import { useNavigationHandler } from "../../../hooks/useNavigationHandler";
+import '../styles/LessonEdit.css'
+
 
 export default function LessonEditor() {
   const {
@@ -40,6 +44,8 @@ export default function LessonEditor() {
       setFormDataLesson(data);
     }
   }, [setFormDataLesson]);
+  const handleBtnNavigate = useNavigationHandler();
+
 
   return (
     <div className="container-form-lesson-teacher">
@@ -60,6 +66,16 @@ export default function LessonEditor() {
         )}
 
         <form onSubmit={handleSubmit} className="form-lesson-teacher">
+           {/* Botón de regreso */}
+            <button
+              className="btn-back-edit-lesson"
+              style={{
+                color: 'black',
+              }}
+              onClick={() => handleBtnNavigate('/back')}
+            >
+              <IoArrowBackCircleSharp />
+            </button>
           <Card>
             <CardContent>
               {/* Nombre */}
@@ -94,7 +110,6 @@ export default function LessonEditor() {
                   }
                   className="select-native"
                 >
-                  <option value="text">Texto</option>
                   <option value="video">Video</option>
                   <option value="image">Imagen</option>
                 </select>

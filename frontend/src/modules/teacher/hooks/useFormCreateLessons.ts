@@ -49,7 +49,7 @@ export function useFormCreateLessons() {
     lesson: {
       name: "",
       content: {
-        content_type: "text",
+        content_type: "image",
         file: null,
         text: "",
       },
@@ -152,7 +152,6 @@ export function useFormCreateLessons() {
         content:content
 
       }
-      console.log(lessonContent)
       /** Crea la lección */
       const lessonCreated = await CreateLessonAPI({idCourse,lessonContent});
 
@@ -177,9 +176,9 @@ export function useFormCreateLessons() {
 
       /** Marca éxito y resetea formulario */
       if (lessonCreated && createEvaluation) {
-        toast.success("Lección y evaluación creadas exitosamente");
+        toast.success("Lección" + nameLesson + "exitosamente");
         // Limpiar cache de lecciones para forzar recarga
-        authStorage.clearLessonsData();
+        authStorage.clearLessonData();
         authStorage.removeFormLessonInfo();
         setSubmitSuccess(true);
         navigate(`/teacher/courses/${idCourse}`);
@@ -199,7 +198,7 @@ export function useFormCreateLessons() {
       setFormDataLesson({
         lesson: {
           name: "",
-          content: { content_type: "text", file: null, text: "" },
+          content: { content_type: "image", file: null, text: "" },
         },
         evaluation: {
           question_type: "open_question",

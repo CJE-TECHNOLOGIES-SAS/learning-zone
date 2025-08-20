@@ -15,18 +15,18 @@ type CardLessonCourseProps = {
 };
 
 export default function CardLessonCourse({ idCourse, idLesson, name }: CardLessonCourseProps) {
-  const { loadLesson, course , loadLessonsCourse} = useTeacherCourseContext();
+  const { loadLesson, courseTeacher , loadLessonsCourse} = useTeacherCourseContext();
   const navigate = useNavigate();
 
-  const palette = course?.palette || {
+  const palette = courseTeacher?.palette || {
     brand: '#000',
     surface: '#fff',
     text: '#000',
     accent: '#ccc',
   };
 
-  const handleClickBtnEdit = () => {
-    loadLesson(idCourse, idLesson);
+  const handleClickBtnEdit  = async () => {
+    await loadLesson(idCourse,idLesson);
     navigate(`/teacher/courses/${idCourse}/lessons/${idLesson}/edit`);
   };
 
@@ -39,7 +39,7 @@ export default function CardLessonCourse({ idCourse, idLesson, name }: CardLesso
       await DeleteLessonAPI({ idCourse, idLesson });
 
       // Limpiar cache de lecciones después de eliminar
-      authStorage.clearLessonsData();
+      authStorage.clearLessonData();
 
       // Recargar lecciones del curso
       await loadLessonsCourse(idCourse);

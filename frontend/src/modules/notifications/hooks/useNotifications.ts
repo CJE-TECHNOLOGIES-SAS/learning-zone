@@ -13,7 +13,7 @@ export default function useNotifications(pollingInterval=4000 ) {
     const refreshNotifications = useCallback(async () => {
         const updated = await GetNotificationsAPI();
         setNotifications(updated);
-        authStorage.setNotifications(updated);
+        authStorage.setNotificationsStudent(updated);
     }, [setNotifications]); // Solo cambia si cambia `setNotifications`
 
     // Activar polling (peticion automatica) automático con useEffect

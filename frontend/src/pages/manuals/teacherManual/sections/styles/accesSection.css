@@ -1,0 +1,32 @@
+.acces-section-container{
+    color:black
+
+}
+
+.acces-section-title{
+    color:rgb(88, 49, 16);
+    border-bottom: 2px dashed #a47c48;
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
+    border-bottom: 2px dashed #a47c48;
+
+}
+
+.acces-section-list{
+    color:black;
+    padding-bottom: 0.5rem;
+    font-size: 22px;
+    text-align: left
+
+
+}
+
+.acces-section-photo{
+    width: 485px;
+    height: 230px;
+    align-content: center;
+    display: block;        /* Necesario para margin auto en imágenes */
+    margin: 0 auto;
+
+}
+

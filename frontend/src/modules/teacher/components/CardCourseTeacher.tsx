@@ -29,10 +29,9 @@ export default function CardCourseTeacher({
   const handleClickCourseTeacher = () => {
     navigate(`/teacher/courses/${id}`);
   };
-  const categoryLabel = Object.entries(COURSE_CATEGORY_LABELS).map(([key, label]) => (
-    category === key ? label : null
-  ));
-
+  const catInfo =
+    COURSE_CATEGORY_LABELS[category as keyof typeof COURSE_CATEGORY_LABELS] ??
+    { label: category, color: palette.accent };
   return (
     <div
       onClick={handleClickCourseTeacher}
@@ -65,11 +64,17 @@ export default function CardCourseTeacher({
       >
         {description}
       </p>
-
-      {/* Categoría */}
-      <span className="category-course-teacher">
-        {categoryLabel}
+      <span
+        className="category-course-teacher"
+        style={{
+          color: '#fff',
+          background: ` ${catInfo.color}`,
+          paddingLeft: 8,
+        }}
+      >
+        {catInfo.label}
       </span>
+
 
       {/* Publicado o no */}
       <div className="status-course-teacher">

@@ -30,5 +30,5 @@ export default function CommentPageWrapper() {
   const curso = cursos.find(c => c.id === numericCourseId);
   if (!curso) return <div>Curso no encontrado</div>;
 
-  return <CommentPage courseId={numericCourseId} nameCourse={curso.name} />;
+  return <CommentPage courseId={numericCourseId} nameCourse={curso.name} palette ={curso.palette} />;
 }

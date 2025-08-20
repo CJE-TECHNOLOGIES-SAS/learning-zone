@@ -1,0 +1,12 @@
+/* Botón de regreso */
+.btn-back-edit-lesson {
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  background-color: transparent;
+  border: none;
+  font-size: 46px;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.3s ease;
+}

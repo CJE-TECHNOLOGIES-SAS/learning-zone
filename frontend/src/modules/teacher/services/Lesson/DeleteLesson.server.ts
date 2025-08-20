@@ -24,7 +24,7 @@ export default async function DeleteLessonAPI({
 }: TDeleteLessonAPIProps): Promise<TDeleteLessonAPIResponse> {
   try {
     const response = await axios.delete(
-      `${VITE_TEACHER_ENDPOINT}/courses/${idCourse}/lessons/${idLesson}`
+       `${VITE_TEACHER_ENDPOINT}/courses/lesson/${idLesson}`
     );
 
     if (response.status !== 200) {

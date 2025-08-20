@@ -1,0 +1,26 @@
+.student-progress-title{
+    color:rgb(88, 49, 16);
+    border-bottom: 2px dashed #a47c48;
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
+    border-bottom: 2px dashed #a47c48;
+     text-align: center;
+}
+
+.student-progress-list{
+    color:black;
+    padding-bottom: 0.5rem;
+    font-size: 22px;
+    text-align: left
+
+}
+
+.progress-photo{
+    width: 755px;
+    height: 180px;
+    align-content: center;
+    display: block;        
+    margin: 0 auto;
+
+
+}

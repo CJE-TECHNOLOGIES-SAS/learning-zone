@@ -23,6 +23,7 @@ footer {
     flex-direction: column; /* En mobile: logo arriba, ubicación abajo */
     justify-content: center;
     align-items: center;
+    text-align: center;
     gap: var(--spacing-sm); /* Espacio entre elementos */
     border-bottom: 1px solid #fff;
 }
@@ -35,6 +36,7 @@ footer {
     align-items: center;
     gap: var(--spacing-sm); /* 16px entre logo y texto */
     font-size: var(--font-size-2xl); /* 24px en mobile */
+
 }
 
 .container-nombre img {
@@ -51,7 +53,12 @@ footer {
     display: flex;
 }
 
-
+.contenedor-manuals{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .icon {
     font-size: var(--font-size-xl); /* 20px en mobile */
 }
@@ -182,14 +189,15 @@ footer {
     }
 
     .contenedor-1 {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+
         padding: var(--spacing-lg) var(--spacing-xl);
+
     }
     .contendor-ubi {
-        width: 400px;
-        max-width: 420px;
         margin-left: auto;
         margin-right: 0;
         justify-content: flex-end;

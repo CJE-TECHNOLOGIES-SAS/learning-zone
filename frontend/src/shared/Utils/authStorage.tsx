@@ -12,7 +12,8 @@ import type {
   TLessonsTeacher,
   TLessonStudent,
 } from "../../modules/courses/types/CourseStudent";
-import type { TNotifications } from "../../modules/notifications/types/Notifications";
+import type { TNotificationsStudent, TNotificationsTeacher } from "../../modules/notifications/types/Notifications";
+import type { TStudentsRegisters } from "../../modules/teacher/mySpace/ManageStudents/ManageStudents";
 import type {
   TCoursesTeachers,
   TCourseTeacherResponse,
@@ -148,21 +149,38 @@ export const authStorage = {
   removeIdAutoIncrementStudent: () =>
     localStorage.removeItem("idAutoIncrementStudent"),
 
-  setNotifications: (notifications: TNotifications) => {
-    localStorage.setItem("notifications", JSON.stringify(notifications));
+  setNotificationsStudent: (notifications: TNotificationsStudent) => {
+    localStorage.setItem("notificationsStudent", JSON.stringify(notifications));
   },
 
-  getNotifications: (): TNotifications => {
+  getNotificationsStudent: (): TNotificationsStudent => {
     try {
-      const raw = localStorage.getItem("notifications");
-      return raw ? (JSON.parse(raw) as TNotifications) : [];
+      const raw = localStorage.getItem("notificationsStudent");
+      return raw ? (JSON.parse(raw) as TNotificationsStudent ) : [];
     } catch (e) {
       console.error("El JSON está mal formado:", e);
       return [];
     }
   },
 
-  removeNotifications: () => localStorage.removeItem("notifications"),
+  removeNotificationsStudent: () => localStorage.removeItem("notificationsStudent"),
+
+  setNotificationsTeacher: (notifications: TNotificationsTeacher) => {
+    localStorage.setItem("notificationsTeacher", JSON.stringify(notifications));
+  },
+
+  getNotificationsTeacher: (): TNotificationsTeacher => {
+    try {
+      const raw = localStorage.getItem("notificationsTeacher");
+      return raw ? (JSON.parse(raw) as TNotificationsTeacher) : [];
+    } catch (e) {
+      console.error("El JSON está mal formado:", e);
+      return [];
+    }
+  },
+
+  removeNotificationsTeacher: () => localStorage.removeItem("notificationsTeacher"),
+
 
   setCoursesStudent: (courses: TCoursesStudents) => {
     localStorage.setItem("coursesStudent", JSON.stringify(courses));
@@ -304,6 +322,23 @@ export const authStorage = {
   // Elimina la evaluation del localStorage
   removeEvaluation: () => localStorage.removeItem("evaluation"),
 
+  setInfoStudentsRegister: (infoStudents: TStudentsRegisters) =>
+    localStorage.setItem("infoStudentsRegister", JSON.stringify(infoStudents)),
+
+  getInfoStudentsRegister: (): TStudentsRegisters | [] => {
+    try {
+      const raw = localStorage.getItem("infoStudentsRegister");
+      return raw ? (JSON.parse(raw) as TStudentsRegisters) : [];
+    } catch (e) {
+      console.error("El JSON está mal formado :", e);
+      return [];
+    }
+  },
+    // Elimina el content del localStorage
+  removeInfoStudentsRegister: () => localStorage.removeItem("infoStudentsRegister"),
+
+
+
   setPaletteColors: (palette: TColorPalette) =>
     localStorage.setItem("paletteColors", JSON.stringify(palette)),
   // Recupera el objeto de de la paleta de colores desde localStorage
@@ -329,12 +364,18 @@ export const authStorage = {
    * Útil al cambiar de curso o después de operaciones CRUD para evitar mostrar datos obsoletos
    */
   clearTeacherCourseData: () => {
-    localStorage.removeItem("courseTeacher"); // Información del curso actual
-    localStorage.removeItem("lessonsTeacher"); // Lecciones del curso
-    localStorage.removeItem("lesson"); // Lección individual
-    localStorage.removeItem("content"); // Contenido de lección
-    localStorage.removeItem("evaluation"); // Evaluación de lección
-    localStorage.removeItem("formLesson"); // Datos del formulario de lección
+    authStorage.removeCoursesTeacher();
+    authStorage.removeCourseTeacher();
+    authStorage.removeLessonsTeacher();
+    authStorage.removeFormLessonInfo();
+    authStorage.removeLesson();
+    authStorage.removeContent();
+    authStorage.removeEvaluation();
+    authStorage.removeNotificationsTeacher();
+    authStorage.removeComments();
+    authStorage.removeAllStudents();
+    authStorage.removeInfoStudentsRegister();
+    authStorage.removePaletteColors();
   },
 
   /**
@@ -348,18 +389,6 @@ export const authStorage = {
     localStorage.removeItem("content"); // Contenido de lección
     localStorage.removeItem("evaluation"); // Evaluación de lección
     localStorage.removeItem("comments"); // Comentarios del curso
-  },
-
-  /**
-   * Limpia solo los datos de lecciones (teacher y student)
-   * Útil después de crear, actualizar o eliminar lecciones
-   */
-  clearLessonsData: () => {
-    localStorage.removeItem("lessonsTeacher"); // Lecciones del teacher
-    localStorage.removeItem("lessonsStudent"); // Lecciones del student
-    localStorage.removeItem("lesson"); // Lección individual
-    localStorage.removeItem("content"); // Contenido de lección
-    localStorage.removeItem("evaluation"); // Evaluación de lección
   },
 
   /**
@@ -377,6 +406,7 @@ export const authStorage = {
     localStorage.removeItem("evaluation"); // Evaluación de lección
     localStorage.removeItem("formLesson"); // Datos del formulario de lección
     localStorage.removeItem("comments"); // Comentarios
+    localStorage.removeItem("notificationsTeacher");
   },
 
   /**

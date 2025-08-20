@@ -10,7 +10,6 @@ import type {
 
 import UpdateLessonAPI from "../services/Lesson/UpdateLesson.server";
 import UpdateEvaluationAPI from "../services/Evaluation/UpdateEvaluation.server";
-import { authStorage } from "../../../shared/Utils/authStorage";
 
 /** Define los posibles errores del formulario */
 type FormErrors = {
@@ -38,9 +37,9 @@ export function useFormUpdateLessons() {
       idCourse,
       name: "",
       content: {
-        content_type: "text",
+        content_type: "image", // solo image|video
         file: null,
-        text: ""
+        text: ""               // lo mantenemos, pero no se usará al enviar
       }
     },
     evaluation: {
@@ -64,7 +63,7 @@ export function useFormUpdateLessons() {
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-    const { name, content } = formDataLesson.lesson;
+    const { name } = formDataLesson.lesson;
     const { question_type, question, options, correct_answer } = formDataLesson.evaluation;
 
     if (!name.trim()) {
@@ -74,12 +73,13 @@ export function useFormUpdateLessons() {
       };
     }
 
-    if (!content.file) {
+    // Solo image|video: archivo obligatorio
+/*     if (!content.file) {
       newErrors.lesson = {
         ...newErrors.lesson,
         content: { file: ERROR_MESSAGES.required("archivo multimedia") }
       };
-    }
+    } */
 
     if (!question.trim()) {
       newErrors.evaluation = {
@@ -118,14 +118,18 @@ export function useFormUpdateLessons() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
+
     setIsSubmitting(true);
     setSubmitSuccess(false);
 
     try {
+      // 1) Actualizar lección (solo image|video). El servicio ya envía solo file según content_type.
       const lessonContent = formDataLesson.lesson;
-      const updatedLesson = await UpdateLessonAPI({ idCourse, idLesson, lessonContent });
+      // Debug opcional:
+      // console.log('Contenido de leccion', lessonContent);
+      await UpdateLessonAPI({ idCourse, idLesson, lessonContent });
 
-
+      // 2) Actualizar evaluación
       const { question_type, question, options, correct_answer } = formDataLesson.evaluation;
       const evaluation: TEvaluationTeacherSend = {
         question_type,
@@ -134,19 +138,15 @@ export function useFormUpdateLessons() {
         ...(question_type === "multiple_choice" ? { correct_answer } : {})
       };
 
-      const updatedEvaluation = await UpdateEvaluationAPI({ idCourse, idLesson, evaluation });
+      await UpdateEvaluationAPI({ idCourse, idLesson, evaluation });
 
-      if (updatedLesson && updatedEvaluation) {
-        toast.success("Lección y evaluación actualizadas con éxito");
-        // Limpiar cache de lecciones para mostrar cambios
-        authStorage.clearLessonsData();
-        authStorage.removeFormLessonInfo();
-        setSubmitSuccess(true);
-        navigate(`/teacher/courses/${idCourse}/lessons`);
-      }
-    } catch (err) {
-      console.error("Error al actualizar los datos", err);
-      toast.error("Ocurrió un error al actualizar.");
+      // 3) UX
+      toast.success("Lección y evaluación actualizadas con éxito");
+      setSubmitSuccess(true);
+      navigate(`/teacher/courses/${idCourse}`);
+    } catch (err: any) {
+      console.error('Update error:', err?.response?.status, err?.response?.data || err?.message);
+      toast.error(err?.response?.data?.detail ?? err?.message ?? "Error al actualizar");
     } finally {
       setIsSubmitting(false);
     }
@@ -208,8 +208,9 @@ export function useFormUpdateLessons() {
       }
     }));
   };
-
-  const handleContentTypeChange = (value: TFormDataLesson['lesson']['content']['content_type']) => {
+  const handleContentTypeChange = (
+    value: "image" | "video" // 🔹 limitamos directamente el tipo
+  ) => {
     setFormDataLesson((prev) => ({
       ...prev,
       lesson: {
@@ -221,6 +222,7 @@ export function useFormUpdateLessons() {
       }
     }));
   };
+
 
   const handleChange = (path: string) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

@@ -4,34 +4,49 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: var(--spacing-sm);
-  flex-wrap: wrap;
-  border-bottom: 2px solid #10101056;
-  border-left: 2px solid #10101056;
-  border-right: 2px solid #10101056;
+  padding: 8rem;
   border-radius: 30px;
-  padding: 3rem;
+  text-align: center;
 
-  align-items: center;
+  background-image: linear-gradient(31deg , #fffffd, #0766ffb1);
+
+}
+.container-opc-filter-add{
+  display: flex;
+  gap: 22px;
 }
 .btn-add-course {
-  background-color: #04bd16;
+  background-color: #87ff1669;
   border-radius: 50%;
   color: white;
   font-size: 1.8rem;
   padding: 1rem 1rem;
   width: auto;
-  border: none;
   cursor: pointer;
   transition: transform 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
+}
 
 .btn-add-course:hover {
   transform: scale(1.1);
+}
+.icon-filter-categories{
+  font-size: var(--font-size-4xl); /* 30px en mobile */
+  padding: var(--spacing-sm); /* 16px de padding */
+  border: none;
+  color: #fff;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.icon-filter-categories:hover{
+  transform: scale(1.1);
+
 }
 
 /* ===== TEACHER DASHBOARD GENERAL ===== */
@@ -39,16 +54,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--spacing-md);
   flex: 1;
   min-height: 100dvh;
-  background-color: #fff;
+  background-image: url('https://res.cloudinary.com/dhznpt8rr/image/upload/v1755221622/background-teacher12.0_tjsbvs.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+
 
 }
 
 /* Título de bienvenida */
 .title-welcome-teacher {
-  color: #D4F1F9;
+  color: #fbfcff;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
   font-size: var(--font-size-2xl);
   text-align: center;
@@ -56,7 +75,7 @@
 
 /* Botón "Mi Espacio" */
 .btn-space-teacher {
-  background-color: var(--color-primary);
+  background-image: linear-gradient(31deg , #eacc20, #ff6207e9);
   color: white;
   padding: var(--spacing-sm) var(--spacing-md);
   font-size: var(--font-size-md);
@@ -84,10 +103,19 @@
 .title-container-courses-teacher {
   align-self: center;
   text-align: center;
-  color: #ffffff;
+  color: #ffffdd;
   font-size: var(--font-size-xl);
   margin-bottom: var(--spacing-sm);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  font-family: 'Segoe UI', 'Poppins', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000,
+    0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* ===== TABLET (>=768px) ===== */
@@ -145,7 +173,7 @@
 
   .btn-add-course {
     font-size: 1.8rem;
-    padding:1.2rem 1.2rem;
+    padding: 1.2rem 1.2rem;
   }
 
   .title-container-courses-teacher {

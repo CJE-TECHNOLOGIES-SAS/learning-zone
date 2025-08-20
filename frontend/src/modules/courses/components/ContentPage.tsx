@@ -29,7 +29,6 @@ export default function ContentPage() {
       style={{
         color: palette.accent,             // Color de icono (acento para destacarlo)
         backgroundColor: palette.surface,  // Fondo igual al fondo general
-        border: `1px solid ${palette.accent}`, // Borde de acento para que se note
       }}
       onClick={() => handleBtnNavigate('/back')}
     >
@@ -62,11 +61,8 @@ export default function ContentPage() {
         className="image-content"
         src={content.content}
         alt="contenido"
-        style={{
-          border: `2px solid ${palette.accent}`, // Borde de acento para destacar imágenes
-        }}
       />
-    ) : content?.contentType === 'text' ? (
+    ) : content?.contentType === 'video' ? (
       <p
         className="content-content"
         style={{
@@ -79,14 +75,10 @@ export default function ContentPage() {
       <video
         src={content?.content}
         controls
-        style={{
-          border: `2px solid ${palette.accent}`, // Borde de acento para videos
-        }}
       />
     )}
 
     {/* Botón de descarga (solo si no es texto) */}
-    {content?.contentType !== 'text' && (
       <a
         className="btn-downloand-content"
         href={content?.content}
@@ -94,12 +86,10 @@ export default function ContentPage() {
         style={{
           backgroundColor: palette.brand, // Fondo destacado (color principal)
           color: palette.text,            // Icono/Texto en color de texto
-          border: `1px solid ${palette.accent}`,
         }}
       >
         <HiDownload />
       </a>
-    )}
 
     {/* Botón Continuar (con validación de lección activa) */}
     <button

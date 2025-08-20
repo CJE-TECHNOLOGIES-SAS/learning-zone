@@ -1,0 +1,21 @@
+.faq-title{
+    color:rgb(88, 49, 16);
+    border-bottom: 2px dashed #a47c48;
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
+    border-bottom: 2px dashed #a47c48;
+    text-align: center;
+}
+.faq-subtitle{
+    color:black;
+    text-align: left;
+
+}
+
+
+.paragraph{
+    color:black;
+    padding-bottom: 0.5rem;
+    font-size: 20px;
+    text-align: left
+}

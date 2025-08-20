@@ -6,6 +6,18 @@
   min-height: 100dvh;
 
 }
+/* Botón de regreso */
+.btn-back-teacher-course {
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  background-color: transparent;
+  border: none;
+  font-size: 46px;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.3s ease;
+}
 .header-crud-course-teacher{
   display: grid;
   grid-template-columns: 1.2fr 1fr .5fr;
@@ -13,7 +25,6 @@
   padding: 14rem;
   min-height: 530px;
   border-bottom: 1.4px solid rgba(17, 0, 17, 0.259);
-
 
 }
 .container-info-course{
@@ -28,9 +39,8 @@
   top: 70px;
   right:20px;
   font-size: 26px;
-  border-bottom: 2px solid rgb(114, 114, 112);
-  border-right: 2px solid rgb(56, 55, 55);
   border-radius: 20px;
+  color: #fff;
 }
 /* Esta es la imagen del curso */
 .image-course-header-teacher{

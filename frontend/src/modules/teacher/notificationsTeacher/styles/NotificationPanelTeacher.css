@@ -1,0 +1,119 @@
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.container-panel-notifications-teacher {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 20px;
+
+}
+.container-items{
+  max-height: 70dvh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary-blue) var(--color-neutral-light-gray);
+
+}
+/* Scrollbar (WebKit) */
+.container-panel-notifications::-webkit-scrollbar {
+  width: 8px;
+}
+.container-panel-notifications::-webkit-scrollbar-track {
+  background: var(--color-neutral-light-gray);
+  border-radius: 10px;
+}
+.container-panel-notifications::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary-blue);
+  border-radius: 10px;
+  border: 2px solid var(--color-neutral-light-gray);
+}
+
+/* ===== HEADER ===== */
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 2px solid #10101152;
+}
+.title-container-notifications {
+  color: var(--color-dark-blue);
+  font-weight: 700;
+}
+
+/* ===== ACCIONES ===== */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.btn-add-notification,
+.btn-delete-all {
+  background-color: transparent;
+  border: none;
+  border-radius: 12px;
+  padding: .6rem .9rem;
+  font-weight: 700;
+  font-size: 38px;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, opacity .2s ease;
+}
+
+/* Agregar */
+.btn-add-notification {
+  color: #00b21b;
+}
+.btn-add-notification:hover {
+  transform: translateY(-1px);
+}
+
+/* Eliminar todas */
+.btn-delete-all {
+  color: #d70000;
+}
+.btn-delete-all:hover {
+  transform: translateY(-1px);
+}
+.btn-delete-all:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ===== BREAKPOINTS ===== */
+
+/* Tablet (>=768px) */
+@media (min-width: 768px) {
+  .container-panel-notifications-teacher {
+    padding: 2rem;
+    border-radius: 16px;
+    max-width: none;
+  }
+}
+
+/* Desktop (>=1024px) */
+@media (min-width: 1024px) {
+  .container-panel-notifications-teacher {
+    padding: 4rem;
+    border-radius: 20px;
+    max-width: none;
+  }
+}
+
+/* Mobile (<=480px) */
+@media (max-width: 480px) {
+  .container-panel-notifications-teacher {
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: none;
+  }
+  .panel-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .actions {
+    justify-content: space-between;
+  }
+}

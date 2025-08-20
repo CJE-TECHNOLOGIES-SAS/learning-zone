@@ -82,9 +82,9 @@ export type TFormDataLesson = {
 
 
 export interface TTeacherCourseContextType {
-  courses: TCourseTeacherResponse[]; // Cursos del profesor
-  setCourses: React.Dispatch<React.SetStateAction<TCourseTeacherResponse[]>>;
-  course: TCourseTeacherResponse | null;
+  coursesTeacher: TCourseTeacherResponse[]; // Cursos del profesor
+  setCoursesTeacher: React.Dispatch<React.SetStateAction<TCourseTeacherResponse[]>>;
+  courseTeacher: TCourseTeacherResponse | null;
   loadInfoCourse: (idCourse: TCourseTeacherResponse["id"]) => Promise<void>;
   lessons: TLessonsTeacher; // Lecciones del curso actual
   setLessons?: React.Dispatch<React.SetStateAction<TLessonsTeacher>>; // No se exporta desde el context, pero lo dejo opcional por si lo expones
@@ -97,4 +97,6 @@ export interface TTeacherCourseContextType {
   palette: TColorPalette | null;
   setPalette: React.Dispatch<React.SetStateAction<TColorPalette | null>>;
   refreshCoursesTeacher: () => Promise<void>;
+  notificationsTeacher: TNotificationsTeacher;
+  setNotificationsTeacher: React.Dispatch<React.SetStateAction<TNotificationsTeacher>>;
 }

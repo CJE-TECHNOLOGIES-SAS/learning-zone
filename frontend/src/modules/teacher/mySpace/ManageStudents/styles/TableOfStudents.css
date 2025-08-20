@@ -1,0 +1,292 @@
+/* TableOfStudents.css - Educational Theme */
+
+.container-table-students-registers {
+	padding: 2rem;
+	border-radius: 16px;
+	box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+	max-height: 40dvh;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: var(--color-primary-blue) var(--color-neutral-light-gray);
+
+
+}
+.students-table {
+	width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	/* Enhanced shadow with educational blue tones */
+	box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1);
+	border-radius: 12px;
+	/* Added educational gradient background */
+	background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
+}
+
+.students-table th,
+.students-table td {
+	padding: 16px 20px;
+	background-color: #ffffff;
+	color: #334155;
+	text-align: left;
+	border-bottom: 1px solid #e2e8f0;
+}
+
+.students-table thead th {
+	background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+	color: #ffffff;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 13px;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	position: relative;
+}
+
+.students-table thead th::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 3px;
+
+	background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);
+}
+
+.students-table tbody tr {
+	transition: all 0.3s ease;
+	position: relative;
+}
+
+.students-table tbody tr:hover {
+	background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+}
+
+.students-table tbody tr:nth-child(even) {
+  	background-color: #f8fafc;
+}
+
+
+.students-table .tr-have-color td {
+  background-color: #16d3f96b !important;
+  color: #2c2b2b;
+  font-weight: bold;
+}
+/* Highlight para estudiante recién cargado */
+.students-table tbody tr.newly-loaded {
+	background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+	border-left: 4px solid #f97316;
+	animation: highlight-fade 3s ease-in-out;
+}
+
+.students-table tbody tr.newly-loaded:hover {
+	background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+}
+
+@keyframes highlight-fade {
+  0% {
+    background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
+    transform: scale(1.02);
+  }
+  50% {
+    background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+  }
+  100% {
+    background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+    transform: scale(1);
+  }
+}
+
+.students-table tbody td {
+	position: relative;
+	font-weight: 500;
+}
+
+.students-table tbody td:hover:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: -9999px;
+	bottom: -9999px;
+	background: linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
+	z-index: -1;
+}
+
+.status-cell {
+	font-weight: 700;
+	padding: 10px 16px;
+	border-radius: 25px;
+	text-align: center;
+	display: inline-block;
+	min-width: 120px;
+	font-size: 12px;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+	position: relative;
+	overflow: hidden;
+}
+
+.status-no-registrado {
+	background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+	color: #ffffff;
+	border: 2px solid #64748b;
+	animation: subtle-pulse 3s ease-in-out infinite;
+}
+
+.status-registrado {
+	background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+	color: #ffffff;
+	border: 2px solid #f59e0b;
+	box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.status-activo {
+	background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+	color: #ffffff;
+	border: 2px solid #10b981;
+	box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+@keyframes subtle-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.container-opc-crud-student {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+	align-items: center;
+	margin-top: 12px;
+}
+
+.btn-crud {
+	padding: 10px 18px;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-weight: 600;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	text-transform: uppercase;
+	font-size: 11px;
+	letter-spacing: 0.8px;
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-edit {
+	background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+	color: white;
+	box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-edit:hover {
+	background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+	transform: translateY(-3px);
+	box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+}
+
+.btn-delete {
+	background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+	color: white;
+	box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.btn-delete:hover {
+	background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+	transform: translateY(-3px);
+	box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+}
+
+.btn-crud::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.3);
+	transition: width 0.6s, height 0.6s, top 0.6s, left 0.6s;
+	transform: translate(-50%, -50%);
+}
+
+.btn-crud:active::before {
+	width: 300px;
+	height: 300px;
+	top: 50%;
+	left: 50%;
+}
+
+.header-id {
+	width: 80px;
+}
+
+.header-identification {
+	width: 200px;
+}
+
+.header-status {
+	width: 150px;
+}
+
+.header-actions {
+	width: 200px;
+	text-align: center;
+}
+
+/* Enhanced responsive design for educational environments */
+@media (max-width: 900px) {
+  .container-table-students-registers {
+		padding: 1rem;
+		margin: 1rem;
+  }
+
+  .students-table {
+		width: 100%;
+		font-size: 14px;
+  }
+
+  .students-table th,
+  .students-table td {
+		padding: 12px 8px;
+  }
+
+  .container-opc-crud-student {
+		flex-direction: column;
+		gap: 6px;
+  }
+
+  .btn-crud {
+		width: 100%;
+		padding: 8px 16px;
+  }
+
+  .status-cell {
+		min-width: 100px;
+		font-size: 11px;
+  }
+}
+
+@keyframes educational-shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.students-table.loading tbody tr {
+	background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+	background-size: 200px 100%;
+	animation: educational-shimmer 1.5s infinite;
+}

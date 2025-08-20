@@ -21,13 +21,12 @@ type TUpdateEvaluationAPIProps = {
  * Actualiza una evaluación existente asociada a una lección dentro de un curso.
  */
 export default async function UpdateEvaluationAPI({
-  idCourse,
   idLesson,
   evaluation
 }: TUpdateEvaluationAPIProps): Promise<TUpdateEvaluationAPIResponse> {
   try {
     const response = await axios.put(
-      `${VITE_TEACHER_ENDPOINT}/courses/${idCourse}/lessons/${idLesson}/evaluations`,
+      `${VITE_TEACHER_ENDPOINT}/evaluations/${idLesson}`,
       {
         question_type: evaluation.question_type,
         question: evaluation.question,
@@ -42,7 +41,7 @@ export default async function UpdateEvaluationAPI({
 
     return response.data as TUpdateEvaluationAPIResponse;
   } catch (error) {
-    console.error('Error al actualizar la evaluación:', error);
+    console.error('Error en UpdateEvaluation:', error);
     throw error;
   }
 }

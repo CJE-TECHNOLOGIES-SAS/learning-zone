@@ -20,6 +20,11 @@ export default function Footer() {
             <h2>Learning Zone</h2>
             <img src={iconLz} alt="" />
           </div>
+          <div className='contenedor-manuals'>
+            <h2>Manuales</h2>
+            <p className='paragraph-manual-student' onClick={()=>handleBtnNavigate('/manualStudent')}>Manual Estudiante</p>
+            <p className='paragraph-manual-teacher' onClick={()=>handleBtnNavigate('/manualTeacher')}>Manual Profesor</p>
+          </div>
           <div className="contendor-ubi">
             <MyMap/>
           </div>

@@ -1,77 +1,100 @@
-/* Contenedor principal de la página del curso */
+/* ===============================
+   Contenedor principal del curso
+   =============================== */
 .container-home-course {
-  padding: 60px;
+  padding: 20px;
   position: relative;
-  display: block; /* Necesario para que los elementos absolutos tengan referencia */
+  display: block; /* Permite posicionar elementos absolutos internamente */
   min-height: 90dvh;
   height: 100%;
   overflow-x: hidden; /* Evita scroll horizontal */
-  overflow-y: auto;   /* Permite desplazamiento si es necesario */
+  overflow-y: auto;   /* Permite desplazamiento vertical */
 }
 
-/* SVG del camino del curso */
+/* ===============================
+    Contenedor del mapa y el camino
+   =============================== */
+.map-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1450 / 2090; /* Mantiene la proporción del mapa */
+}
+
 .path-svg-course {
   position: absolute;
+  inset: 0; /* top:0, left:0, right:0, bottom:0 */
   width: 100%;
-  height: auto;
+  height: 100%;
   z-index: 0;
   pointer-events: none;
-  top: 0;
-  left: 0;
 }
 
 .path-svg-course path {
   transition: d 0.6s ease-in-out;
 }
 
-/* Contenedor que agrupa las lecciones */
+/* ===============================
+    Contenedor de las lecciones
+   =============================== */
 .container-lessons-course {
   position: relative;
-  height: 900px; /* Puede ser dinámico desde JS si el curso tiene muchas lecciones */
+  height: 900px; /* Ajustable dinámicamente según cantidad de lecciones */
 }
 
-/* Cada lección posicionada en el mapa */
+/* ===============================
+    Estilo general de cada lección
+   =============================== */
 .lesson-course {
   display: flex;
   flex-direction: column;
   align-items: center;
   position: absolute;
+  transform: translate(-50%, -50%);
   cursor: pointer;
   z-index: 2;
   transition: transform 0.2s ease-in-out;
 }
 
 .lesson-course:hover {
-  transform: scale(1.05);
+  transform: translate(-50%, -50%) scale(1.05);
 }
 
-/* Botón/icono central de cada lección */
+/* ===============================
+    Botón / Ícono central de lección
+   =============================== */
 .btn-icon-lesson-course {
-  padding: 1.5rem;
+  width: 64px;  /* Tamaño fijo para evitar saltos al cambiar íconos */
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
   font-size: 38px;
-  transition: all 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
-/* Hover para dar retroalimentación visual */
 .btn-icon-lesson-course:hover {
-  font-size: 44px;
+  transform: scale(1.1);
 }
 
-/* Texto de la lección */
+/* ===============================
+   Texto de la lección
+   =============================== */
 .span-lesson-course {
   margin-top: 6px;
   font-weight: 600;
   font-size: 0.9rem;
+  text-align: center;
 }
 
-/* Clases de estado: solo estructura, sin colores */
+/* ===============================
+    Estados de las lecciones
+   =============================== */
 .course-complete {
   border: 2px solid;
 }
 
 .course-in_progress {
-  padding: 1.7rem;
   border: 2px solid;
   font-weight: bold;
 }

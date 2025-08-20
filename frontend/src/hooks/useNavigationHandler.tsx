@@ -16,7 +16,10 @@ export type AppRoutes =
   | "/aboutInstitution"
   | "/contentPage"
   | "/evaluationPage"
-  | "/help";
+  | "/help"
+  | "/manualStudent"
+  | "/manualTeacher"
+  ;
 
 export const useNavigationHandler = () => {
   const navigate = useNavigate();

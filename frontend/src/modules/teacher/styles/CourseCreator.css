@@ -1,89 +1,109 @@
 /* ===== CONTENEDOR PRINCIPAL ===== */
 .container-form-course-teacher {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-    background-color: #fff;
+  position: relative;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center; 
 
+}
+
+.envoltura-form-teacher {
+  position: relative;
+  z-index: 2 ;
+}
+
+/* particlesBackground.css */
+.formulario-contenido {
+  position: relative;
+  z-index: 1;
+  max-width: 500px;
+  margin: 5rem auto 0;
+  padding: 3rem;
+  background-color: rgba(214, 21, 21, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* ===== ENVOLTURA DEL FORM ===== */
 .envoltura-form-teacher {
-    padding: 2rem;
-    border-radius: 14px;
-    max-width: 600px;
-    width: 100%;
-    background-position: center center;
-    backdrop-filter: blur(2px);
-    box-shadow: 3px 3px 3px 3px #10100142;
+  position: relative;
+  padding: 2rem;
+  border-radius: 14px;
+  max-width: 600px;
+  width: 100%;
+  backdrop-filter: blur(2px);
+  box-shadow: 3px 3px 3px 3px #10100142;
+  z-index: 2; /* Asegura que esté sobre las partículas */
+  background-color: rgba(255, 255, 255, 0.7); /* fondo semitransparente */
 }
 
 /* ===== CABECERA ===== */
 .header-form-course-teacher {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  z-index: 2;
 }
 
 .title-create-course {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #0cc2ff;
-    margin-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 0.5rem;
 }
 
 .paragraph-create-course {
-    color: #666;
-    font-size: 1rem;
+  color: #666;
+  font-size: 1rem;
 }
 
 /* ===== CAMPOS DE FORMULARIO ===== */
 .container-label-input-create-course {
-    position: relative;
-    margin-top: 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
+  position: relative;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  z-index: 2;
 }
 
 .container-label-input-create-course label {
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-align: left;
-    color: #444;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: left;
+  color: #000000;
 }
 
 .container-label-input-create-course input,
 .container-label-input-create-course textarea,
 .container-label-input-create-course select {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 2px solid #2b29293d;
-    font-size: 1rem;
-    color: #333;
-    background-color: transparent;
-    transition: border-color 0.3s ease;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 2px solid #2b29293d;
+  font-size: 1rem;
+  color: #0c0707;
+  background-color: transparent;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
 }
 
 .container-label-input-create-course input:focus,
 .container-label-input-create-course textarea:focus,
 .container-label-input-create-course select:focus {
-    outline: none;
-    border-color: #007bff;
+  outline: none;
+  border-color: #007bff;
 }
 
 .input-course-error {
-    border-color: #fd6666 !important;
+  border-color: #fd6666 !important;
 }
 
 .text-error-course {
-    color: #fd6666;
-    font-size: 0.85rem;
+  color: #fd6666;
+  font-size: 0.85rem;
 }
 
 /* ===== PALETA DE COLORES ===== */
@@ -108,18 +128,18 @@
 }
 
 .preview-palette-course {
-    display: flex;
-    gap: 4px;
-    margin-bottom: 12px;
-    margin-top: 6px;
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+  margin-top: 6px;
 }
 
 .preview-palette-course span {
-    width: 25px;
-    height: 25px;
-    border-radius: 6px;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 25px;
+  height: 25px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -157,59 +177,62 @@
 }
 
 .palette-option-button:hover {
-    transform: scale(1.05);
-    background-color: #f1f1f1;
+  transform: scale(1.05);
+  background-color: #f1f1f1;
 }
 
 .palette-selected {
-    border-color: #007bff;
-    box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
 }
 
 /* ===== BOTÓN DE ENVÍO ===== */
 .btn-send-form-course-teacher {
-    background-image: linear-gradient(to right, #16222A 0%, #3A6073  51%, #16222A  100%);
-    padding: 15px 45px;
-    text-align: center;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    border-radius: 10px;
-    display: block;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
-    border: none;
-    font-weight: 600;
+  background-image: linear-gradient(to right, #16222A 0%, #3A6073 51%, #16222A 100%);
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  border: none;
+  font-weight: 600;
 }
 
 .btn-send-form-course-teacher:hover {
-    background-position: right center;
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  background-position: right center;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-    .envoltura-form-teacher {
-        padding: 1.5rem;
-    }
-    .title-create-course {
-        font-size: 1.8rem;
-    }
+  .envoltura-form-teacher {
+    padding: 1.5rem;
+  }
+
+  .title-create-course {
+    font-size: 1.8rem;
+  }
 }
 
 @media (max-width: 480px) {
-    .envoltura-form-teacher {
-        padding: 1rem;
-    }
-    .title-create-course {
-        font-size: 1.6rem;
-    }
-    .btn-send-form-course-teacher {
-        font-size: 16px;
-        padding: 0.8rem;
-    }
+  .envoltura-form-teacher {
+    padding: 1rem;
+  }
+
+  .title-create-course {
+    font-size: 1.6rem;
+  }
+
+  .btn-send-form-course-teacher {
+    font-size: 16px;
+    padding: 0.8rem;
+  }
 }

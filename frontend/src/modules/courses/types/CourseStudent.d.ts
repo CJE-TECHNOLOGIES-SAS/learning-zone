@@ -9,6 +9,7 @@ export type TCourse = {
     name_palette :TPaletteNames | ''
     palette: TColorPalette; // Paleta de colores del curso
     category:
+        | 'vertodo'
         | 'ofimatica'
         | 'electronica'
         | 'programacion'
@@ -71,7 +72,7 @@ export type TLessonsTeacher = TLessonTeacher[];
 export type TContent ={
     id:number,
     title: TLesson['name']
-    contentType:'text'| 'image' | 'video' ,
+    contentType: 'image' | 'video' ,
     content:string,
     text: string
 }

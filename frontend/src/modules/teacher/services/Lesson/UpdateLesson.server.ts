@@ -1,57 +1,47 @@
-/* Servicio encargado de actualizar una leccion */
-/* Servicio que se encarga de solicitar todo la info de la leccion, el contenido y la evaluacion   */
-/* Serivicio que se encarga de obtener los cursos del estudiante */
-
+/* Servicio: actualizar lección (solo image/video, sin text) */
 import axios from '../../../../api/axiosInstance';
-import type {TCourseTeacherResponse, TLessonTeacherResponse, TLessonTeacherSend } from '../../types/Teacher';
+import type {
+  TCourseTeacherResponse,
+  TLessonTeacherResponse,
+  TLessonTeacherSend
+} from '../../types/Teacher';
 
-const VITE_TEACHER_ENDPOINT = import.meta.env.VITE_TEACHER_ENDPOINT;
+const API = import.meta.env.VITE_TEACHER_ENDPOINT;
 
-// Tipo para la respuesta esperada según el estándar
-type TUpdateLessonAPIResponse = {
-  status: number;
-  message: string;
+type TUpdateLessonAPIProps = {
+  idCourse: TCourseTeacherResponse['id'];          // se mantiene aunque no se use en la ruta
+  idLesson: TLessonTeacherResponse['id'];
+  lessonContent: TLessonTeacherSend;               // { name?, content: { content_type, file? } }
 };
 
-type TUpdateLessonAPIProps ={
-    idCourse:TCourseTeacherResponse['id'],
-    idLesson: TLessonTeacherResponse['id'],
-    lessonContent:TLessonTeacherSend,
-}
+// No esperamos body: resolvemos con void si el status es OK
+export default async function UpdateLessonAPI(
+  { idCourse, idLesson, lessonContent }: TUpdateLessonAPIProps
+): Promise<void> {
+  const fd = new FormData();
+  const c = lessonContent.content ?? ({} as any);
 
+  if (lessonContent.name) fd.append('name', lessonContent.name);
 
-export default async function UpdateLessonAPI({idCourse, idLesson, lessonContent}:TUpdateLessonAPIProps): Promise<TUpdateLessonAPIResponse> {
-    try {
-        const formData = new FormData();
-        formData.append("name", lessonContent.name);
-        formData.append("content_type", lessonContent.content.content_type);
-        formData.append("text", lessonContent.content.text);
-        if (lessonContent.content.file) {
-            formData.append("file", lessonContent.content.file);
-        }
-        const id_course = idCourse
-        const id_lesson = idLesson
-        const response = await axios.put(`${VITE_TEACHER_ENDPOINT}/courses/${id_course}/lessons/${id_lesson}`,{formData},{
-            headers: {
-            "Content-Type": "multipart/form-data",
-            },
-        });
+  // En este escenario limitas a image|video (sin text)
+  if (!c?.content_type) throw new Error('content_type es requerido');
+  fd.append('content_type', c.content_type as string);
 
-        // Validar status code
-        if (response.status !== 200) {
-            throw new Error(`HTTP ${response.status}: ${response.data?.message || 'Error desconocido'}`);
-        }
+/*   if (!c?.file) throw new Error('file es requerido para image|video');
+  fd.append('file', c.file as File); */
 
-        // Validar estructura de respuesta
-        const responseData = response.data as TUpdateLessonAPIResponse;
-        if (!responseData.message || !Array.isArray(responseData.message)) {
-            throw new Error('Respuesta del servidor inválida: estructura de datos incorrecta');
-        }
+  // URL: NO dupliques /teachers (ya viene en VITE_TEACHER_ENDPOINT)
+  const url = `${API}/courses/lesson/${idLesson}`;
 
-        return responseData;
+  const res = await axios.put(url, fd, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+    transformRequest: [(d) => d], // no serializar
+    // No pongas responseType: 'json' si tu server responde vacío
+  });
 
-    } catch (error) {
-        console.error('Error en GetCourses:', error);
-        throw error;
-    }
+  // Backend “sin body”: considera 200/204 como éxito
+  if (res.status !== 200 && res.status !== 204) {
+    throw new Error(`HTTP ${res.status}: ${res.data?.message ?? 'Error desconocido'}`);
+  }
+  // No retornamos nada (void)
 }

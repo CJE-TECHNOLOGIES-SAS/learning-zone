@@ -1,52 +1,44 @@
+/* =========================================================
+   Servicio: LoadEvaluationLessonAPI
+   Descripción: Obtiene la evaluación de una lección específica
+                desde el backend y normaliza las opciones (options)
+                para que siempre lleguen como array de strings.
+   ========================================================= */
 
+import axios from "../../../../api/axiosInstance"; // Cliente Axios configurado
 
-import axios from '../../../../api/axiosInstance';
-import type { TEvaluation } from '../../../courses/types/CourseStudent';
-import type {TCourseTeacherResponse, TLessonTeacherResponse } from '../../types/Teacher';
-
-const VITE_TEACHER_ENDPOINT = import.meta.env.VITE_TEACHER_ENDPOINT;
-
-// Tipo para la respuesta esperada según el estándar
-type TEvaluationLessonsTeacher ={
-    question_type: TEvaluation["questionType"];
-    question: TEvaluation["question"];
-    options: TEvaluation["options"];
-    correct_answer:string
-
-
-}
-type TGetLessonAPIResponse = {
-  status: number;
-  message: string;
-  evaluation: TEvaluationLessonsTeacher; /* Cambiar lo que recibe del backend: que seria todo, el contenido y la evaluacion ya que esto se mostrar en una page para actualizar el curso */
+/**
+ * Función auxiliar para convertir un valor desconocido en un array de strings.
+ * - Si ya es array, se retorna tal cual.
+ * - Si es string y tiene formato JSON, se parsea.
+ * - Si falla el parseo o el formato es inválido, retorna array vacío.
+ */
+const safeParseArray = (v: unknown): string[] => {
+  try {
+    if (Array.isArray(v)) return v as string[]; // Caso ya es array válido
+    if (typeof v === "string") {
+      const p = JSON.parse(v); // Intentar parsear el string JSON
+      return Array.isArray(p) ? p : []; // Retornar array o vacío
+    }
+    return []; // Si no es ni array ni string, devolver vacío
+  } catch {
+    return []; // Ante cualquier error en el parseo, devolver vacío
+  }
 };
 
-type TLoadEvaluationLessonAPIProps ={
-    idCourse:TCourseTeacherResponse['id'],
-    idLesson: TLessonTeacherResponse['id']
-}
+/**
+ * Servicio para obtener la evaluación de una lección.
+ * @param idCourse - ID del curso al que pertenece la lección
+ * @param idLesson - ID de la lección a consultar
+ * @returns Objeto con la evaluación y opciones normalizadas
+ */
+export default async function LoadEvaluationLessonAPI(idCourse: number, idLesson: number) {
+  // Llamada HTTP GET al endpoint de evaluación
+  const { data } = await axios.get(`/api/v1/teachers/courses/${idCourse}/lessons/${idLesson}/evaluation`);
 
-export default async function LoadEvaluationLessonAPI({idCourse, idLesson}:TLoadEvaluationLessonAPIProps): Promise<TEvaluationLessonsTeacher> {
-    try {
-        const id_course = idCourse
-        const id_lesson = idLesson
-        const response = await axios.get(`${VITE_TEACHER_ENDPOINT}/courses/${id_course}/lessons/${id_lesson}/evaluation`);
-
-        // Validar status code
-        if (response.status !== 200) {
-            throw new Error(`HTTP ${response.status}: ${response.data?.message || 'Error desconocido'}`);
-        }
-
-        // Validar estructura de respuesta
-        const responseData = response.data as TGetLessonAPIResponse;
-        if (!responseData.evaluation || !Array.isArray(responseData.evaluation)) {
-            throw new Error('Respuesta del servidor inválida: estructura de datos incorrecta');
-        }
-
-        return responseData.evaluation;
-
-    } catch (error) {
-        console.error('Error en GetCourses:', error);
-        throw error;
-    }
+  // Retornar la data con options siempre como string[]
+  return {
+    ...data, // Copiamos todos los campos originales
+    options: safeParseArray(data.options), // Normalizamos 'options'
+  };
 }
