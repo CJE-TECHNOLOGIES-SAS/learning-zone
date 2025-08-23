@@ -68,8 +68,9 @@
 /* Responsive */
 @media (max-width: 768px) {
   .container-opc-register-student{
-    width: min(460px, 94vw);
-    padding: 1.5rem;
+    right: 70%;
+    width: min(410px, 94vw);
+    padding: .5rem;
     gap: 16px;
   }
 
