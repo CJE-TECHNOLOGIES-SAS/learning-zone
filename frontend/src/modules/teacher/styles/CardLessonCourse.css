@@ -54,6 +54,22 @@
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
+/* Popup general */
+.educational-confirm-popup {
+  border-radius: 16px;
+  padding: 2rem;
+  background: #fdfdfd;
+  border: 3px solid #3b82f6; /* azul educativo */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Título */
+.educational-confirm-title {
+  font-size: 1.6rem !important;
+  font-weight: 700;
+  color: #1e3a8a;
+}
 .btn-delete-lesson:hover {
     color: #a31010;
     box-shadow: 0 2px 8px 0 rgba(255, 44, 44, 0.14);
