@@ -34,11 +34,7 @@
     color: #b7b3b3;
     transition: border-color 0.3s ease;
     box-sizing: border-box;
-}
 
-.container-label-input-r input:focus {
-    outline: none;
-    border-color: #f2f7fc;
 }
 
 .container-label-input-r label {
@@ -52,6 +48,11 @@
     transition: transform 0.3s ease, font-size 0.3s ease, color 0.3s ease;
     transform-origin: left top;
 }
+.container-label-input-r input:focus {
+    outline: none;
+    border-color: #f2f7fc;
+}
+
 
 .error {
     color: red;
@@ -59,6 +60,37 @@
     margin-top: 0;
     line-height: 1.2;
     display: block;
+}
+/* ====== BOTÓN VER/OCULTAR CONTRASEÑA ====== */
+.container-label-input-r.password {
+    position: relative;
+}
+
+.container-label-input-r.password input {
+    padding-right: 42px; /* espacio extra para el botón */
+}
+
+/* Botón dentro del input */
+.container-label-input-r.password .btn-toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #f0f5fc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease, transform 0.2s ease;
+    z-index: 5;
+}
+
+.container-label-input-r.password .btn-toggle-password:hover {
+    color: #2563eb; /* azul educativo */
+    transform: translateY(-50%) scale(1.1);
 }
 
 /* Estado del label cuando el input está enfocado O tiene contenido */
