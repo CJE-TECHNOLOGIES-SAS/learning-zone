@@ -1,0 +1,98 @@
+name: learning-zone
+services:
+  - name: backend
+    source_dir: /backend
+    github:
+      repo: CJE-TECHNOLOGIES-SAS/learning-zone
+      branch: main
+    run_command: python -m uvicorn main:app --host 0.0.0.0 --port $PORT
+    environment_slug: python
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    envs:
+      - key: DATABASE_URL
+        scope: RUN_TIME
+        type: SECRET
+      - key: EMAIL_FROM
+        scope: RUN_TIME
+        type: SECRET
+      - key: EMAIL_FROM_SUGGESTION
+        scope: RUN_TIME
+        type: SECRET
+      - key: SENDGRID_TEMPLATE_SUGGESTION_ID
+        scope: RUN_TIME
+        type: SECRET
+      - key: SENDGRID_API_KEY
+        scope: RUN_TIME
+        type: SECRET
+      - key: SENDGRID_TEMPLATE_REGISTER_ID
+        scope: RUN_TIME
+        type: SECRET
+      - key: SENDGRID_TEMPLATE_PASSWORD_ID
+        scope: RUN_TIME
+        type: SECRET
+      - key: SENDGRID_TEMPLATE_NOTIFICATION_ID
+        scope: RUN_TIME
+        type: SECRET
+      - key: TOKEN_KEY
+        scope: RUN_TIME
+        type: SECRET
+      - key: TOKEN_ALGORITHM
+        value: HS256
+      - key: GEMINI_API_KEY
+        scope: RUN_TIME
+        type: SECRET
+      - key: CLOUD_NAME
+        scope: RUN_TIME
+        type: SECRET
+      - key: CLOUDINARY_API_KEY
+        scope: RUN_TIME
+        type: SECRET
+      - key: CLOUDINARY_API_SECRET
+        scope: RUN_TIME
+        type: SECRET
+      - key: CLOUD_SECURE
+        value: "True"
+      - key: ADMIN_NAME
+        value: admin
+      - key: ADMIN_EMAIL
+        scope: RUN_TIME
+        type: SECRET
+      - key: ADMIN_PASSWORD
+        scope: RUN_TIME
+        type: SECRET
+    http_port: 8080
+    routes:
+      - path: /api
+  - name: frontend
+    source_dir: /frontend
+    github:
+      repo: CJE-TECHNOLOGIES-SAS/learning-zone
+      branch: main
+    build_command: npm install && npm run build
+    run_command: npm run preview -- --port $PORT --host 0.0.0.0
+    environment_slug: node-js
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    http_port: 8080
+    routes:
+      - path: /
+  - name: chat-service
+    source_dir: /chat-service
+    github:
+      repo: CJE-TECHNOLOGIES-SAS/learning-zone
+      branch: main
+    build_command: npm install && npm run build
+    run_command: npm start
+    environment_slug: node-js
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    http_port: 8080
+    routes:
+      - path: /chat
+databases:
+  - name: learning-zone-db
+    engine: MYSQL
+    version: "8"
+    size: db-s-1vcpu-1gb
+    num_nodes: 1

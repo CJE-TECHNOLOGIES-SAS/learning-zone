@@ -1,20 +1,35 @@
 {
-  "name": "chat-service",
+  "name": "learning-zone",
   "version": "1.0.0",
-  "description": "*Learing Zone* es una aplicación web educativa diseñada para fortalecer las habilidades en ofimática (Word, PowerPoint y Excel) de los estudiantes de 11° grado de la *Institución Educativa Rural Juan Tamayo*,\r en *Ciudad Bolívar*. Su objetivo es reducir la brecha de conocimientos que limita tanto su acceso al mercado laboral como su desempeño en entornos donde estas herramientas son requeridas. La plataforma ofrece\r cursos interactivos de nivel intermedio, enfocados en el aprendizaje práctico y contextualizado.",
-  "homepage": "https://github.com/edierGuerra/learning-zone#readme",
+  "description": "Learning Zone es una aplicación web educativa diseñada para fortalecer las habilidades en ofimática (Word, PowerPoint y Excel) de los estudiantes de 11° grado de la Institución Educativa Rural Juan Tamayo, en Ciudad Bolívar.",
+  "homepage": "https://github.com/CJE-TECHNOLOGIES/learning-zone#readme",
   "bugs": {
-    "url": "https://github.com/edierGuerra/learning-zone/issues"
+    "url": "https://github.com/CJE-TECHNOLOGIES/learning-zone/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/edierGuerra/learning-zone.git"
+    "url": "git+https://github.com/CJE-TECHNOLOGIES/learning-zone.git"
   },
   "license": "ISC",
-  "author": "",
-  "type": "commonjs",
-  "main": "q",
+  "author": "CJE Technologies",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "chat-service",
+    "backend"
+  ],
   "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:chat\" \"npm run dev:backend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:chat": "cd chat-service && npm run dev",
+    "dev:backend": "cd backend && python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000",
+    "build": "npm run build:frontend && npm run build:chat",
+    "build:frontend": "cd frontend && npm run build",
+    "build:chat": "cd chat-service && npm run build",
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:chat\" \"npm run start:backend\"",
+    "start:frontend": "cd frontend && npm run preview",
+    "start:chat": "cd chat-service && npm start",
+    "start:backend": "cd backend && python -m uvicorn main:app --host 0.0.0.0 --port 8000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

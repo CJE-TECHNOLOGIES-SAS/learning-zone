@@ -48,7 +48,7 @@ services:
       - CLOUD_SECURE=${CLOUD_SECURE:-True}
       - ADMIN_NAME=${ADMIN_NAME:-admin}
       - ADMIN_EMAIL=${ADMIN_EMAIL:-admin@learning-zone.com}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-change_this_password}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin123}
     volumes:
       - ./backend/uploads:/app/uploads
       - ./backend/static:/app/static
