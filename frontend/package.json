@@ -24,7 +24,7 @@
     "aos": "^2.3.4",
     "axios": "^1.10.0",
     "dayjs": "^1.11.13",
-    "framer-motion": "^12.18.1",
+    "framer-motion": "^12.23.12",
     "gsap": "^3.13.0",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.525.0",

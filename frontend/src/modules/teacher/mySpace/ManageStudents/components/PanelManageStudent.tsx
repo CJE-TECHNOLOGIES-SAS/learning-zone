@@ -5,6 +5,7 @@ import { useManageStudents } from '../hook/useManageStudents';
 import OpcRegisterStudent from './OpcRegisterStudent';
 import ManageSearchTable from './ManageSearchTable';
 import '../styles/PanelManageeStudent.css'
+import BtnArrowInfinite from '../../../../../shared/animations/ButtonArrowInfinitive';
 export default function PanelManageStudent() {
     const {totalStudents, studentsNotRegisters,studentsRegisters,studentsActives, infoRegisterStudents } = useManageStudents();
     const [opcRegisterStudent,setOpcRegisterStudent] = useState(false)
@@ -43,6 +44,17 @@ export default function PanelManageStudent() {
           {/* Btn de registrar */}
           <button className='btn-register-student' onClick={()=>setOpcRegisterStudent(!opcRegisterStudent)}>Agregar</button>
         </div>
+
+                <div
+                  className="btn-arrow-infinite-container"
+                  style={{
+                    position: "absolute",
+                    top:  "90%" ,
+                    left: "60%",
+                  }}
+                >
+                  <BtnArrowInfinite color={'#333'} />
+                </div>
         <div className='container-table-students'>
           {infoRegisterStudents.length >0 ?
             <>

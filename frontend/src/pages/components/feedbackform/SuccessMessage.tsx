@@ -1,4 +1,5 @@
 import "./styles/Complain.css";
+import './styles/SuccesMessage.css'
 interface Props {
   onReset: () => void;
 }

@@ -1,17 +1,20 @@
 .container-opc-register-student{
-    background-color: rgba(255, 255, 255, 0.91);
-    position: absolute;
+    background-color: rgba(255, 255, 255, 0.96);
+    position: fixed;
     top: 50%;
-    left: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     padding: 2rem;
-    width: 50dvh;
-    max-height: 66dvh;
+    width: min(520px, 92vw);
+    max-height: 80dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 22px;
     justify-content: center;
-    border-radius: 12px;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    backdrop-filter: blur(4px);
     z-index: 1000;
 }
 .btn-cancel-register{
@@ -47,4 +50,57 @@
 .btn-opc-register-students{
     background-color: #ff9b38;
 
+}
+
+/* Hover/press effects */
+.btn-opc-register-student,
+.btn-opc-register-students{
+  transition: transform .2s ease, box-shadow .2s ease, background-position .3s ease;
+  padding: .6rem 1rem;
+  font-weight: 700;
+}
+.btn-opc-register-student:hover,
+.btn-opc-register-students:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container-opc-register-student{
+    right: 70%;
+    width: min(410px, 94vw);
+    padding: .5rem;
+    gap: 16px;
+  }
+
+  .opcs-register-student{
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .btn-opc-register-student,
+  .btn-opc-register-students{
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-opc-register-student{
+    padding: 1.2rem;
+  }
+
+  .title-container-opc-register-student{
+    font-size: 22px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .title-container-opc-register-student{ font-size: 20px; }
+  .btn-opc-register-student, .btn-opc-register-students { font-size: 16px; }
 }

@@ -1,0 +1,145 @@
+.container-profile-teacher {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: 2rem 1rem; /* Mejora en móviles */
+  background-image: url('https://res.cloudinary.com/dhznpt8rr/image/upload/v1755220374/background-home-teacher_f2rwpu.webp');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-sizing: border-box;
+}
+
+.title-container-profile-teacher {
+  background-image: linear-gradient(31deg, #fffdf0, #37322fe9);
+  color: #fff;
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  letter-spacing: .04em;
+  margin: 0 auto;
+  text-shadow: 0 2px 12px rgba(0,0,0,.25);
+  border-radius: 12px 12px 0 0;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.container-inputs-t {
+  background-color: #2b2b2ba2;
+  padding: 2rem 1.5rem;
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  margin: 12px
+}
+
+.container-label-input-t {
+  position: relative;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-label-input-t input {
+  width: 100%;
+  padding: 20px 14px 8px 14px;
+  border: 2px solid #a9a8a8;
+  border-radius: 12px;
+  background-color: transparent;
+  font-size: 1.2rem;
+  color: #d5cccc;
+  transition: border-color 0.3s ease;
+}
+
+.container-label-input-t input:focus {
+  outline: none;
+  border-color: #f2f7fc;
+}
+
+.container-label-input-t label {
+  position: absolute;
+  top: 1px;
+  letter-spacing: 1.4px;
+  color: #fff;
+  font-size: 24px;
+  pointer-events: none;
+  transform-origin: left top;
+  transition:
+    transform 0.3s ease,
+    font-size 0.3s ease,
+    color 0.3s ease;
+}
+
+.container-label-input-t:has(input.has-content) label,
+.container-label-input-t:focus-within label {
+  transform: translateY(-22px) scale(0.95);
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.note-info {
+  color: #fff;
+  opacity: 0.9;
+  font-size: 0.9rem;
+  background-color: #4e60ff;
+  padding: 0.6rem 0.8rem;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 0 12px 12px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+/* ===================== MEDIA QUERIES ===================== */
+
+/* Tablet */
+@media (min-width: 768px) {
+  .title-container-profile-teacher,
+  .note-info {
+    max-width: 60%;
+  }
+
+  .container-inputs-t {
+    padding: 3rem 2rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+
+  .title-container-profile-teacher,
+  .note-info {
+    max-width: 26%;
+  }
+
+  .container-inputs-t {
+    padding: 4rem;
+  }
+}
+
+/* Mobile pequeño */
+@media (max-width: 480px) {
+  .title-container-profile-teacher,
+  .note-info {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+
+  .container-label-input-t input {
+    font-size: 1rem;
+    padding: 16px 12px 6px 12px;
+  }
+
+  .container-label-input-t label {
+    font-size: 18px;
+  }
+
+  .container-label-input-t:has(input.has-content) label,
+  .container-label-input-t:focus-within label {
+    font-size: 12px;
+  }
+}

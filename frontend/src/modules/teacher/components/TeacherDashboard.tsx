@@ -59,6 +59,8 @@ export default function TeacherDashboard() {
   };
 
   return (
+
+
     <div className="container-teacher-dashboard">
       {/* Header */}
       <div className="header-teacher-dashboard">
@@ -70,6 +72,8 @@ export default function TeacherDashboard() {
         </button>
 
         <h2 className="title-welcome-teacher">Bienvenido {user?.name}</h2>
+
+
         <div className='container-opc-filter-add'>
             <button
               className="icon-filter-categories"

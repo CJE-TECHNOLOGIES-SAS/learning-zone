@@ -10,8 +10,15 @@
 
 .comments-photo{
     width: 655px;
-    height: 280px;
+    height: 180px;
     align-content: center;
     display: block;     
     margin: 0 auto;
+}
+
+.comments-list {
+    color: black;
+    padding-bottom: 0.5rem;
+    font-size: 24px;
+    text-align: left;
 }

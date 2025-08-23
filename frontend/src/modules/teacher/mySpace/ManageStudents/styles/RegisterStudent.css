@@ -22,7 +22,7 @@
 .admin-register-input {
   width: 100%;
   padding: 12px;
-  border: 1.6px solid #ccc;
+  border: 1.6px solid #c0bebe;
   border-radius: 8px;
   font-size: 1rem;
   outline: none;
@@ -81,4 +81,51 @@
 .btn-register-admin-submit:disabled {
   background-color: #93c5fd;
   cursor: not-allowed;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .admin-register-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .admin-register-input {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+
+  .admin-register-label {
+    font-size: 0.85rem;
+  }
+
+  .btn-register-admin-submit {
+    font-size: 0.95rem;
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-register-form,
+  .admin-register-student-form {
+    border-radius: 10px;
+  }
+
+  .admin-register-input-container {
+    margin-bottom: 1rem;
+  }
+
+  .admin-register-title {
+    font-size: 1.15rem;
+  }
+
+  .btn-register-admin-submit {
+    width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .admin-register-title { font-size: 1.05rem; }
+  .admin-register-input { font-size: 0.9rem; }
+  .admin-register-label { font-size: 0.8rem; }
 }

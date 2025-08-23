@@ -1,10 +1,9 @@
 .container-manage-students-teacher{
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: .8fr 1fr;
+    grid-template-rows: .8fr .1fr;
     border-radius: 12px 0 0 0;
-
-
+    height: 100%;
 
 }
 .container-header-register-students{
@@ -75,4 +74,102 @@
 }
 .title-no-content-table{
     color: #0000007f;
+}
+
+.container-manage-students-teacher {
+  gap: var(--spacing-lg, 16px);
+  padding: var(--spacing-lg, 16px);
+  background: radial-gradient(circle farthest-corner at 16.5% 28.1%, rgba(161, 209, 245, 0.903) 0%, rgba(255, 255, 255, 0.825) 90%);
+
+
+}
+
+.container-header-register-students {
+  gap: var(--spacing-md, 12px);
+  padding: var(--spacing-md, 12px);
+}
+
+.container-numbers-students {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.container-numbers {
+  backdrop-filter: blur(2px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.6);
+}
+
+.btn-register-student {
+  background-image: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  background-size: 200% auto;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: 0.3s ease;
+}
+
+.btn-register-student:hover {
+  background-position: right center;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 18px rgba(34,197,94,0.35);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .container-numbers {
+    width: 220px;
+    padding: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-header-register-students {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .container-numbers-students {
+    gap: 16px;
+  }
+
+  .container-numbers h2 {
+    font-size: 22px;
+  }
+
+  .container-numbers span {
+    font-size: 18px;
+  }
+
+  .btn-register-student {
+    align-self: center;
+    margin: 16px 0 0 0;
+    width: 100%;
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-manage-students-teacher {
+    padding: var(--spacing-sm, 8px);
+    grid-template-rows: auto auto;
+  }
+
+  .container-numbers {
+    width: 100%;
+  }
+
+  .container-table-students {
+    padding: 0 var(--spacing-sm, 8px);
+  }
+
+  .title-no-content-table {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .container-numbers h2 { font-size: 20px; }
+  .container-numbers span { font-size: 16px; }
 }

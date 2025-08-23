@@ -48,5 +48,5 @@
   top: 30px;
   border-radius: 12px;
   transition: width 0.4s ease;
-  box-shadow: 4px 0px 0px 1px var(--progress-shadow, rgba(0, 0, 0, 0.1));
+  box-shadow: 2px 0px 0px 1px var(--progress-shadow, rgba(0, 0, 0, 0.058));
 }

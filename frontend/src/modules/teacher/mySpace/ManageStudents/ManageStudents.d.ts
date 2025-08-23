@@ -1,13 +1,27 @@
 /* Tipado del manageStudents */
 // types/ManageStudents.ts
 
+import type { TCourse } from "../../../courses/types/CourseStudent";
+
+/* Types course */
+export type TCourseFilter ={
+  id:TCourse['id'],
+  name:TCourse['name'],
+  image:TCourse['image']
+}
+export type TCoursesFilter = TCourseFilter[]
 /* ==== STUDENT - Response del backend ==== */
 export type TStudentRegisterResponse = {
   id:number
   number_identification: number;
   status: boolean | null;
+  name:string,
+/*   email:string, */
+  score:number,
+  course: string,
   color?:boolean
 };
+
 
 /* ==== STUDENT - Envío al backend ==== */
 export type TStudentRegisterSend = {
@@ -35,4 +49,6 @@ export type ManageStudentsContextType = {
   studentsNotRegisters:number;
   studentsRegisters:number;
   studentsActives:number;
+  loadInfoStudentRegisterByCourse: (idCourse: number) => Promise<void>;
+  coursesFilter: TCoursesFilter | null
 };

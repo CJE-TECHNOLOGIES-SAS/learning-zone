@@ -13,6 +13,7 @@ footer {
     display: flex;
     flex-direction: column; /* Elementos apilados verticalmente */
     color: var(--color-text-light);
+    z-index: 10;
 }
 
 /* ===== CONTENEDOR 1: LOGO + UBICACIÓN ===== */
@@ -54,10 +55,30 @@ footer {
 }
 
 .contenedor-manuals{
+    color: black;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 22px;
+    cursor: pointer;
+    border: 1px solid #9d9595;
+    padding: .4rem;
+    border-radius: 12px;
+    background-color: #ffffffc9;
+}
+.contenedor-manuals h2{
+    color: #fb9e1d;
+
+}
+.contenedor-manuals p{
+    font-size: 24px;
+}
+.contenedor-manuals p:hover{
+
+    color: #844b00;
+    transition: .3 ease-in-out;
+
+    font-size: 25px;
 }
 .icon {
     font-size: var(--font-size-xl); /* 20px en mobile */
@@ -111,6 +132,7 @@ footer {
 .contenedor-redes {
     /* En mobile: sin padding especial */
     padding-right: 0;
+    cursor: pointer;
 }
 
 .contenedor-redes ul {
@@ -119,6 +141,10 @@ footer {
     align-items: center;
     gap: var(--spacing-sm); /* 16px entre iconos */
     list-style: none;
+}
+
+.contenedor-redes ul:hover {
+    color: #fff;
 }
 
 /* ===== RESPONSIVE BREAKPOINTS ===== */

@@ -4,6 +4,9 @@
   flex-direction: column;
   gap: 10px;
   border-radius: 20px;
+  background: radial-gradient(circle farthest-corner at 16.5% 28.1%, rgba(42, 91, 127, 0.903) 0%, rgba(255, 255, 255, 0.825) 90%);
+
+
 
 }
 .container-items{
@@ -34,6 +37,8 @@
   justify-content: space-between;
   gap: 12px;
   border-bottom: 2px solid #10101152;
+  padding: 2rem;
+
 }
 .title-container-notifications {
   color: var(--color-dark-blue);
@@ -86,7 +91,7 @@
 /* Tablet (>=768px) */
 @media (min-width: 768px) {
   .container-panel-notifications-teacher {
-    padding: 2rem;
+    padding: 3rem;
     border-radius: 16px;
     max-width: none;
   }

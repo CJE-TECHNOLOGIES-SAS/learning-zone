@@ -10,6 +10,10 @@ import { TeacherCourseProvider } from "../modules/teacher/context/TeacherCourseP
 import { StudentCourseProvider } from "../modules/courses/context/StudentCourseProvider";
 import LandingPage from "../pages/LandingPage";
 import Help from "../pages/Help";
+// Importamos las rutas de error centralizadas (401, 403, 500, 503 y 404 catch-all)
+// Esto nos permite navegar directamente a estas rutas y capturar 404 dentro del layout autenticado.
+import errorsRouters from "./Errors";
+import ComplaintPage from "../pages/feedbackform/ComplaintPage";
 
 export default function RoutersPrivates() {
   return (
@@ -47,6 +51,16 @@ export default function RoutersPrivates() {
 
           {/* Rutas compartidas (pueden estar protegidas) */}
           {sharedRoutes}
+
+          {/**
+           * Montamos las rutas de error al FINAL dentro del mismo layout autenticado.
+           * Así, el <Route path="*"> de errorsRouters actúa como 404 para cualquier
+           * ruta no encontrada dentro del contexto privado, sin eclipsar rutas válidas.
+           * También habilita acceso directo a /401, /403, /500 y /503.
+           */}
+          <Route key="siteSugerences" path="/siteSugerences" element={<ComplaintPage />} />,
+
+          {errorsRouters}
 
         </Route>
       </Route>

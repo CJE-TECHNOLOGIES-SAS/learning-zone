@@ -1,35 +1,52 @@
+import toast from 'react-hot-toast';
 import axios from '../../../../../api/axiosInstance';
-import type { TStudentsRegisters } from '../ManageStudents';
+import { authStorage } from '../../../../../shared/Utils/authStorage';
+
 const VITE_TEACHER_ENDPOINT = import.meta.env.VITE_TEACHER_ENDPOINT;
 
-
-/**
- * Tipo de respuesta esperada desde el backend
- */
-type GetSingleStudentAPIResponse = {
+/* type GetSingleStudentAPIResponse = {
   status: number;
   message: string;
-  student: TStudentsRegisters[number]; // Un solo estudiante
-};
-export default async function GetSingleStudentAPI(n_identification: number): Promise<GetSingleStudentAPIResponse['student']> {
+  student: TStudentsRegisters[number];
+}; */
+
+export default async function GetSingleStudentAPI(
+  n_identification: number
+)/* : Promise<GetSingleStudentAPIResponse['student']> */ {
   try {
-    // Llamada al endpoint del backend con el ID del estudiante
-    const response = await axios.get(`${VITE_TEACHER_ENDPOINT}/students/identification/by-number/${n_identification}`);
+    const infoStudents = authStorage.getInfoStudentsRegister()
+    const raw = authStorage.getFilterCourse();
+    const courseFilter =
+      raw == null ? null : Number(raw);
 
-    // Validar el status HTTP
-    if (response.status !== 200) {
-      throw new Error(`HTTP ${response.status}: ${response.data?.message || 'Error desconocido'}`);
+
+
+    let ruta: string;
+    if (courseFilter == null || !Number.isFinite(courseFilter)) {
+      // SIN filtro
+      ruta = `${VITE_TEACHER_ENDPOINT}/students/identification/by-number/${n_identification}`;
+    } else {
+        infoStudents.map((infStudent)=>{
+        if(infStudent.number_identification === n_identification){
+          if(infStudent.status !== true){
+            toast.error('Este estudiante no se encuentra activo')
+            return
+          }
+
+        }
+      })
+      // CON filtro
+      ruta = `${VITE_TEACHER_ENDPOINT}/students/identification/by-number/${n_identification}?id_course=${courseFilter}`;
     }
-
-    // Validar y castear los datos recibidos
-/*     const responseData = response.data as GetSingleStudentAPIResponse;
-    if (!responseData || typeof responseData !== 'object') {
-      throw new Error('Respuesta del servidor inválida: datos del estudiante no presentes');
-    } */
-
+    const response = await axios.get(ruta);
+    if (response.status !== 200) {
+      throw new Error(
+        `HTTP ${response.status}: ${response.data?.message || "Error desconocido"}`
+      );
+    }
     return response.data;
   } catch (error) {
-    console.error('Error en GetSingleStudentAPI:', error);
+    console.error("Error en GetSingleStudentAPI:", error);
     throw error;
   }
 }

@@ -11,8 +11,11 @@ import RegisterStudentAPI from "../services/RegisterStudent.server";
 import RegisterStudentsAPI from "../services/RegisterStudentsByFile.server";
 import UpdateStudentIdentificationAPI from "../services/UpdateIdentificationStudent.server";
 import DeleteIdentificationNumberAPI from "../services/DeleteStudentRegister.server";
-import type { TStudentRegisterResponse, TStudentsRegisters } from "../ManageStudents";
+import type { TCoursesFilter, TStudentRegisterResponse, TStudentsRegisters } from "../ManageStudents";
 import { ManageStudentsContext } from "./ManageStudentsContex";
+import type { TCourse } from "../../../../courses/types/CourseStudent";
+import GetInfoRegisterStudentsByCourseAPI from "../services/GetInfoRegisterStudentsByCourse.server";
+import GetCoursesFilterAPI from "../services/GetCoursesFilter.server";
 
 type Props = {
   children: React.ReactNode;
@@ -21,6 +24,7 @@ type Props = {
 export const ManageStudentsProvider = ({ children }: Props) => {
   // Estado principal con el listado de números de identificación registrados
   const [infoRegisterStudents, setInfoRegisterStudents] = useState<TStudentsRegisters>([]);
+  const [coursesFilter, setCoursesFilter] = useState<TCoursesFilter | null>(null)
 
   // Carga inicial siempre desde backend para datos frescos
   useEffect(() => {
@@ -31,21 +35,30 @@ export const ManageStudentsProvider = ({ children }: Props) => {
         console.log("Datos frescos del backend:", data);
         setInfoRegisterStudents(data);
         authStorage.setInfoStudentsRegister(data);
+
+        /*Obtener los cursos para poder mostrar el filtrado por cursos*/
+        const coursesFilter = await GetCoursesFilterAPI()
+        setCoursesFilter(coursesFilter)
+        authStorage.removeFilterCourse()
       } catch (e) {
         console.error("Error cargando info de registros:", e);
         // Si falla el backend, intentar cargar desde storage como fallback
-        const stored = authStorage.getInfoStudentsRegister();
-        if (stored && stored.length > 0) {
-          setInfoRegisterStudents(stored);
-          toast.error("Error conectando al servidor. Mostrando datos guardados.");
-        } else {
+        const storedStudents = authStorage.getInfoStudentsRegister();
+        const storedCoursesFilter = authStorage.getCoursesFilter();
+        if (storedStudents && storedStudents.length > 0  ) {
+          setInfoRegisterStudents(storedStudents);
+        }
+        if(storedCoursesFilter && storedCoursesFilter.length > 0){
+          setCoursesFilter(storedCoursesFilter);
+        }
+
+        else {
           toast.error("No se pudo cargar la información de estudiantes");
         }
       }
     })();
   }, []);
 
-  // Refrescar desde backend forzando limpieza de storage
   const refreshInfoStudentRegister = async () => {
     try {
       authStorage.removeInfoStudentsRegister();
@@ -75,22 +88,45 @@ export const ManageStudentsProvider = ({ children }: Props) => {
   const loadInfoStudentRegister = async (id: TStudentRegisterResponse["id"]) => {
     try {
       const item = await GetSingleStudentAPI(id);
+      console.log('El que me trae el backend',item)
       item.color =true
       // Filtrar duplicados antes de agregar el nuevo item
       setInfoRegisterStudents((prev) => {
-        const filteredPrev = prev.filter(student => student.id !== item.id);
+        const filteredPrev = prev.filter(student => student.number_identification !== item.number_identification);
+        console.log('ni se sabe',filteredPrev)
         return [item, ...filteredPrev];
       });
 
       // También actualizar el storage sin duplicados
-      const currentStudents = infoRegisterStudents.filter(student => student.id !== item.id);
+      const currentStudents = infoRegisterStudents.filter(student => student.number_identification !== item.number_identification);
       authStorage.setInfoStudentsRegister([item, ...currentStudents]);
+      toast.success("Estudiante cargado");
+    } catch (e) {
+      console.error("Error cargando estudiante:", e);
+      toast.error("Ups! Parece que ese id no existe o no se encuentra Registrado");
+    }
+  };
+  /*Cargar estudiantes por filtrado en un curso en especifico*/
+  const loadInfoStudentRegisterByCourse = async(idCourse:TCourse['id'])=>{
+      try {
+      const id_course = idCourse
+      const students = await GetInfoRegisterStudentsByCourseAPI(id_course);
+      if(students.length === 0){
+        toast.success('No hay estudiantes registrados aun')
+        return
+      }
+      authStorage.setFilterCourse(idCourse)
+      // Filtrar duplicados antes de agregar el nuevo item
+      setInfoRegisterStudents(students);
+      // También actualizar el storage sin duplicados
+      /* authStorage.setInfoStudentsRegister(students); */
       toast.success("Estudiante cargado");
     } catch (e) {
       console.error("Error cargando estudiante:", e);
       toast.error("Ups! Parece que ese id no se encuentra Registrado");
     }
-  };
+
+  }
 
   // Registrar uno
   const registerStudent = async (n_identification: TStudentRegisterResponse["number_identification"]) => {
@@ -210,7 +246,9 @@ export const ManageStudentsProvider = ({ children }: Props) => {
         totalStudents,
         studentsNotRegisters,
         studentsRegisters,
-        studentsActives
+        studentsActives,
+        loadInfoStudentRegisterByCourse,
+        coursesFilter
       }}
     >
       {children}

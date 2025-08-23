@@ -1,0 +1,78 @@
+.btn-close-container-filter{
+    position: absolute;
+    font-size: 38px;
+    background-color: transparent;
+    left: 6px;
+    top: 4px;
+    color: #ff9e9e;
+    cursor: pointer;
+}
+.container-filter {
+    background-color: rgba(38, 107, 180, 0.953);
+    position: absolute;
+    right: 250px;
+    z-index: 1000;
+    top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 430px;
+    gap: 12px;
+    padding: .4rem;
+    border-radius: 12px;
+    min-height: 25dvh;
+    max-height: 45dvh;
+}
+
+/* Título del bloque de filtros */
+.title-container-filter {
+    color: rgba(255, 200, 89, 0.923);
+    letter-spacing: 1.4px;
+    align-self: center;
+}
+
+.container-opcs-filter{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+
+}
+.btn-filter-all{
+    background-color: transparent;
+    font-size: 22px;
+    border-radius: 12px;
+    padding: .4rem;
+    background-color: #00306e;
+    color: #fff;
+
+
+
+}
+.btn-filter-by-course{
+    background-color: transparent;
+    background-color: transparent;
+    font-size: 22px;
+    border-radius: 12px;
+    padding: .4rem;
+    background-color: #e37c2e;
+    color: #fff;
+
+}
+.container-opc-filter-score{
+    padding: .4rem;
+    display: flex;
+    font-size: 22px;
+    gap: 12px;
+    align-items: center;
+    border-radius: 12px;
+    background-color: #fff;
+}
+.container-opc-filter-score button{
+    padding: .3rem;
+    font-size: 22px;
+    border-radius: 12px;
+    color: #000000;
+    border: 2px solid #ffbb87ba;
+
+    background-color: transparent;
+}

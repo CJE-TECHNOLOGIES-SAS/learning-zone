@@ -6,7 +6,6 @@ export const COURSE_CATEGORY_LABELS: Record<
   ofimatica: { label: 'Ofimática', color: '#3B82F6' }, // azul
   electronica: { label: 'Electrónica', color: '#22C55E' }, // verde
   programacion: { label: 'Programación', color: '#F97316' }, // naranja
-  diseno: { label: 'Diseño', color: '#EAB308' }, // amarillo
   ciberseguridad: { label: 'Ciberseguridad', color: '#EF4444' }, // rojo
   'desarrollo de videojuegos': { label: 'Desarrollo de Videojuegos', color: '#A855F7' }, // morado
   'inteligencia artificial': { label: 'Inteligencia Artificial', color: '#06B6D4' }, // cian

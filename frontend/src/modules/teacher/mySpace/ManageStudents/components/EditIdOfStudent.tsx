@@ -1,1 +1,0 @@
-/* Componente que renderiza la vista para editar el numero de identificacion de un estudiante */

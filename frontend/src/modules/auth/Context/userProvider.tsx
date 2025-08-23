@@ -62,9 +62,7 @@ const initSession = async (): Promise<boolean> => {
       const userData: TUser = {
         id: data.id,
         name: data.names,
-        lastNames: data.last_names,
         email: data.email,
-        specialization: data.specialization,
         prefixProfile: data.prefix_profile
       };
       authStorage.setUser(userData);

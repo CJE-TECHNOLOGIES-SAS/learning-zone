@@ -390,3 +390,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/react,node,python,windows,visualstudiocode,venv,firebase
+stash.diff

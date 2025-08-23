@@ -2,32 +2,16 @@
 // src/modules/teacher/mySpace/pages/components/ContentMySpace.tsx
 
 import { useMySpace } from "../hooks/useMySpace";
-import ManageContents from "../pages/ManageContents";
 import ManageNotificationsTeacher from "../pages/ManageNotificationsTeacher";
 import ManageStudentsTeacher from "../pages/ManageStudents";
 import '../styles/ContentMySpace.css'
 
-// Replace these placeholders with your actual components
-function UserView() {
-  return (
-    <div className="view-myspace user-view">
-      <ManageContents />
-    </div>
-  );
-}
+
 
 function StudentsView() {
   return (
     <div className="view-myspace students-view">
       <ManageStudentsTeacher />
-    </div>
-  );
-}
-
-function StatisticsView() {
-  return (
-    <div className="view-myspace statistics-view">
-      Course statistics
     </div>
   );
 }
@@ -49,12 +33,8 @@ export default function ContentMySpace() {
     <div className="content-my-space">
       {(() => {
         switch (view) {
-          case "usuario":
-            return <UserView />;
           case "estudiantes":
             return <StudentsView />;
-          case "estadisticas":
-            return <StatisticsView />;
           case "notificaciones":
             return <NotificationsView />;
           default:

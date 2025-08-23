@@ -55,17 +55,25 @@ export default function EvaluationPage() {
   // Maneja la respuesta del estudiante y actualiza progreso y puntaje
   const handleAnswer = async (
     e: React.FormEvent<HTMLFormElement> | null,
-    id:TEvaluation['id'],
+    id: TEvaluation['id'],
     response: string,
     questionType: TEvaluation['questionType']
   ) => {
-    if (e) e.preventDefault();
+    // [NUEVO]: si viene de un <form>, prevenimos y deshabilitamos el botón submit de inmediato
+    let submitterBtn: HTMLButtonElement | null = null; // [NUEVO]: referencia al botón que disparó el submit
+    if (e) {
+      e.preventDefault();
+      // [NUEVO]: obtener el botón "submitter" del evento nativo y deshabilitarlo
+      submitterBtn = (e.nativeEvent as SubmitEvent).submitter as HTMLButtonElement | null;
+      if (submitterBtn) submitterBtn.disabled = true;
+    }
+
     try {
       const idCourse = currentLesson!.idCourse;
       const idLesson = currentLesson!.id;
-      const res = await SendResponseLessonAPI({id, idCourse, idLesson, response, questionType});
+      const res = await SendResponseLessonAPI({ id, idCourse, idLesson, response, questionType });
       if (res.status === 200) {
-        const score:TScore = {
+        const score: TScore = {
           newScore: res.score!.new_score,
           oldScore: res.score!.old_score,
           date: res.score!.date
@@ -80,6 +88,9 @@ export default function EvaluationPage() {
       navigate('/student/content-page');
     } catch {
       toast.error("Ocurrió un error al enviar la respuesta");
+    } finally {
+      // [NUEVO]: si el submit vino desde un form, re-habilitar el botón al terminar
+      if (submitterBtn) submitterBtn.disabled = false;
     }
   }
 
@@ -117,7 +128,7 @@ export default function EvaluationPage() {
 
       {/* Opciones o formulario según el tipo de pregunta */}
       {evaluation.questionType === 'multiple_choice' ? (
-        <div className="container-options">
+        <div className="container-options" style={{'gridTemplateColumns':evaluation.options?.length ===3? '1fr': '1fr 1fr'}}>
           {evaluation.options?.map((option, i) => (
             <button
               key={i}
@@ -129,7 +140,16 @@ export default function EvaluationPage() {
                 border: `2px solid ${palette.accent}`,
               }}
               value={option}
-              onClick={() => handleAnswer(null, evaluation.id, option, evaluation.questionType)}
+              // [NUEVO]: deshabilitar el botón de la opción al instante para bloquear doble click
+              onClick={async (ev) => {
+                const btn = ev.currentTarget as HTMLButtonElement; // [NUEVO]
+                btn.disabled = true;                                // [NUEVO]
+                try {
+                  await handleAnswer(null, evaluation.id, option, evaluation.questionType); // [NUEVO]
+                } finally {
+                  btn.disabled = false; // [NUEVO]: re-habilitar (si sigues en la vista actual)
+                }
+              }}
             >
               {option}
             </button>

@@ -8,12 +8,18 @@
 
   padding: var(--spacing-md);
   flex: 1;
-  min-height: 100dvh;
-  background-image: url('../../../assets/learningZone/img-background-dashboard.png');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 100dvh;
+
 }
+.background-style{
+  max-height: 500%;
+  height: 154%;
+
+}
+
 
 .container-info-header-user{
   display: flex;
@@ -29,8 +35,8 @@
 }
 
 .home-paragraph {
-  color: #00635ba5;
-  background: linear-gradient(transparent, var(--color-text-light-alt));
+  color: #ffffffc9;
+  background: linear-gradient(transparent,rgb(31, 81, 154));
   letter-spacing: 1.5px;
   font-size: var(--font-size-lg);
   text-align: center;
@@ -75,6 +81,10 @@
     width: 100%;
     margin: 0 auto;
   }
+    .background-style{
+    height: 114%;
+
+  }
   .container-info-header-user{
     display: flex;
     flex-direction: column;
@@ -97,6 +107,8 @@
     padding: var(--spacing-xs);
     min-height: auto;
   }
+
+
   .home-title {
     font-size: var(--font-size-lg);
   }

@@ -1,11 +1,12 @@
-.container-confirm-email{
+/* Hoja de estilos del CSS */
+.container-confirm-email {
     min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
-.container-information-confirm{
+
+.container-information-confirm {
     box-shadow: 10px 8px 8px 10px var(--color-shadow-dark);
     padding: 4rem;
     display: flex;
@@ -15,30 +16,133 @@
     justify-content: center;
     transition: .3s ease-in-out;
 }
-.btn-back-confirm{
+
+.btn-back-confirm {
     align-self: first baseline;
     background-color: transparent;
     border: none;
     font-size: 46px;
-    color: var( --color-text);
+    color: var(--color-text);
     cursor: pointer;
-
 }
+
 .container-information-confirm:hover .title-container-confim-email {
-  color: var(--color-primary-blue);
+    color: var(--color-primary-blue);
 }
 
 .container-information-confirm:hover {
     transform: translateY(-80px);
     box-shadow: 10px 0px 30px 0px var(--color-dark-blue);
 }
-.title-container-confim-email{
+
+.title-container-confim-email {
     font-size: 42px;
     font-weight: 600;
     color: var(--color-text-dark);
-
-
 }
-.paragraph-description-confirm{
+
+.paragraph-description-confirm {
     font-size: 26px;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Tablet (768px y menor) */
+@media (max-width: 768px) {
+    .container-information-confirm {
+        padding: 3rem;
+        gap: .6rem;
+    }
+
+    .title-container-confim-email {
+        font-size: 36px;
+    }
+
+    .paragraph-description-confirm {
+        font-size: 22px;
+    }
+
+    .btn-back-confirm {
+        font-size: 38px;
+    }
+
+    .container-information-confirm:hover {
+        transform: translateY(-60px);
+    }
+}
+
+/* Mobile (480px y menor) */
+@media (max-width: 480px) {
+    .container-information-confirm {
+        padding: 2rem;
+        gap: .5rem;
+        margin: 1rem;
+    }
+
+    .title-container-confim-email {
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .paragraph-description-confirm {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .btn-back-confirm {
+        font-size: 28px;
+        align-self: center;
+    }
+
+    .container-information-confirm:hover {
+        transform: translateY(-40px);
+    }
+}
+
+/* Mobile muy pequeño (360px y menor) */
+@media (max-width: 360px) {
+    .container-information-confirm {
+        padding: 1.5rem;
+        gap: .4rem;
+    }
+
+    .title-container-confim-email {
+        font-size: 24px;
+    }
+
+    .paragraph-description-confirm {
+        font-size: 16px;
+    }
+
+    .btn-back-confirm {
+        font-size: 24px;
+    }
+
+    .container-information-confirm:hover {
+        transform: translateY(-30px);
+    }
+}
+
+/* Pantallas muy grandes (1440px y mayor) */
+@media (min-width: 1440px) {
+    .container-information-confirm {
+        padding: 5rem;
+        gap: 1rem;
+    }
+
+    .title-container-confim-email {
+        font-size: 48px;
+    }
+
+    .paragraph-description-confirm {
+        font-size: 30px;
+    }
+
+    .btn-back-confirm {
+        font-size: 52px;
+    }
+
+    .container-information-confirm:hover {
+        transform: translateY(-100px);
+    }
 }

@@ -11,6 +11,8 @@ import logging
 from fastapi.security import HTTPBearer
 from contextlib import asynccontextmanager
 
+from schemas.suggestion_schemas import SuggestionCreate
+from services.utils.email_sender import send_suggestion_email
 from core.security import get_current_role
 from database.config_db import Base, engine, async_session  # Base de datos
 import google.generativeai as genai
@@ -153,6 +155,22 @@ async def root(request: Request):
 async def valid_user_role(role: str = Depends(get_current_role)):
     """Valida el rol de un usuario en base a un token JWT."""
     return {"role": role}
+
+
+# -- Sugerencias
+@app.post("/suggestions/send", tags=["Suggestions"])
+async def send_suggestion(suggestion: SuggestionCreate):
+    """
+    Envía una sugerencia por correo usando la plantilla de SendGrid.
+    """
+    send_suggestion_email(
+        sender=suggestion.sender,
+        email_sender=suggestion.email_sender,
+        content_message=suggestion.content_message,
+        to_email=suggestion.to_email,
+        subject=suggestion.subject,
+    )
+    return {"message": "Sugerencia enviada correctamente"}
 
 
 # --- Routers ----

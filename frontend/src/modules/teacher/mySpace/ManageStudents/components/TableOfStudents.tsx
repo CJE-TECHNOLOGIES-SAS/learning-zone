@@ -120,7 +120,10 @@ export default function TableOfStudents() {
           <tr>
             <th className="header-id">ID</th>
             <th className="header-identification">Identificación</th>
+            <th className="header-name">Nombre</th>
             <th className="header-status">Estado</th>
+            <th className="header-course">Curso</th>
+            <th className="header-score">Puntuacion</th>
             <th className="header-actions">Acciones</th>
           </tr>
         </thead>
@@ -131,11 +134,15 @@ export default function TableOfStudents() {
                >
                 <td className={infoRegisterStudent.color === true? 'tr-have-color': ''} >{infoRegisterStudent.id}</td>
                 <td className={infoRegisterStudent.color === true? 'tr-have-color': ''} >{infoRegisterStudent.number_identification}</td>
+                <td className={infoRegisterStudent.color === true? 'tr-have-color': ''} >{infoRegisterStudent.name === null? 'Null':infoRegisterStudent.name }</td>
                 <td className={infoRegisterStudent.color === true? 'tr-have-color': ''} >
                   <span className={`status-cell ${getStatusClass(infoRegisterStudent.status)}`}>
                     {getStatusText(infoRegisterStudent.status)}
                   </span>
                 </td>
+                <td className={infoRegisterStudent.color === true? 'tr-have-color': ''} >{infoRegisterStudent.course}</td>
+                <td className={infoRegisterStudent.color === true? 'tr-have-color': ''} >{infoRegisterStudent.score === null? 'Null':infoRegisterStudent.score }</td>
+
                 <td>
                   <div className="container-opc-crud-student">
                     <button className="btn-crud btn-edit" onClick={() => handleEditClick(infoRegisterStudent)}>Editar</button>

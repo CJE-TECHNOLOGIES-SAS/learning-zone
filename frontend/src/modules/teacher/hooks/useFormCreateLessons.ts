@@ -1,4 +1,3 @@
-
 /** Importa hooks de React para manejar estado y parámetros de URL */
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -37,7 +36,6 @@ export function useFormCreateLessons() {
   /** Obtiene el ID del curso desde los parámetros de la ruta */
   const { courseId } = useParams<{ courseId: string }>();
   const idCourse = Number(courseId)
-
 
   const navigate = useNavigate(); // dentro del hook
 
@@ -82,7 +80,6 @@ export function useFormCreateLessons() {
     const newErrors: FormErrors = {};
     const { name, content } = formDataLesson.lesson;
     const { question_type, question, options, correct_answer } = formDataLesson.evaluation;
-
 
     /** Valida nombre de la lección */
     if (!name.trim()) {
@@ -137,10 +134,22 @@ export function useFormCreateLessons() {
   };
 
   /** Envía la lección y la evaluación al backend */
-  const handleSubmit = async (e: React.FormEvent) => {
+  // [NUEVO]: tipamos el evento como FormEvent<HTMLFormElement> para acceder a e.nativeEvent.submitter
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!validateForm()) return;
+    // [NUEVO]: obtenemos el botón que disparó el submit (el "submitter")
+    // Esto permite deshabilitarlo inmediatamente (antes de que React re-renderice).
+    const submitter = (e.nativeEvent as SubmitEvent).submitter as HTMLButtonElement | null;
+
+    // [NUEVO]: deshabilitar al instante para bloquear doble click rápido
+    if (submitter) submitter.disabled = true;
+
+    if (!validateForm()) {
+      // [NUEVO]: si la validación falla, re-habilitamos el botón y salimos
+      if (submitter) submitter.disabled = false;
+      return;
+    }
 
     setIsSubmitting(true);
     setSubmitSuccess(false);
@@ -150,8 +159,8 @@ export function useFormCreateLessons() {
       const lessonContent:TLessonContentResponse ={
         name:name,
         content:content
-
       }
+
       /** Crea la lección */
       const lessonCreated = await CreateLessonAPI({idCourse,lessonContent});
 
@@ -176,7 +185,7 @@ export function useFormCreateLessons() {
 
       /** Marca éxito y resetea formulario */
       if (lessonCreated && createEvaluation) {
-        toast.success("Lección" + nameLesson + "exitosamente");
+        toast.success("Lección " + nameLesson + " exitosamente");
         // Limpiar cache de lecciones para forzar recarga
         authStorage.clearLessonData();
         authStorage.removeFormLessonInfo();
@@ -189,6 +198,8 @@ export function useFormCreateLessons() {
       console.error("Error al guardar los datos", err);
     } finally {
       setIsSubmitting(false);
+      // [NUEVO]: re-habilitamos el botón al final (si sigues en la vista actual)
+      if (submitter) submitter.disabled = false;
     }
   };
 
@@ -205,7 +216,6 @@ export function useFormCreateLessons() {
           question: "",
           options: [],
           correct_answer: "",
-
         },
       });
       setSubmitSuccess(false);
@@ -235,7 +245,7 @@ export function useFormCreateLessons() {
         evaluation: {
           ...prev.evaluation,
           options: nuevasOpciones,
-          correctAnswer: esLaCorrecta ? "" : prev.evaluation.correct_answer,
+          correctAnswer: esLaCorrecta ? "" : prev.evaluation.correct_answer, // (mantengo tu lógica)
         },
       };
     });
@@ -254,7 +264,7 @@ export function useFormCreateLessons() {
           ...prev.evaluation,
           options: nuevas,
           correctAnswer:
-            prev.evaluation.correct_answer === anterior ? value : prev.evaluation.correct_answer,
+            prev.evaluation.correct_answer === anterior ? value : prev.evaluation.correct_answer, // (mantengo tu lógica)
         },
       };
     });
@@ -290,7 +300,8 @@ export function useFormCreateLessons() {
       },
     }));
   };
-    /**
+
+  /**
    * Esta función se usa para manejar cambios en los campos del formulario.
    * Por ejemplo: cuando el usuario escribe en el input del nombre de la lección.
    *
@@ -323,8 +334,6 @@ export function useFormCreateLessons() {
       // Guardamos el nuevo estado en React
       setFormDataLesson(updated);
     };
-
-
 
   /** Retorna funciones y estados útiles */
   return {

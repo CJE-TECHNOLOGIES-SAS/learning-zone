@@ -94,7 +94,7 @@ export function useFormUpdateCourse() {
     console.log("courseToSend", courseToSend);
 
     try {
-      const idCourse = await UpdateCourseAPI(id_course, courseToSend);
+      const idCourse = await UpdateCourseAPI({id_course, courseToSend});
 
       if (idCourse) {
         toast.success("¡Curso actualizado exitosamente!");

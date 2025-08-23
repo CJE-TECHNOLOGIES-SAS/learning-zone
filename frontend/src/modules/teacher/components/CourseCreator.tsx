@@ -14,6 +14,8 @@ import { COURSE_CATEGORY_LABELS } from "../../../shared/constant/CategoriesCours
 import { educationalPalettes, type TPaletteNames } from "../../../shared/theme/ColorPalettesCourses";
 import { useState } from "react";
 import Particles from "./particles/particles";
+import { IoArrowBackCircleSharp } from "react-icons/io5";
+import { useNavigationHandler } from "../../../hooks/useNavigationHandler";
 
 export default function CourseCreator() {
   const {
@@ -26,17 +28,19 @@ export default function CourseCreator() {
     handlePaletteChange,
     handleSubmit
   } = useFormCreateCourse();
+  const handleBtnNavigate = useNavigationHandler();
+
 
   const [viewpalettes, setViewpalettes] = useState(false);
 
   return (
-    <div className="container-form-course-teacher">
+    <div className="container-form-teacher-course">
               {/* Fondo de partículas dentro del contenedor del formulario */}
               <Particles/>
 
-      <div className="envoltura-form-teacher">
+      <div className="envoltura-form-teacher-course">
 
-        <div className="header-form-course-teacher">
+        <div className="header-form-teacher-course">
           <h1 className="title-create-course">Crear Curso</h1>
           <p className="paragraph-create-course">
             Completa la información del nuevo curso.
@@ -50,6 +54,14 @@ export default function CourseCreator() {
         )}
 
         <form onSubmit={handleSubmit} className="form-course-teacher">
+          {/* Botón de regreso */}
+         <button
+           type="button"
+           className="btn-back-create-course"
+           onClick={() => handleBtnNavigate('/back')}
+         >
+           <IoArrowBackCircleSharp />
+         </button>
           <Card>
             {/* Nombre */}
             <div className="container-label-input-create-course">

@@ -2,6 +2,8 @@
 import '../Styles/RequestEmail.css'
 import  { useEffect } from 'react'
 import useRecoverPassword from '../Hooks/useRecoverPassword';
+import { IoArrowBackCircleSharp } from 'react-icons/io5';
+import { useNavigationHandler } from '../../../hooks/useNavigationHandler';
 
 export default function RequestEmail() {
     const {
@@ -11,6 +13,8 @@ export default function RequestEmail() {
         viewSucessMessage,
         handleSubmitRequestEmail,
   } = useRecoverPassword();
+  const handleBtnNavigate = useNavigationHandler();
+
 
 
 
@@ -27,6 +31,14 @@ export default function RequestEmail() {
 
   return (
     <form className='form-email-request' onSubmit={(e)=>handleSubmitRequestEmail(e)}>
+      {/* Botón de regreso */}
+      <button
+        type="button"
+        className="btn-back-email-request"
+        onClick={() => handleBtnNavigate('/back')}
+      >
+        <IoArrowBackCircleSharp />
+      </button>
       <h2 className='title-Request-email'>Ingresa tu correo electrónico</h2>
         <div className="container-label-input-r">
           <input

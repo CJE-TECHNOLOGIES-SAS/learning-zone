@@ -10,7 +10,14 @@
     z-index: 10;
     gap: var(--spacing-sm); /* Espacio entre elementos */
     position: relative; /* Para posicionar el AuthNavbar */
+}
 
+/* ===== HEADER CONTROLS ===== */
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-xs);
 }
 
 

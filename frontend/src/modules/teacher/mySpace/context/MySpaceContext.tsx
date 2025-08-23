@@ -2,7 +2,7 @@
 import { createContext } from "react";
 
 // Vistas disponibles
-export type MySpaceView = "usuario" | "estudiantes" | "estadisticas" | "notificaciones";
+export type MySpaceView =  "estudiantes" |"notificaciones";
 
 // Estructura de datos que manejará el contexto
 export type MySpaceContextType = {

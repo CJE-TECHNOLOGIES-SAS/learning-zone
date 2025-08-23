@@ -18,7 +18,6 @@
 }
 
 /* --- ESTILOS PARA EL FLOATING LABEL --- */
-
 .container-label-input-l {
     position: relative;
     margin-top: 30px;
@@ -70,19 +69,53 @@
     text-overflow: ellipsis;
 }
 
-/* Estilos para el ícono de ver/ocultar contraseña */
-.icon-show {
+/* ====== BOTÓN VER/OCULTAR CONTRASEÑA ====== */
+.container-label-input-l.password {
+    position: relative;
+}
+
+.container-label-input-l.password input {
+    padding-right: 44px; /* espacio para el botón */
+}
+
+.container-label-input-l.password .btn-toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
     cursor: pointer;
-    color: #fefeff;
-    font-size: 22px;
-    font-weight: bold;
-    z-index: 10;
+    font-size: 1.2rem;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 4px;
+    border-radius: 8px;
+    transition: color .25s ease, transform .15s ease, background-color .25s ease;
+    z-index: 2;
 }
 
-.icon-show:hover {
-    color: #0c80ec;
+.container-label-input-l.password .btn-toggle-password:focus-visible {
+    outline: 2px solid var(--color-mint-green);
+    outline-offset: 2px;
 }
 
+.container-label-input-l.password .btn-toggle-password:hover {
+    color: var(--color-mint-green);
+    background-color: rgba(243, 232, 232, 0.06);
+}
+
+.container-label-input-l.password .btn-toggle-password:active {
+    transform: translateY(-50%) scale(0.96);
+}
+
+/* Estilos antiguos de ícono (se mantienen por compatibilidad) */
+
+
+/* Otros elementos */
 .paragraph-forgot-a{
     cursor: pointer;
     color: #fff;

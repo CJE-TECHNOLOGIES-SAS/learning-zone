@@ -132,3 +132,47 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 4px;
   }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 768px) {
+    .file-types-container {
+      margin: 1rem 0;
+    }
+
+    .file-types-container h3 {
+      font-size: 0.95rem;
+    }
+
+    .file-type-option {
+      padding: 0.7rem 1rem;
+      font-size: 0.9rem;
+      min-width: 96px;
+    }
+
+    .selected-file-name {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .file-types-options {
+      gap: 0.75rem;
+    }
+
+    .file-type-option {
+      padding: 0.8rem 1rem;
+      font-size: 0.95rem;
+      border-width: 2.2px;
+    }
+
+    .selected-file-name {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .file-type-option {
+      width: 100%;
+      text-align: center;
+    }
+  }

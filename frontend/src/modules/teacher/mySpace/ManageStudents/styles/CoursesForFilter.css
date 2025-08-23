@@ -1,0 +1,87 @@
+.btn-close-container-filter-courses{
+    position: absolute;
+    font-size: 22px;
+    background-color: transparent;
+    left: 6px;
+    top: 4px;
+    color: #ff6262;
+}
+/* ===== Grid de iconos pequeños para filtrar cursos ===== */
+.container-courses-filter {
+    position: absolute;
+    background-color: rgb(8, 59, 170);
+    border-radius: 12px;
+    top: -60px;
+    left: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    gap: 5px;
+    padding: 1.5rem;
+}
+
+/* Tarjeta/icono clickeable (sin colores) */
+.container-course-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.6rem 0.5rem;
+  cursor: pointer;
+  transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease, background-color 0.14s ease;
+}
+
+/* Imagen/icono del curso */
+.img-icon-course-filter {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+}
+
+/* Nombre debajo del icono (span/h3) */
+.title-icon-course-filter {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.1;
+  max-width: 9ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #fff;
+}
+
+/* Interacciones (sin colores) */
+.container-course-filter:hover {
+  transform: translateY(-2px);
+  /* añade border-color / box-shadow si quieres */
+}
+
+.container-course-filter:active {
+  transform: translateY(0);
+}
+
+.container-course-filter:focus-visible {
+  outline: auto;              /* deja el outline del navegador (accesible) */
+}
+
+/* Estado seleccionado (solo movimiento; agrega color si quieres) */
+.container-course-filter.is-selected {
+  transform: translateY(-1px);
+  /* aquí puedes sumar border-color / box-shadow propios */
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .container-courses-filter {
+    grid-template-columns: repeat(auto-fit, minmax(76px, 1fr));
+    gap: 10px;
+  }
+  .img-icon-course-filter {
+    width: 42px;
+    height: 42px;
+  }
+  .title-icon-course-filter {
+    font-size: 0.72rem;
+  }
+}

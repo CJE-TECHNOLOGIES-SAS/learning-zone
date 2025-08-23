@@ -7,7 +7,7 @@ const SupportSection = () => (
     <p className="support-hour"><strong>Horario de atención:</strong> Lunes a viernes, 8:00 a.m. - 4:00 p.m.</p>
     <img src={image} alt="suggestion" className="suggestion-photo" />
 
-    <p className="page-number">9</p>
+    <p className="page-number">10</p>
   </section>
   
 );

@@ -1,16 +1,47 @@
+.btn-back-create-course {
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  background-color: transparent;
+  border: none;
+  font-size: 46px;
+  cursor: pointer;
+  z-index: 10;
+  background-image: linear-gradient(transparent, rgba(255, 255, 255, 0.901), rgba(255, 251, 255, 0.756)); /* fondo semitransparente */
+  border-radius: 60%;
+  color: #230b0b78;
+  transition: transform 0.3s ease;
+}
+.btn-back-create-course:hover {
+  margin-top: -.2rem;
+  margin-left: -.2rem;
+  padding-bottom:.14rem ;
+  padding-right: .14rem ;
+  font-size: 47px;
+  color: rgba(255, 0, 0, 0.67);
+  border: none;
+  transform: rotate(360deg);
+  transition: .3s ease-in-out;
+
+
+
+}
+
 /* ===== CONTENEDOR PRINCIPAL ===== */
-.container-form-course-teacher {
+.container-form-teacher-course {
   position: relative;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center; 
+  text-align: center;
+  background-image: linear-gradient(transparent, rgba(255, 255, 255, 0.901), rgba(255, 248, 151, 0.756)); /* fondo semitransparente */
+
 
 }
 
-.envoltura-form-teacher {
+.envoltura-form-teacher-course {
   position: relative;
   z-index: 2 ;
 }
@@ -22,13 +53,12 @@
   max-width: 500px;
   margin: 5rem auto 0;
   padding: 3rem;
-  background-color: rgba(214, 21, 21, 0.9);
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* ===== ENVOLTURA DEL FORM ===== */
-.envoltura-form-teacher {
+.envoltura-form-teacher-course {
   position: relative;
   padding: 2rem;
   border-radius: 14px;
@@ -37,25 +67,27 @@
   backdrop-filter: blur(2px);
   box-shadow: 3px 3px 3px 3px #10100142;
   z-index: 2; /* Asegura que esté sobre las partículas */
-  background-color: rgba(255, 255, 255, 0.7); /* fondo semitransparente */
+  background-image: linear-gradient(transparent, rgba(255, 255, 255, 0.901), rgba(255, 251, 255, 0.756)); /* fondo semitransparente */
 }
 
 /* ===== CABECERA ===== */
-.header-form-course-teacher {
+.header-form-teacher-course {
   margin-bottom: 1.5rem;
   z-index: 2;
 }
 
+
 .title-create-course {
   font-size: 2rem;
   font-weight: bold;
-  color: #000000;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 
 .paragraph-create-course {
-  color: #666;
+  color: #1e1a1ae1;
   font-size: 1rem;
+  letter-spacing: 1.3px;
 }
 
 /* ===== CAMPOS DE FORMULARIO ===== */
@@ -72,8 +104,10 @@
 .container-label-input-create-course label {
   font-weight: 600;
   font-size: 0.95rem;
+  text-shadow: 0 0 1px #171515b4;    /* offsets en 0, solo blur */
   text-align: left;
   color: #000000;
+
 }
 
 .container-label-input-create-course input,
@@ -81,8 +115,10 @@
 .container-label-input-create-course select {
   width: 100%;
   padding: 12px;
-  border-radius: 10px;
-  border: 2px solid #2b29293d;
+  border-radius: 12px;
+  border: none;
+  border-bottom: 2px solid #413c3cb0;
+  border-right: 2px solid #261f1f3d;
   font-size: 1rem;
   color: #0c0707;
   background-color: transparent;
@@ -145,6 +181,8 @@
 
 /* ===== OPCIONES DE PALETA ===== */
 .select-palette-options-course {
+
+    padding: .4rem;
     display: grid;
     grid-template-columns: repeat(5, 0.2fr);
     margin-top: 10px;
@@ -207,9 +245,9 @@
 .btn-send-form-course-teacher:hover {
   background-position: right center;
   color: #fff;
-  transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
+.btn-send-form-course-teacher[disabled] { pointer-events: none; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {

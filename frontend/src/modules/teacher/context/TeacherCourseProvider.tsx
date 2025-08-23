@@ -141,6 +141,7 @@ const loadInfoCourse = async (idCourse: TCourseTeacherResponse["id"]) => {
     const courseRes = await GetCourseTeacherAPI(idCourse);
     setCourseTeacher(courseRes);
     authStorage.setCourseTeacher(courseRes);
+    authStorage.setFilterCourse(idCourse)
   } catch (e) {
     console.error(e);
     toast.error("Ups ocurrió un error");

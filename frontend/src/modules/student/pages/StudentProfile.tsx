@@ -31,18 +31,15 @@ export default function StudentProfile() {
               <h2 className="title-progress">Proceso</h2>
               {/* Agg una etiqueta bolteada que diga en progreso o completad */}
               {progressLessons.map((progress)=>(
-                <>
                   <p key={progress.id_course}
+                  className="item-course-progress"
                   onClick={()=>navigate(`/student/course/${progress.id_course}/${progress.name_course}`) }
                   style={{'backgroundColor':progress.palette.accent}}>
                     {progress.name_course}
                   <span className="number-process">{progress.completed_lessons}/{progress.all_lessons}</span>
+                  <span className="span-status-course" style={{'background':progress.status === 'completed'? '#59A9FF':'#FF7659'}}>{progress.status === 'completed'? 'Completo':'En progreso'}</span>
 
-                  <span className="span-status-course" style={{'background':progress.status === 'complete'? '#59A9FF':'#FF7659'}}>{progress.status === 'complete'? 'Completo':'En progreso'}</span></p>
-
-
-
-                </>
+                  </p>
                 ))}
               <p className="progress-main">{progressTotal}</p>
             </section>

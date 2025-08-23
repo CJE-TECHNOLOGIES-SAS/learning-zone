@@ -6,10 +6,201 @@
 	box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
 	max-height: 40dvh;
 	overflow-y: auto;
+	overflow-x: auto;
 	scrollbar-width: thin;
 	scrollbar-color: var(--color-primary-blue) var(--color-neutral-light-gray);
 
 
+}
+/* ===== OVERLAY ===== */
+.edit-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  /* fondo con leve tinte + blur para enfoque */
+  background-image: radial-gradient(
+    circle at 30% 20%,
+    rgba(15, 27, 49, 0.35) 0%,
+    rgba(0, 113, 218, 0.10) 60%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  backdrop-filter: blur(2.5px);
+}
+
+/* ===== FORM CARD ===== */
+.edit-form {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 15px;
+  padding: 2rem;
+  /* mismo lenguaje visual del otro form */
+  background-image: linear-gradient(
+    174.2deg,
+    rgba(255, 255, 255, 0.389) 7.1%,
+    rgba(250, 155, 92, 0.351) 67.4%
+  );
+  background-position: center center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.30);
+}
+
+/* ===== TITULOS / TEXTOS ===== */
+.edit-title {
+  margin: 0 0 .25rem 0;
+  font-size: 1.6rem;
+  font-weight: 730;
+  color: #fffdfd;
+  text-align: center;
+}
+
+.edit-current {
+  margin: 0 0 1rem 0;
+  color: #ffffff;
+  font-size: 0.95rem;
+  text-align: center;
+  opacity: 0.9;
+}
+
+/* ===== INPUT + LABEL flotante ===== */
+.edit-input-container {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.edit-input {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 12px 12px 12px;
+  font-size: 1rem;
+  color: #000000;
+  background-color: #ffaa3ba2; /* igual al otro form */
+  transition: box-shadow .2s ease, outline-color .2s ease;
+  box-sizing: border-box;
+}
+
+.edit-input::placeholder {
+  color: transparent; /* para floating label */
+}
+
+.edit-input:focus {
+  outline: 2px solid #ffb87581;
+  box-shadow: 0 0 0 3px rgba(255, 184, 117, 0.25);
+}
+
+/* Label flotante */
+.edit-label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  padding: 0 .25rem;
+  color: #fff7eb;
+  font-weight: 600;
+  pointer-events: none;
+  transition: all .18s ease;
+  border-radius: 6px;
+}
+
+/* cuando hay contenido o focus, sube el label */
+.edit-input:focus + .edit-label,
+.edit-input.has-content + .edit-label {
+  top: -8px;
+  transform: none;
+  font-size: 0.78rem;
+  background: rgba(255, 102, 0, 0.424);
+}
+
+/* Error */
+.edit-error {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #fd6666;
+  font-weight: 600;
+}
+
+/* ===== BOTONES ===== */
+.edit-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-cancel-update,
+.btn-update {
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform .12s ease, filter .2s ease, box-shadow .2s ease;
+  color: #fff;
+}
+
+/* Cancelar: frío neutro para contraste del fondo cálido */
+.btn-cancel {
+  border:  3px solid #fff;
+}
+
+.btn-cancel:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: saturate(110%);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+}
+
+/* Actualizar: mismo lenguaje del botón principal del otro form */
+.btn-update {
+  background-image: linear-gradient(
+    to right,
+    #fcb75edd 0%,
+    #fbb150f4 51%,
+    #fceabb 100%
+  );
+  color: #543b00; /* buen contraste sobre el gradiente claro */
+}
+
+.btn-update:hover:not(:disabled) {
+  background-position: right center;
+  transform: translateY(-1px);
+  filter: saturate(112%);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+}
+
+/* Disabled */
+.btn-cancel:disabled,
+.btn-update:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .edit-form { padding: 1.5rem; }
+  .edit-title { font-size: 1.45rem; }
+}
+
+@media (max-width: 480px) {
+  .edit-form { padding: 1rem; }
+  .edit-title { font-size: 1.3rem; }
+  .edit-buttons { grid-template-columns: 1fr; }
+  .btn-cancel, .btn-update { width: 100%; }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .container-table-students-registers {
+    padding: 0.75rem;
+  }
+
+  .students-table thead th,
+  .students-table td {
+    padding: 12px 12px;
+  }
 }
 .students-table {
 	width: 800px;
@@ -39,7 +230,11 @@
 	letter-spacing: 1px;
 	font-size: 13px;
 	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-	position: relative;
+	position: sticky;
+	top: 0;
+	z-index: 2;
+   margin: 0;
+  padding: 20px;
 }
 
 .students-table thead th::after {
@@ -48,9 +243,9 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
-	height: 3px;
+	height: 2px;
 
-	background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);
+	background: linear-gradient(90deg, #fbb324 0%, #ad7646f9 100%);
 }
 
 .students-table tbody tr {
@@ -252,6 +447,7 @@
 
   .students-table {
 		width: 100%;
+		min-width: 640px; /* allow horizontal scroll on very small screens */
 		font-size: 14px;
   }
 

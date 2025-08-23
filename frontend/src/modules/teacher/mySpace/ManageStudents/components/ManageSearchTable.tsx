@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { Search, Trash2 } from 'lucide-react';
 import { useManageStudents } from '../hook/useManageStudents';
 import '../styles/ManageSearchTable.css'
+import { FcFilledFilter } from "react-icons/fc";
+import OpcsFilter from './OpcsFilter';
 export default function ManageSearchTable() {
   const [searchValue, setSearchValue] = useState('');
   const {deleteAllStudentRegister, loadInfoStudentRegister} = useManageStudents()
+  const [btnFilter, setBtnFilter] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,9 +24,13 @@ export default function ManageSearchTable() {
     await deleteAllStudentRegister()
     // Aquí iría tu lógica para eliminar todos los registros
   };
+  const handleActionBtnFilter = (): void => {
+      setBtnFilter((prev) => !prev);
+  };
 
   return (
     <div className="container-control-table">
+      {btnFilter && <OpcsFilter onToggleOpcFilter={handleActionBtnFilter}/>}
       <form onSubmit={handleSubmit} className="form-search-table">
         <div className="container-label-input-search">
           <input
@@ -43,14 +50,17 @@ export default function ManageSearchTable() {
           <Search size={16} /> Buscar
         </button>
 
-        <button
-          type="button"
-          className="btn-delete-all"
-          onClick={handleClearAll}
-        >
-          <Trash2 size={16} /> Eliminar todo
-        </button>
       </form>
+      <div className='container-opc-fil-delete'>
+          <button
+            type="button"
+            className="btn-delete-all"
+            onClick={handleClearAll}>
+            <Trash2 size={16} /> Eliminar todo
+          </button>
+          <button className='btn-filter' onClick={()=>setBtnFilter(!btnFilter)}>{<FcFilledFilter/>}</button>
+      </div>
+
     </div>
   );
 }

@@ -1,11 +1,10 @@
 .section-carrusel {
   width: 100%;
   min-height: 80vh;
-  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-  background-image: url('../../../assets/Carrusel/img-background.jpg');
-  background-size: cover;
+  background: #0b163e;
+  background-image: url('https://videos.openai.com/vg-assets/assets%2Ftask_01k0t0eebwe879sr7dc9nrvye6%2F1753219583_img_1.webp?st=2025-08-22T19%3A16%3A03Z&se=2025-08-28T20%3A16%3A03Z&sks=b&skt=2025-08-22T19%3A16%3A03Z&ske=2025-08-28T20%3A16%3A03Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=fea36edb-a052-425e-a84a-436fdce0a7b4&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=2w%2Bf%2FtD7WLuU9qCReWGtGBPWBjynleRpfoKsFSB8RfY%3D&az=oaivgprodscus');
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center center;
   display: flex;
   justify-content: center;
   align-items: center;

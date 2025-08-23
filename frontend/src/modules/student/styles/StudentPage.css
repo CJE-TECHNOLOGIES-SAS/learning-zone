@@ -36,15 +36,34 @@
     border-radius: 12px;
     padding: 50px;
     width: 340px;
+    max-height: 40dvh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-color: var(--color-primary-blue) var(--color-neutral-light-gray);
+
 }
+
 .title-progress{
     color: #fff;
+}
+.item-course-progress{
+    position: relative;
+    padding: .4rem;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 12px;
+}
+.item-course-progress:hover{
+    transform: rotate(2deg) translateY(-2px);
+
 }
 .span-status-course{
     position: absolute;
     top: 70px;
-    left: 40px;
-    background-color: #fff;
+    left: 30px;
+    color: #fff;
     padding: .2rem;
     transform: rotate(-38deg) translateY(-90px);
     font-size: 11px;
@@ -55,8 +74,7 @@
 
 }
 .progress-main{
-
-    background-color: var(    --color-accent-orange);
+    background-color: var(--color-accent-orange);
     justify-self: center;
     align-self: center;
     padding: .6rem;
@@ -65,6 +83,12 @@
     border-radius: 12px;
     color: #fff;
     text-align: center;
+}
+
+
+.progress-main:hover{
+    transform: rotate(-2deg) translateY(-2px);
+
 }
 .section-info-user{
     padding: .8rem;

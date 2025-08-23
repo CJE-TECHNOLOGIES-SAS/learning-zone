@@ -183,10 +183,9 @@
 
 /* Focus visible para navegación por teclado */
 .icon-auth-navBar:focus {
-    outline: 2px solid var(--color-primary-blue);
-    outline-offset: 2px;
+    outline: 2px solid #1d9dffa4;
+    outline-offset: 1px;
 }
-
 /* ===== ANIMACIONES SUAVES ===== */
 
 /* Transición suave para todos los iconos */

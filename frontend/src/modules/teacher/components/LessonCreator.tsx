@@ -21,7 +21,9 @@ import {
 import { useEffect } from "react";
 import { authStorage } from "../../../shared/Utils/authStorage";
 import { useFormCreateLessons } from "../hooks/useFormCreateLessons";
-import "../styles/LessonCreator.css"; // 🔹 tu nuevo CSS adaptado
+import "../styles/LessonCreator.css";
+import { IoArrowBackCircleSharp } from "react-icons/io5";
+import { useNavigationHandler } from "../../../hooks/useNavigationHandler";
 
 export default function LessonCreate() {
   const {
@@ -38,6 +40,8 @@ export default function LessonCreate() {
     handleContentTypeChange,
     handleChange,
   } = useFormCreateLessons();
+  const handleBtnNavigate = useNavigationHandler();
+
 
   useEffect(() => {
     const data = authStorage.getFormLessonInfo();
@@ -63,11 +67,19 @@ export default function LessonCreate() {
         )}
 
         <form onSubmit={handleSubmit} className="form-lesson-teacher">
+        {/* Botón de regreso */}
+        <button
+          type="button"
+          className="btn-back-create-lesson"
+          onClick={() => handleBtnNavigate('/back')}
+          >
+          <IoArrowBackCircleSharp />
+        </button>
           <Card>
             <CardContent>
               {/* Nombre */}
               <div className="container-label-input-create-lesson">
-                <Label>Nombre de la Lección *</Label>
+                <label>Nombre de la Lección *</label>
                 <Input
                   value={formDataLesson.lesson.name}
                   onChange={handleChange("lesson.name")}
@@ -80,7 +92,7 @@ export default function LessonCreate() {
 
               {/* Texto */}
               <div className="container-label-input-create-lesson">
-                <Label>Texto Complementario</Label>
+                <label>Texto Complementario</label>
                 <Textarea
                   value={formDataLesson.lesson.content.text}
                   onChange={handleChange("lesson.content.text")}
@@ -104,7 +116,7 @@ export default function LessonCreate() {
 
               {/* Archivo */}
               <div className="container-label-input-create-lesson">
-                <Label>Contenido *</Label>
+                <label>Contenido *</label>
                 <Input
                   type="file"
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -136,7 +148,7 @@ export default function LessonCreate() {
           <Card>
             <CardContent>
               <div className="container-label-input-create-lesson">
-                <Label>Pregunta *</Label>
+                <label>Pregunta *</label>
                 <Textarea
                   value={formDataLesson.evaluation.question}
                   onChange={handleChange("evaluation.question")}
@@ -152,7 +164,7 @@ export default function LessonCreate() {
               </div>
               {/* Tipo de Pregunta */}
               <div className="container-label-input-create-lesson">
-                <Label>Tipo de Pregunta *</Label>
+                <label>Tipo de Pregunta *</label>
                 <select
                   value={formDataLesson.evaluation.question_type}
                   onChange={(e) =>
@@ -169,10 +181,10 @@ export default function LessonCreate() {
                 "multiple_choice" && (
                 <div className="options-section">
                   <div className="options-header">
-                    <Label>Opciones</Label>
-                    <Button type="button" onClick={addOption}>
-                      <Plus /> Agregar
-                    </Button>
+                    <label>Opciones</label>
+                    <button type="button" onClick={addOption} className="btn-add-option">
+                      <Plus />
+                    </button>
                   </div>
 
                   {formDataLesson.evaluation.options?.map((opt, idx) => (
@@ -181,9 +193,9 @@ export default function LessonCreate() {
                         value={opt}
                         onChange={(e) => updateOption(idx, e.target.value)}
                       />
-                      <Button type="button" onClick={() => removeOption(idx)}>
+                      <button type="button" onClick={() => removeOption(idx)} className="btn-remove-option">
                         <Trash2 />
-                      </Button>
+                      </button>
                     </div>
                   ))}
 
@@ -218,11 +230,9 @@ export default function LessonCreate() {
             </CardContent>
           </Card>
 
-          <div className="btn-send-form-lesson">
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Creando..." : "Crear Lección"}
-            </Button>
-          </div>
+          <button className="btn-send-form-lesson" type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Creando..." : "Crear Lección"}
+          </button>
         </form>
       </div>
     </div>

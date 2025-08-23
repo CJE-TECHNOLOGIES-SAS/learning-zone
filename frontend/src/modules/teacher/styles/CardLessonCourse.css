@@ -54,7 +54,123 @@
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
+/* Popup general */
+.educational-confirm-popup {
+  border-radius: 16px;
+  padding: 2rem;
+  background: #fdfdfd;
+  border: 3px solid #3b82f6; /* azul educativo */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Título */
+.educational-confirm-title {
+  font-size: 1.6rem !important;
+  font-weight: 700;
+  color: #1e3a8a;
+}
 .btn-delete-lesson:hover {
     color: #a31010;
     box-shadow: 0 2px 8px 0 rgba(255, 44, 44, 0.14);
+}
+/* ===== Desktop base (>= 769px) ===== */
+/* Ya asumes estilos base aquí, sin media queries */
+
+/* ===== Tablet (<= 768px) ===== */
+@media (max-width: 768px) {
+  .container-card-lesson {
+    flex-direction: column;
+    max-width: 720px;
+    padding: 0.9rem 1.1rem;
+    gap: 2px;
+  }
+
+  .container-opc-crud-lesson {
+    gap: 0px;
+    flex-wrap: wrap;              /* que no se rompa el layout */
+  }
+
+  .btn-edit-lesson,
+  .btn-delete-lesson {
+    font-size: 16px;
+    padding: 0.45rem 0.9rem;
+  }
+
+  /* Asegura que los SVG mantengan tamaño legible */
+  .btn-edit-lesson svg,
+  .btn-delete-lesson svg {
+    width: 1.15em;
+    height: 1.15em;
+  }
+}
+
+/* ===== Mobile (<= 480px) ===== */
+@media (max-width: 480px) {
+  .container-card-lesson {
+    width: 94%;
+    padding: 0.8rem 1rem;
+    flex-direction: column;       /* stack vertical */
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .container-opc-crud-lesson {
+    width: 100%;
+  }
+
+  .btn-edit-lesson,
+  .btn-delete-lesson {
+    font-size: 15px;
+    padding: 0.42rem 0.85rem;
+  }
+
+  /* Los íconos no se pierden jamás */
+  .btn-edit-lesson svg,
+  .btn-delete-lesson svg {
+    width: 1.1em;
+    height: 1.1em;
+    flex-shrink: 0;
+  }
+}
+
+/* ===== Mobile muy pequeño (<= 360px) ===== */
+@media (max-width: 360px) {
+  .container-card-lesson {
+    width: 96%;
+    padding: 0.7rem 0.9rem;
+    gap: 8px;
+  }
+
+  .container-opc-crud-lesson {
+    gap: 10px;
+  }
+
+  .btn-edit-lesson,
+  .btn-delete-lesson {
+    font-size: 14px;
+    padding: 0.38rem 0.75rem;
+  }
+
+  /* Opcional: deja solo el ícono para ahorrar espacio */
+  .btn-edit-lesson .btn-text,
+  .btn-delete-lesson .btn-text {
+    display: none; /* <= activa esto si envuelves el texto en .btn-text */
+  }
+
+  .btn-edit-lesson svg,
+  .btn-delete-lesson svg {
+    width: 1.05em; /* sigue siendo legible */
+    height: 1.05em;
+  }
+}
+
+/* ===== Accesibilidad: menos movimiento si el usuario lo prefiere ===== */
+@media (prefers-reduced-motion: reduce) {
+  .container-card-lesson,
+  .btn-edit-lesson,
+  .btn-delete-lesson {
+    transition: none !important;
+    transform: none !important;
+  }
 }

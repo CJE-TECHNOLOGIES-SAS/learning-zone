@@ -1,7 +1,9 @@
 // 📌 CourseHomePage.tsx
-// Componente para mostrar un mapa animado de lecciones con ruta curva y posiciones predefinidas
+// Componente original para mostrar el mapa de lecciones con ruta curva y posiciones predefinidas
+// Mejora: animación del path SVG (draw-on) + animaciones en las lecciones (stagger al montar y hover micro-bounce)
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useLayoutEffect } from "react";
+import type React from "react";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { FaCheck } from "react-icons/fa";
@@ -16,9 +18,13 @@ import { educationalPalettes } from "../../../shared/theme/ColorPalettesCourses"
 import type { TCourse } from "../types/CourseStudent";
 import "../styles/HomeCourse.css";
 
+// ✅ GSAP (path + lecciones)
+import gsap from "gsap";
+
+// 🎨 Paleta por defecto
 const defaultPalette: TCourse["palette"] = educationalPalettes.calmFocus;
 
-// 📌 Posiciones en porcentaje respecto al tamaño del SVG
+// 📌 Posiciones en porcentaje respecto al tamaño del SVG (idénticas al original)
 const lessonsPositions = [
   { top: 8, left: 12 },
   { top: 12, left: 26 },
@@ -44,7 +50,7 @@ const lessonsPositions = [
   { top: 98, left: 76 },
 ];
 
-// 📌 Generar un path suave con curvas
+// 📌 Generar un path suave con curvas (idéntico al original)
 function generateSmoothPath(points: { left: number; top: number }[]): string {
   if (points.length < 2) return "";
 
@@ -78,10 +84,11 @@ export default function CourseHomePage() {
   const [palette, setPaletteState] = useState<TCourse["palette"]>(defaultPalette);
   const [nameCourse, setNameCourse] = useState<TCourse["name"]>("");
 
+  // Refs (pathRef se usa para la animación del path)
   const containerRef = useRef<HTMLDivElement | null>(null);
   const pathRef = useRef<SVGPathElement | null>(null);
 
-  // 📌 Cargar datos del curso y lecciones
+  // 📌 Cargar datos del curso y lecciones (idéntico al original)
   useEffect(() => {
     const courses = authStorage.getCoursesStudent();
     const selectedCourse = courses?.find((c) => c.id === idCourse);
@@ -105,11 +112,56 @@ export default function CourseHomePage() {
     }
   }, [idCourse]);
 
+  // ✅ Animación del path (draw-on) al montar
+  useEffect(() => {
+    if (!pathRef.current) return;
+
+    const length = pathRef.current.getTotalLength();
+
+    gsap.set(pathRef.current, {
+      strokeDasharray: length,
+      strokeDashoffset: length,
+    });
+
+    gsap.to(pathRef.current, {
+      strokeDashoffset: 0,
+      duration: 2,          // ajusta la duración si deseas
+      ease: "power1.out",
+    });
+  }, []); // solo una vez al montar
+
+  // ✅ Animaciones de las lecciones
+  // 1) Stagger al montar / cuando cambie la lista visual (usa gsap.context para cleanup seguro)
   const pathD = generateSmoothPath(lessonsPositions);
   const visualLessons = lessons.map((lesson, i) => ({
     ...lesson,
     position: lessonsPositions[i],
   }));
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // Aparece cada nodo .lesson-course con "pop" sutil
+      gsap.from(".lesson-course", {
+        opacity: 0,
+        scale: .90,
+        y: 16,
+        duration: 0.5,
+        stagger: .099,
+        ease: "back.out(1.7)",
+        clearProps: "",
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [visualLessons.length]); // re-animar si cambia el número de lecciones
+
+  // 2) Micro-interacciones en hover (escala y leve lift)
+  const handleMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
+    gsap.to(e.currentTarget, { scale: 1.12, y: -2, duration: 0.18, ease: "power2.out" });
+  };
+  const handleMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
+    gsap.to(e.currentTarget, { scale: 1, y: 0, duration: 0.18, ease: "power2.out" });
+  };
 
   return (
     <div
@@ -132,7 +184,7 @@ export default function CourseHomePage() {
           preserveAspectRatio="xMidYMid meet"
         >
           <path
-            ref={pathRef}
+            ref={pathRef}                      // ← usado por GSAP
             d={pathD}
             stroke={palette.brand}
             strokeWidth="3"
@@ -146,7 +198,7 @@ export default function CourseHomePage() {
           />
         </svg>
 
-        {/* Botones de lecciones */}
+        {/* Botones de lecciones (mismo layout, ahora con hover animado) */}
         {visualLessons.map((lesson, i) => (
           <div
             key={lesson.id}
@@ -179,6 +231,8 @@ export default function CourseHomePage() {
                   lesson.progressState === "complete" ? palette.accent : "#1003",
                 color: palette.text,
               }}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
               {lesson.progressState === "complete" ? (
                 <FaCheck />

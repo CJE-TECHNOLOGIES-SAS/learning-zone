@@ -3,12 +3,10 @@
 import { Plus, Trash2 } from "lucide-react";
 
 import {
-  Button,
   Input,
   Card,
   CardContent,
   Textarea,
-  Label,
   Alert,
   AlertDescription,
 } from "../../../shared/Components/ui/index";
@@ -16,11 +14,9 @@ import {
 import { useEffect } from "react";
 import { authStorage } from "../../../shared/Utils/authStorage";
 import { useFormUpdateLessons } from "../hooks/useFormUpdateLesson";
-import "../styles/LessonCreator.css"; // mismas clases que el de crear
+import "../styles/LessonEdit.css";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import { useNavigationHandler } from "../../../hooks/useNavigationHandler";
-import '../styles/LessonEdit.css'
-
 
 export default function LessonEditor() {
   const {
@@ -44,15 +40,15 @@ export default function LessonEditor() {
       setFormDataLesson(data);
     }
   }, [setFormDataLesson]);
-  const handleBtnNavigate = useNavigationHandler();
 
+  const handleBtnNavigate = useNavigationHandler();
 
   return (
     <div className="container-form-lesson-teacher">
       <div className="envoltura-form-lesson">
         <div className="header-form-lesson-teacher">
-          <h1 className="title-create-lesson">Editar Lección</h1>
-          <p className="paragraph-create-lesson">
+          <h1 className="title-update-lesson">Editar Lección</h1>
+          <p className="paragraph-update-lesson">
             Actualiza la información de la lección y su evaluación.
           </p>
         </div>
@@ -66,21 +62,21 @@ export default function LessonEditor() {
         )}
 
         <form onSubmit={handleSubmit} className="form-lesson-teacher">
-           {/* Botón de regreso */}
-            <button
-              className="btn-back-edit-lesson"
-              style={{
-                color: 'black',
-              }}
-              onClick={() => handleBtnNavigate('/back')}
-            >
-              <IoArrowBackCircleSharp />
-            </button>
+          {/* Botón de regreso */}
+          <button
+            type="button"
+            className="btn-back-update-lesson"
+            style={{ color: "black" }}
+            onClick={() => handleBtnNavigate("/back")}
+          >
+            <IoArrowBackCircleSharp />
+          </button>
+
           <Card>
             <CardContent>
               {/* Nombre */}
-              <div className="container-label-input-create-lesson">
-                <Label>Nombre de la Lección *</Label>
+              <div className="container-label-input-update-lesson">
+                <label>Nombre de la Lección *</label>
                 <Input
                   value={formDataLesson.lesson.name}
                   onChange={handleChange("lesson.name")}
@@ -92,8 +88,8 @@ export default function LessonEditor() {
               </div>
 
               {/* Texto */}
-              <div className="container-label-input-create-lesson">
-                <Label>Texto Complementario</Label>
+              <div className="container-label-input-update-lesson">
+                <label>Texto Complementario</label>
                 <Textarea
                   value={formDataLesson.lesson.content.text}
                   onChange={handleChange("lesson.content.text")}
@@ -101,8 +97,8 @@ export default function LessonEditor() {
               </div>
 
               {/* Tipo de Contenido (select nativo) */}
-              <div className="container-label-input-create-lesson">
-                <Label>Tipo de Contenido *</Label>
+              <div className="container-label-input-update-lesson">
+                <label>Tipo de Contenido *</label>
                 <select
                   value={formDataLesson.lesson.content.content_type}
                   onChange={(e) =>
@@ -116,8 +112,8 @@ export default function LessonEditor() {
               </div>
 
               {/* Archivo */}
-              <div className="container-label-input-create-lesson">
-                <Label>Contenido *</Label>
+              <div className="container-label-input-update-lesson">
+                <label>Contenido *</label>
                 <Input
                   type="file"
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -148,8 +144,8 @@ export default function LessonEditor() {
           {/* Evaluación */}
           <Card>
             <CardContent>
-              <div className="container-label-input-create-lesson">
-                <Label>Pregunta *</Label>
+              <div className="container-label-input-update-lesson">
+                <label>Pregunta *</label>
                 <Textarea
                   value={formDataLesson.evaluation.question}
                   onChange={handleChange("evaluation.question")}
@@ -165,8 +161,8 @@ export default function LessonEditor() {
               </div>
 
               {/* Tipo de Pregunta (select nativo) */}
-              <div className="container-label-input-create-lesson">
-                <Label>Tipo de Pregunta *</Label>
+              <div className="container-label-input-update-lesson">
+                <label>Tipo de Pregunta *</label>
                 <select
                   value={formDataLesson.evaluation.question_type}
                   onChange={(e) =>
@@ -184,10 +180,10 @@ export default function LessonEditor() {
                 "multiple_choice" && (
                 <div className="options-section">
                   <div className="options-header">
-                    <Label>Opciones</Label>
-                    <Button type="button" onClick={addOption}>
-                      <Plus /> Agregar
-                    </Button>
+                    <label>Opciones</label>
+                    <button type="button" onClick={addOption} className="btn-add-option">
+                      <Plus />
+                    </button>
                   </div>
 
                   {formDataLesson.evaluation.options?.map((opt, idx) => (
@@ -196,9 +192,9 @@ export default function LessonEditor() {
                         value={opt}
                         onChange={(e) => updateOption(idx, e.target.value)}
                       />
-                      <Button type="button" onClick={() => removeOption(idx)}>
+                      <button type="button" onClick={() => removeOption(idx)} className="btn-remove-option">
                         <Trash2 />
-                      </Button>
+                      </button>
                     </div>
                   ))}
 
@@ -208,8 +204,8 @@ export default function LessonEditor() {
                     </p>
                   )}
 
-                  <div className="container-label-input-create-lesson">
-                    <Label>Respuesta Correcta *</Label>
+                  <div className="container-label-input-update-lesson">
+                    <label>Respuesta Correcta *</label>
                     <select
                       value={formDataLesson.evaluation.correct_answer}
                       onChange={(e) =>
@@ -217,7 +213,9 @@ export default function LessonEditor() {
                       }
                       className="select-native"
                     >
-                      <option value="">Selecciona la respuesta correcta</option>
+                      <option value="">
+                        Selecciona la respuesta correcta
+                      </option>
                       {formDataLesson.evaluation.options?.map((opt, idx) => (
                         <option key={idx} value={opt}>
                           {opt}
@@ -235,11 +233,9 @@ export default function LessonEditor() {
             </CardContent>
           </Card>
 
-          <div className="btn-send-form-lesson">
-            <Button type="submit" disabled={isSubmitting}>
+            <button type="submit" disabled={isSubmitting} className="btn-send-form-lesson">
               {isSubmitting ? "Actualizando..." : "Actualizar Lección"}
-            </Button>
-          </div>
+            </button>
         </form>
       </div>
     </div>

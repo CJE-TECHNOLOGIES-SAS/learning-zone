@@ -10,7 +10,7 @@ export const ComplaintsSection = () => {
       </ul>
       <img src={image} alt="suggestion" className="suggestion-photo" />
 
-      <p className="page-number">7</p>
+      <p className="page-number">8</p>
 
     </div>
   );

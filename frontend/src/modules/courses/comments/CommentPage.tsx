@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getSocket } from './socket';
 import Comment from './comment';
 import CommentForm from './commentForm';
@@ -11,6 +11,9 @@ import toast from 'react-hot-toast';
 import { IoArrowBackCircleSharp } from 'react-icons/io5';
 import { useNavigationHandler } from '../../../hooks/useNavigationHandler';
 import type { TCourseTeacherResponse } from '../../teacher/types/Teacher';
+
+// ✅ NUEVO: importa GSAP para animaciones
+import gsap from 'gsap';
 
 interface CommentPageProps {
   courseId: number;
@@ -28,36 +31,51 @@ export default function CommentPage({ courseId, nameCourse, palette }: CommentPa
   const socket = getSocket();
   const handleBtnNavigate = useNavigationHandler();
 
-  // Valores directos de la paleta (con pequeño fallback por si viniera undefined)
+  // 🎨 Valores directos de la paleta (con fallback por si viniera undefined)
   const brand  = palette?.brand  ?? '#3b82f6';
   const surface= palette?.surface?? '#ffffff';
   const text   = palette?.text   ?? '#111827';
   const accent = palette?.accent ?? '#f59e0b';
 
+  // ✅ NUEVO: ref al contenedor scrolleable donde se renderizan los comentarios
+  const commentsRef = useRef<HTMLDivElement>(null);
+
+  // =========================================
+  //   Ciclo de vida: conexión de socket
+  // =========================================
   useEffect(() => {
+    // Cargamos todos los estudiantes del storage para pintar el panel derecho
     const allstudentsStorage = authStorage.getAllStudents();
     setAllStudents(allstudentsStorage || []);
 
+    // Notificamos la unión al curso/sala
     socket.emit('join', {
       name: student?.name,
       courseId,
       token: authStorage.getToken(),
     });
 
+    // Listeners principales del chat
     socket.on('commentList', (c: TComment[]) => setComments(c));
     socket.on('listStudentsConnects', (ids: TStudent['id'][] | []) => setListStudentsConnects(ids));
+
+    // Cuando llega un comentario nuevo, lo anexamos si corresponde a este curso
     socket.on('newComment', (c: TComment) => {
       if (c.courseId === courseId) {
         setComments(prev => [...prev, c]);
-        if (c.nameStudent === student?.name) toast.success('¡Tu comentario fue enviado y ya es visible para todos!');
       }
     });
+
+    // Actualización de comentarios (editar)
     socket.on('commentUpdated', (u: TComment) => {
       setComments(prev => prev.map(c => (c.id === u.id ? u : c)));
     });
+
+    // Feedback UX
     socket.on('commentSuccess', (d: { message: string }) => toast.success(d.message));
     socket.on('commentError', (d: { message: string }) => toast.error(d.message));
 
+    // Limpieza de listeners
     return () => {
       socket.off('commentList');
       socket.off('newComment');
@@ -68,11 +86,87 @@ export default function CommentPage({ courseId, nameCourse, palette }: CommentPa
     };
   }, [student?.name, courseId]);
 
+  // Mantener listado de conectados marcado en panel derecho
   useEffect(() => {
     if (allStudents.length === 0 || !Array.isArray(listStudentsConnects)) return;
     setAllStudents(prev => prev.map(s => ({ ...s, stateConnect: listStudentsConnects.includes(s.id) })));
-  }, [listStudentsConnects]);
+  }, [listStudentsConnects, allStudents.length]);
 
+  // =========================================
+  //   ✅ NUEVO: Animaciones con GSAP
+  // =========================================
+
+  // 1) Stagger inicial: al primer render de la lista, animar los comentarios existentes
+  useEffect(() => {
+    const container = commentsRef.current;
+    if (!container) return;
+
+    // Seleccionamos solo los hijos directos (cada Comment raíz)
+    const items = container.querySelectorAll(':scope > *');
+    if (!items.length) return;
+
+    // Stagger suave en carga inicial: fade + y
+    gsap.from(items, {
+      opacity: 0,
+      y: 10,
+      duration: 0.35,
+      stagger: 0.04,
+      ease: 'power2.out',
+      clearProps: 'transform,opacity',
+    });
+
+    // Autoscroll a la parte inferior en la carga inicial
+    container.scrollTo({
+      top: container.scrollHeight,
+      behavior: 'auto',
+    });
+    // Solo al montar
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // ← sin deps para que corra una vez
+
+  // 2) Entrada de NUEVOS comentarios: animar el último cuando cambia la longitud
+  useEffect(() => {
+    const container = commentsRef.current;
+    if (!container) return;
+    if (comments.length === 0) return;
+
+    // Último nodo direct child (nuevo comentario raíz)
+    const last = container.querySelector(':scope > *:last-child') as HTMLElement | null;
+    if (!last) return;
+
+    // Si en tu <Comment /> agregas una clase "me" u "other" al wrapper,
+    // aquí puedes variar la dirección del slide:
+    const isMine = last.classList.contains('wrapper');
+
+  gsap.from(last, {
+    opacity: 0,
+    x: isMine ? 40 : -40,    // entra desde más lejos
+    y: 12,
+    scale: 0.95,             // efecto "pop"
+    duration: 0.45,
+    ease: "back.out(1.7)",   // suave rebote al llegar
+    clearProps: "all",       // limpia todas las props animadas
+    onStart: () => {
+      // 💡 animación rápida de glow al aparecer
+      gsap.fromTo(
+        last,
+        { boxShadow: "0 0 0px rgba(0,0,0,0)" },
+        { boxShadow: "0 0 14px rgba(0,0,0,0.15)", duration: 0.3, yoyo: true, repeat: 1 }
+      );
+    },
+  });
+
+
+    // Autoscroll para que siempre veas el último
+    container.scrollTo({
+      top: container.scrollHeight,
+      behavior: 'smooth',
+    });
+  }, [comments.length]); // ← Se dispara solo cuando cambia el número de comentarios
+
+  // =========================================
+  //   Render
+  // =========================================
   return (
     <div
       className="comment-page"
@@ -112,12 +206,17 @@ export default function CommentPage({ courseId, nameCourse, palette }: CommentPa
           Comentarios {nameCourse}
         </h2>
 
-        {/* listado de comentarios */}
+        {/* listado de comentarios (SOLO padres) */}
+        {/* ✅ NUEVO: ref={commentsRef} para controlar animación y autoscroll */}
         <div
+          ref={commentsRef}
           className="comments"
           style={{
             background: surface,
             boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.02)',
+            // (opcional) si quieres asegurar contenedor scrolleable:
+            // maxHeight: '60vh',
+            // overflowY: 'auto',
           }}
         >
           {comments
@@ -141,7 +240,7 @@ export default function CommentPage({ courseId, nameCourse, palette }: CommentPa
         </div>
       </div>
 
-      {/* panel derecho */}
+      {/* panel derecho: listado de usuarios */}
       <div
         className="right"
         style={{

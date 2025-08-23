@@ -1,13 +1,14 @@
 .container-page-notifications-teacher{
     width: 100%;
-    height: 100%;
+    min-height: 100dvh;
     padding: 20px;
     box-sizing: border-box;
+
 }
 
 .title-container-notifications {
-    margin: 0 0 20px 0;
-    color: #333;
-    font-size: 1.5rem;
+     margin: 0 0 20px 0;
+    color: #ffffff;
+    font-size: 2rem;
     font-weight: 600;
 }

@@ -44,7 +44,6 @@
   display: grid;
   gap: 1.2rem;
   margin-bottom: 2rem;
-  grid-template-columns: 1fr 1fr;
 }
 
 .container-options button {
@@ -186,6 +185,421 @@
 @keyframes fadeInEval {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .container-evaluation-lesson {
+    margin: 1rem;
+    padding: 1.5rem 0.7rem;
+  }
+  .question-evaluation {
+    font-size: 1.1rem;
+    padding: 0.7rem;
+  }
+  .container-options {
+    gap: 0.7rem;
+  }
+  .container-options button {
+    padding: 0.7rem 1rem;
+    font-size: 0.95rem;
+  }
+  .score-modal {
+    margin: 1rem;
+    padding: 1.2rem;
+    min-width: auto;
+    width: calc(100% - 2rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .container-evaluation-lesson {
+    padding: 1rem 0.3rem;
+  }
+  .question-evaluation {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+  .score-modal {
+    padding: 0.7rem;
+  }
+  .title-window-score-modal {
+    font-size: 1.1rem;
+  }
+}
+
+
+/* Botón de regreso */
+.btn-back-evaluation {
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  background-color: transparent;
+  border: none;
+  font-size: 46px;
+  cursor: pointer;
+  z-index: 10;
+  /* Animación suave de hover con rebote */
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.btn-back-evaluation:hover {
+  /* Efecto de rebote al hacer hover */
+  transform: scale(1.1) rotate(-5deg);
+}
+
+/* Contenedor principal de la evaluación (dinámico con palette) */
+.container-evaluation-lesson {
+  min-width: 500px;
+  max-width: 900px;
+  margin: 12rem auto;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  position: relative;
+  min-height: 60vh;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(2px);
+  /* Animación de entrada más suave desde abajo */
+  animation: slideInFromBottom 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Título de la pregunta */
+.question-evaluation {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.2rem 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+  /* Animación de pulso sutil para llamar la atención */
+  animation: gentlePulse 2s ease-in-out infinite;
+}
+
+/* Opciones de respuesta */
+.container-options {
+  display: grid;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.container-options button {
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  /* Transición más suave con efecto elástico */
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+  position: relative;
+  border: 2px solid;
+  /* Animación de entrada escalonada */
+  animation: slideInOption 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.container-options button:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.container-options button:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.container-options button:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.container-options button:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.container-options button:hover {
+  /* Efecto de elevación y escala al hacer hover */
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  opacity: 1;
+}
+
+.container-options button:active {
+  /* Animación de presión */
+  transform: translateY(1px) scale(0.98);
+  opacity: 0.9;
+}
+
+/* Formulario para preguntas abiertas */
+.form-evaluation {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+  /* Animación de entrada suave */
+  animation: fadeInUp 0.7s ease-out;
+}
+
+/* Input para preguntas abiertas */
+.input-evaluation {
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  /* Transición más suave para el foco */
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+}
+
+.input-evaluation:focus {
+  outline: none;
+  /* Animación de escala sutil al enfocar */
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Botón de enviar respuesta */
+.btn-send-evaluation {
+  border: none;
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  /* Transición con efecto de rebote */
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+  text-transform: none;
+  letter-spacing: 0;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-send-evaluation:hover {
+  /* Efecto de elevación y escala */
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal de puntaje */
+.score-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
+  border: 2px solid;
+  backdrop-filter: blur(2px);
+  z-index: 1000;
+  min-width: 320px;
+  text-align: center;
+  /* Animación de entrada más dramática */
+  animation: modalBounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Animación de las letras flotantes "Correcto!" */
+.paragraph-left-top {
+  position: relative;
+  left: -20px;
+  top: -25px;
+  transform: rotate(-55deg) scale(1);
+}
+
+.paragraph-left-top span {
+  position: absolute;
+  top: -30px;
+  left: 30px;
+  border-radius: 20%;
+  width: 24px;
+  height: 40px;
+  padding: .11rem;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  font-size: 26px;
+  /* Animación de flotación con rebote */
+  animation: floatingLetter 2s ease-in-out infinite;
+}
+
+.paragraph-left-top span:nth-child(1) {
+  transform: rotate(-40deg) translateY(-60px);
+  animation-delay: 0.1s;
+}
+.paragraph-left-top span:nth-child(2) {
+  transform: rotate(-22deg) translateY(-60px);
+  animation-delay: 0.2s;
+}
+.paragraph-left-top span:nth-child(3) {
+  transform: rotate(-2deg) translateY(-60px);
+  animation-delay: 0.3s;
+}
+.paragraph-left-top span:nth-child(4) {
+  transform: rotate(16deg) translateY(-60px);
+  animation-delay: 0.4s;
+}
+.paragraph-left-top span:nth-child(5) {
+  transform: rotate(32deg) translateY(-60px);
+  animation-delay: 0.5s;
+}
+.paragraph-left-top span:nth-child(6) {
+  transform: rotate(48deg) translateY(-60px);
+  animation-delay: 0.6s;
+}
+.paragraph-left-top span:nth-child(7) {
+  transform: rotate(64deg) translateY(-60px);
+  animation-delay: 0.7s;
+}
+.paragraph-left-top span:nth-child(8) {
+  transform: rotate(80deg) translateY(-60px);
+  animation-delay: 0.8s;
+}
+.paragraph-left-top span:nth-child(9) {
+  transform: rotate(96deg) translateY(-60px);
+  animation-delay: 0.9s;
+}
+.paragraph-left-top span:nth-child(10) {
+  transform: rotate(112deg) translateY(-60px);
+  animation-delay: 1s;
+}
+
+/* Título de ventana en modal */
+.title-window-score-modal {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-top: 1.2rem;
+  /* Animación de aparición con rebote */
+  animation: bounceInTitle 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.date-score {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+}
+
+/* Botón de cerrar modal */
+.score-modal button {
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+  justify-self: flex-end;
+  /* Transición suave con rebote */
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.score-modal button:hover {
+  /* Efecto de elevación al hacer hover */
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Animación de entrada desde abajo con rebote */
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translatex(10px) scale(0.9);
+  }
+  70% {
+    transform: translateY(-5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Animación de pulso suave para la pregunta */
+@keyframes gentlePulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* Animación de entrada para opciones */
+@keyframes slideInOption {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Animación de entrada suave desde abajo */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animación de entrada del modal con rebote */
+@keyframes modalBounceIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Animación de flotación para letras */
+@keyframes floatingLetter {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
+/* Animación de título con rebote */
+@keyframes bounceInTitle {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(-20px);
+  }
+  50% {
+    transform: scale(1.1) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Animación original mejorada */
+@keyframes fadeInEval {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* Responsivo */

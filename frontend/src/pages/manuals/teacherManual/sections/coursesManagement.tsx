@@ -11,7 +11,7 @@ export const CoursesManagement = () => {
       </ul>
       <img src={image} alt="courses" className="coursess-photo" />
 
-      <p className="page-number">6</p>
+      <p className="page-number">7</p>
 
     </div>
   );

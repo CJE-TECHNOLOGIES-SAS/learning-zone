@@ -1,0 +1,43 @@
+/* src/components/background-boxes.css */
+
+.bgboxes-root {
+    position: absolute;
+    background-color: #ededffa2;
+
+    /* Colócalo donde necesites: centrado y con la misma transformación del ejemplo */
+    /* translate(-40%,-60%) skewX(-48deg) skewY(14deg) scale(0.675) rotate(0deg) */
+    transform: translate(-11%, -20%) skewX(-60deg) skewY(.5deg) scale(1.9) rotate(0) translateZ(0);
+    display: flex;
+    pointer-events: none; /* evita bloquear clicks del contenido encima */
+}
+
+.bgboxes-row {
+  position: relative;
+  display: block;
+  /* altura = suma de celdas; cada celda es 32px de alto (ajustable) */
+}
+
+.bgboxes-cell {
+  height: 32px;   /* antes era h-8: 2rem (≈32px). Ajusta a gusto. */
+  width: 64px;    /* antes era w-16: 4rem (≈64px) */
+  border-top: 1px solid #a2abb5b9;   /* slate-700 aprox */
+  border-right: 1px solid #a3adb9b9;
+  box-sizing: border-box;
+  pointer-events: auto; /* permitir hover en cada celda */
+}
+
+.bgboxes-row .bgboxes-cell:first-child {
+  border-left: 1px solid #334155;
+}
+
+/* “+” decorativo */
+.bgboxes-plus {
+  position: absolute;
+  top: -14px;
+  left: -22px;
+  height: 24px; /* h-6 */
+  width: 40px;  /* w-10 */
+  stroke: #334155; /* slate-700 aprox */
+  pointer-events: none;
+  /* stroke-[1px] ya viene dado por strokeWidth en el SVG */
+}

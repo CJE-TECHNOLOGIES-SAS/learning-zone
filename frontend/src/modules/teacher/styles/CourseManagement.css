@@ -1,11 +1,12 @@
 .course-manager {
   padding: 1rem;
 }
-.container-management-course-teacher{
+
+.container-management-course-teacher {
   position: relative;
   min-height: 100dvh;
-
 }
+
 /* Botón de regreso */
 .btn-back-teacher-course {
   position: absolute;
@@ -18,90 +19,101 @@
   z-index: 10;
   transition: transform 0.3s ease;
 }
-.header-crud-course-teacher{
+
+.header-crud-course-teacher {
   display: grid;
-  grid-template-columns: 1.2fr 1fr .5fr;
+  grid-template-columns: 1fr;
   align-items: center;
-  padding: 14rem;
+  padding: 1.2rem;
   min-height: 530px;
   border-bottom: 1.4px solid rgba(17, 0, 17, 0.259);
-
+  row-gap: 1.2rem;
 }
-.container-info-course{
+
+.container-info-course {
   display: flex;
   flex-direction: column;
 }
-.category-management-course{
-  width: 400px;
+
+.category-management-course {
+  width: 98vw;
   text-align: center;
-  align-items: center;
-  position: absolute;
-  top: 70px;
-  right:20px;
-  font-size: 26px;
-  border-radius: 20px;
+  font-size: 1.1rem;
+  border-radius: 14px;
   color: #fff;
-}
-/* Esta es la imagen del curso */
-.image-course-header-teacher{
-  width: 70%;
-  height: 100%;
-  border-radius: 4%;
-}
-.crud-actions{
-  display: flex;
-  gap: 30px;
+  margin: 0 auto 1rem auto;
+  border-bottom: 1.2px solid rgb(114, 114, 112);
 }
 
-.crud-actions button{
+.image-course-header-teacher {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4%;
+}
+
+.crud-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.crud-actions button {
   background-color: transparent;
 }
-.btn-arrow-infinite-container{
-  position: absolute;
-  left: 50%;
-  top: 40%;
-  transform: translateX(-50%);
-}
-.btn-add-lesson-course{
-  font-size: 22px;
+
+
+.btn-add-lesson-course {
+  position: static;
+  font-size: 1rem;
+  width: 100%;
   display: flex;
-  position: absolute;
-  right: 0;
+  justify-content: center;
   align-items: center;
   gap: 10px;
   font-weight: bold;
+  margin-top: 1.2rem;
 }
-.container-lesson-cards-teacher{
-  max-width: 80%;
+
+.container-lesson-cards-teacher {
+  max-width: 100vw;
   margin-top: 12px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
   max-height: 88vh;
   overflow-y: auto;
-  scrollbar-width: thin;
-  /* Firefox */
+  scrollbar-width: thin; /* Firefox */
   scrollbar-color: var(--color-shadow-dark);
+  padding: 0 0.2rem;
 }
-/* ===== MOBILE BASE (default) ===== */
-/* Ya tienes tus estilos base definidos arriba, así que nos centramos en overrides para tablet, desktop y mobile pequeño */
 
-/* ===== TABLET (>=768px) ===== */
-@media (min-width: 768px) {
+
+/* ====== TABLET (481px – 1023px) ====== */
+@media (min-width: 481px) and (max-width: 1023px) {
   .course-manager {
     padding: 2rem;
   }
 
+
   .header-crud-course-teacher {
     padding: 3rem;
     grid-template-columns: 1fr 1fr 0.7fr;
+    row-gap: 0;
   }
 
   .category-management-course {
     width: 320px;
     font-size: 22px;
+    position: absolute;
     top: 50px;
     right: 24px;
+    margin: 0;
+  }
+
+  .image-course-header-teacher {
+    width: 80%;
+    height: auto;
   }
 
   .container-lesson-cards-teacher {
@@ -109,13 +121,10 @@
     gap: 24px;
   }
 
-  .btn-add-lesson-course {
-    font-size: 24px;
-    right: 36px;
-  }
+
 }
 
-/* ===== DESKTOP (>=1024px) ===== */
+/* ====== DESKTOP (>=1024px) ====== */
 @media (min-width: 1024px) {
   .course-manager {
     padding: 3rem;
@@ -127,10 +136,17 @@
   }
 
   .category-management-course {
+    position: absolute;
+
     width: 400px;
     font-size: 26px;
     top: 70px;
     right: 20px;
+  }
+
+  .image-course-header-teacher {
+    width: 80%;
+    height: auto;
   }
 
   .container-lesson-cards-teacher {
@@ -142,51 +158,10 @@
     font-size: 24px;
     right: 38px;
   }
+  .btn-arrow-infinite-container {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translateX(-50%);
 }
-
-/* ===== MOBILE PEQUEÑO (<=480px) ===== */
-@media (max-width: 480px) {
-  .course-manager {
-    padding: 0.5rem;
-  }
-
-  .header-crud-course-teacher {
-    padding: 1.2rem;
-    grid-template-columns: 1fr;
-    row-gap: 1.2rem;
-  }
-
-  .category-management-course {
-    position: static;
-    width: 98vw;
-    font-size: 1.1rem;
-    border-radius: 14px;
-    margin: 0 auto 1rem auto;
-    border-bottom: 1.2px solid rgb(114, 114, 112);
-    border-right: none;
-  }
-
-  .image-course-header-teacher {
-    width: 100%;
-    height: auto;
-  }
-
-  .crud-actions {
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .btn-add-lesson-course {
-    position: static;
-    font-size: 1rem;
-    width: 100%;
-    justify-content: center;
-    margin-top: 1.2rem;
-  }
-
-  .container-lesson-cards-teacher {
-    max-width: 100vw;
-    gap: 12px;
-    padding: 0 0.2rem;
-  }
 }

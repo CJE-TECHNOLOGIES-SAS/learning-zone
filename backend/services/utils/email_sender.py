@@ -16,9 +16,11 @@ from sendgrid.helpers.mail import Mail
 # Constantes
 SENDGRID_API_KEY = settings.sendgrid_api_key
 EMAIL_FROM = settings.email_from
+EMAIL_FROM_SUGGESTION = settings.email_from_suggestion
 TEMPLATE_ID_REGISTER = settings.sendgrid_template_register_id
 TEMPLATE_ID_PASSWORD = settings.sendgrid_template_password_id
 TEMPLATE_ID_NOTIFICATION = settings.sendgrid_template_notification_id
+TEMPLATE_ID_SUGGESTION = settings.sendgrid_template_suggestion_id
 
 
 def send_verification_email(
@@ -177,3 +179,43 @@ def send_notification_email(
 
     except Exception as e:
         print(f"❌ Error al enviar correo de notificación: {e}")
+
+
+def send_suggestion_email(
+    sender: str,
+    email_sender: str,
+    content_message: str,
+    subject: str,
+    to_email: str = "cjetechnologies.tech@gmail.com",
+):
+    """
+    Envía un correo de sugerencia usando la plantilla personalizada de SendGrid.
+
+    Parámetros:
+    - to_email (str): Correo del destinatario.
+    - sender (str): Nombre o identificador del remitente de la sugerencia.
+    - type_suggestion (str): Tipo o título de la sugerencia.
+    - content_message (str): Contenido del mensaje de la sugerencia.
+    """
+    try:
+
+        message = Mail(
+            from_email=EMAIL_FROM_SUGGESTION, to_emails=to_email, subject=subject
+        )
+        message.template_id = TEMPLATE_ID_SUGGESTION
+        message.dynamic_template_data = {
+            "sender": sender,
+            "email_sender": email_sender,
+            "content_message": content_message,
+            "subject": subject,
+        }
+        sg = SendGridAPIClient(SENDGRID_API_KEY)
+        response = sg.send(message)
+        print(
+            f"📨 Email de sugerencia enviado a {to_email} (Status: {response.status_code})"
+        )
+    except Exception as e:
+        # Si el error tiene un atributo 'body', imprímelo (SendGrid lo tiene)
+        if hasattr(e, "body"):
+            print(f"❌ Error al enviar correo de sugerencia (body): {e.body}")
+        print(f"❌ Error al enviar correo de sugerencia: {e}")

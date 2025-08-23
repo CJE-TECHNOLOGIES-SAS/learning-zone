@@ -5,11 +5,11 @@ import { MySpaceContext, type MySpaceView } from "./MySpaceContext";
 type Props = { children: React.ReactNode };
 
 export const MySpaceProvider = ({ children }: Props) => {
-  const [view, setView] = useState<MySpaceView>("usuario");
+  const [view, setView] = useState<MySpaceView>("estudiantes");
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
   const resetMySpace = () => {
-    setView("usuario");
+    setView("estudiantes");
     setSelectedId(null);
   };
 

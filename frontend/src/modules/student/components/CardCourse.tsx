@@ -4,6 +4,7 @@ import '../Styles/CardCourse.css';
 import type { TCourse, TCourseStudent } from '../../courses/types/CourseStudent';
 import { useNavigate } from 'react-router-dom';
 import { useStudentCourseContext } from "../../courses/hooks/useCourse";
+import { COURSE_CATEGORY_LABELS } from "../../../shared/constant/CategoriesCourses";
 
 type CardCourseProps = {
   id: number;
@@ -15,7 +16,7 @@ type CardCourseProps = {
   status?: TCourseStudent['status'];
 };
 
-export default function CardCourse({ id, image, name, description, status, palette }: CardCourseProps) {
+export default function CardCourse({ id, image, name, description, category, status, palette }: CardCourseProps) {
   const { loadLessonsCourse } = useStudentCourseContext();
   const navigate = useNavigate();
 
@@ -26,6 +27,9 @@ export default function CardCourse({ id, image, name, description, status, palet
     // Navegación absoluta para evitar rutas anidadas incorrectas
     navigate(`/student/course/${id}/${name}`);
   };
+    const catInfo =
+      COURSE_CATEGORY_LABELS[category as keyof typeof COURSE_CATEGORY_LABELS] ??
+      { label: category, color: palette.accent };
 
   return (
     <div
@@ -49,6 +53,16 @@ export default function CardCourse({ id, image, name, description, status, palet
       <p className="description-course-card" style={{ color: palette.text }}>
         {description}
       </p>
+      <span
+        className="category-course-student"
+        style={{
+          color: '#fff',
+          background: ` ${catInfo.color}`,
+          paddingLeft: 8,
+        }}
+      >
+        {catInfo.label}
+      </span>
 
       {/* Icono de progreso o completado */}
       <p className="icon-progress-course">

@@ -107,7 +107,11 @@ export default function AuthNavbar() {
         <button
           className="icon-auth-navBar icon-prefix"
           onClick={() => {
-            handleBtnNavigate('/student/profile-student');           // Navega a página de usuario
+              if(role === 'student'){
+                handleBtnNavigate('/student/profile-student');             // Navega a página de ayuda
+              }else{
+                handleBtnNavigate('/teacher/profile-teacher');             // Navega a página de ayuda
+              }
             setViewNotifications(false);              // Cierra otros paneles
           }}
         >

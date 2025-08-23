@@ -1,6 +1,6 @@
 // src/modules/teacher/mySpace/components/SideBarMySpace.tsx
 import { useState } from "react";
-import { FaUser, FaUsers, FaBell } from "react-icons/fa";
+import {  FaUsers, FaBell } from "react-icons/fa";
 import "../styles/sideBarMySpace.css";
 import { useMySpace } from "../hooks/useMySpace";
 
@@ -42,13 +42,6 @@ export default function SideBarMySpace() {
 
       {/* Contenido */}
       <div id="nav-content">
-        <div
-          className={`nav-button ${view === "usuario" ? "active" : ""}`}
-          onClick={() => handleChangeView("usuario")}
-        >
-          <FaUser /> <span>Usuario</span>
-        </div>
-
         <div
           className={`nav-button ${view === "estudiantes" ? "active" : ""}`}
           onClick={() => handleChangeView("estudiantes")}

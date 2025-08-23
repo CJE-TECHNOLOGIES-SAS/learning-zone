@@ -6,6 +6,7 @@ import type {
 } from "../../modules/courses/comments/types";
 import type {
   TContent,
+  TCourse,
   TCoursesStudents,
   TEvaluation,
   TLessonsStudent,
@@ -13,7 +14,7 @@ import type {
   TLessonStudent,
 } from "../../modules/courses/types/CourseStudent";
 import type { TNotificationsStudent, TNotificationsTeacher } from "../../modules/notifications/types/Notifications";
-import type { TStudentsRegisters } from "../../modules/teacher/mySpace/ManageStudents/ManageStudents";
+import type { TCoursesFilter, TStudentsRegisters } from "../../modules/teacher/mySpace/ManageStudents/ManageStudents";
 import type {
   TCoursesTeachers,
   TCourseTeacherResponse,
@@ -98,6 +99,20 @@ export const authStorage = {
     }
   },
   removeAllStudents: () => localStorage.removeItem("allStudents"),
+
+  /* Logica del localstorage de los cursos para filtrar*/
+  setCoursesFilter: (coursesFilter: TCoursesFilter) =>
+    localStorage.setItem("coursesFilter", JSON.stringify(coursesFilter)),
+  getCoursesFilter: (): TCoursesFilter | null => {
+    try {
+      const raw = localStorage.getItem("coursesFilter");
+      return raw ? (JSON.parse(raw) as TCoursesFilter) : null;
+    } catch (e) {
+      console.error("El JSON está mal formado :", e);
+      return null;
+    }
+  },
+  removeCoursesFilter: () => localStorage.removeItem("coursesFilter"),
 
   setComments: (comments: TComment[]) =>
     localStorage.setItem("comments", JSON.stringify(comments)),
@@ -354,7 +369,16 @@ export const authStorage = {
 
   // Elimina la paleta de colores  del localStorage
   removePaletteColors: () => localStorage.removeItem("paletteColors"),
+  setFilterCourse: (idCourse: TCourse['id']) => {
+    localStorage.setItem('idCourseFilter', String(idCourse));
+  },
 
+  getFilterCourse: (): TCourse['id'] | null => {
+    const raw = localStorage.getItem("idCourseFilter");
+    return raw !== null ? (Number(raw) as TCourse['id']) : null;
+  },
+
+  removeFilterCourse: () => localStorage.removeItem("idCourseFilter"),
   // ============================================================================
   // FUNCIONES DE LIMPIEZA MASIVA PARA EVITAR RENDERIZACIÓN DE DATOS ANTIGUOS
   // ============================================================================

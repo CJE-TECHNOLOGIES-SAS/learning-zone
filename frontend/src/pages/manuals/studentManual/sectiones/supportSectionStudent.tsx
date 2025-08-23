@@ -9,7 +9,7 @@ export const supportSectionStudent =()=>{
             <br></br>
             <img src={image} alt="myteam" className="myteam-photo" />
             
-            <p className="page-number">9</p>
+            <p className="page-number">10</p>
 
 
         </div>

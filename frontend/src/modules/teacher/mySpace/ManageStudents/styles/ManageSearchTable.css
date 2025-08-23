@@ -5,6 +5,8 @@
   justify-content: center;
   padding: 0 1rem;
   margin: 1rem 0 1.25rem 0;
+  box-sizing: border-box;
+  position: relative;
 }
 
 /* ===== FORM ===== */
@@ -15,24 +17,24 @@
   align-items: flex-end;
   gap: 12px;
   flex-wrap: wrap;
+  margin: 0 12px;
 }
 
-/* ===== FLOATING LABEL (igual patrón que Login.css) ===== */
 .container-label-input-search {
   position: relative;
-  flex: 1 1 260px;
-  min-width: 260px;
+  flex: 1 1 22px;
+  min-width: 160px;
 }
 
 /* input */
 .container-label-input-search input {
   width: 100%;
   padding: 15px 10px 5px 10px;
-  border: 2px solid #ccc;
+  border: 2px solid #00000015;
   border-radius: 10px;
   background-color: transparent;
   font-size: 1rem;
-  color: #b7b3b3;
+  color: #1b1111d8;
   transition: border-color 0.3s ease;
   box-sizing: border-box;
 }
@@ -98,7 +100,11 @@
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(37, 99, 235, 0.25);
 }
-
+.container-opc-fil-delete{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 /* Eliminar todo: rojo */
 .btn-delete-all {
   background-image: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
@@ -119,7 +125,10 @@
   transform: none;
   box-shadow: none;
 }
-
+.btn-filter{
+  font-size: 36px;
+  background-color: transparent;
+}
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .form-search-table {
@@ -147,5 +156,24 @@
   .btn-search,
   .btn-delete-all {
     width: 100%;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .form-search-table {
+    max-width: 320px;
+    gap: 6px;
+  }
+
+  .container-label-input-search input {
+    padding: 12px 8px 4px 8px;
+    font-size: 0.95rem;
+  }
+
+  .btn-search,
+  .btn-delete-all {
+    height: 42px;
+    font-size: 13px;
   }
 }

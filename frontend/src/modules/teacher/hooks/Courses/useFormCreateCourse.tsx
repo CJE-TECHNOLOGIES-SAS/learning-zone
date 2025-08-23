@@ -111,12 +111,22 @@ export function useFormCreateCourse() {
   // ----------------------
   // Manejar el envío del formulario
   // ----------------------
-  const handleSubmit = async (e: React.FormEvent) => {
+  // [NUEVO]: tipamos el evento como HTMLFormElement para acceder a e.nativeEvent.submitter
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Evita recargar la página
     console.log(formData)
 
+    // [NUEVO]: obtener el botón que disparó el submit (el "submitter")
+    // Esto nos permite deshabilitarlo "al instante" sin esperar el re-render de React.
+    const submitter = (e.nativeEvent as SubmitEvent).submitter as HTMLButtonElement | null;
+
+    // [NUEVO]: deshabilitar inmediatamente el botón para bloquear doble click rápido
+    if (submitter) submitter.disabled = true;
+
     // Paso 1: Validar antes de enviar
     if (!validate()) {
+      // [NUEVO]: si la validación falla, re-habilitamos el botón y salimos
+      if (submitter) submitter.disabled = false;
       return; // Si hay errores, detener aquí
     }
 
@@ -150,6 +160,8 @@ export function useFormCreateCourse() {
       console.error(error); // Log en consola para depuración
     } finally {
       setIsSubmitting(false); // Quita el estado de envío, pase lo que pase
+      // [NUEVO]: re-habilitar el botón (si sigues en la vista actual); si navegas, no afecta
+      if (submitter) submitter.disabled = false;
     }
   };
 

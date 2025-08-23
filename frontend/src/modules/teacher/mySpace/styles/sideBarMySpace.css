@@ -1,27 +1,26 @@
+/* === OPCIÓN 4: DEEP OCEAN === */
 :root {
-  /* Fondo suave pero más profundo */
-  --background: #fff;
-
-  /* Dimensiones */
+  --background: #06b6d4; /* Custom deep blue */
   --navbar-width: 256px;
   --navbar-width-min: 80px;
 
-  /* Colores oscuros */
-  --navbar-dark-primary: #8394ba; /* Azul grisáceo más profundo */
-  --navbar-dark-secondary: #606f91; /* Azul académico más intenso */
+  --navbar-dark-primary: #1e293b; /* Blue-slate 800 */
+  --navbar-light-primary: #f0f9ff; /* Sky 50 */
+  --navbar-light-secondary: #06b6d4; /* Cyan 500 accent */
+  --navbar-hover: #334155; /* Blue-slate 700 */
+  --navbar-active: #0891b2; /* Cyan 600 */
+}
 
-  /* Colores claros */
-  --navbar-light-primary: #d2ded8; /* Verde-azulado pastel más oscuro */
-  --navbar-light-secondary: #e7f1ef; /* Blanco verdoso con leve oscurecimiento */
 
-  /* Estados de interacción */
-  --navbar-hover: #9aa6c2; /* Azul gris más fuerte */
-  --navbar-active: #ffffff; /* Azul marino moderadamente oscuro */
+@media (max-width: 360px) {
+  :root {
+    --navbar-width: 188px;
+    --navbar-width-min: 54px;
+  }
 
-  /* Colores de estado para educación */
-  --success-edu: #3d8c40; /* Verde éxito más profundo */
-  --warning-edu: #e0a000; /* Amarillo alerta más intenso */
-  --error-edu: #c62828; /* Rojo advertencia más fuerte */
+  #nav-title { font-size: 1.05rem; }
+  .nav-button { height: 44px; }
+  #nav-content-highlight { height: 44px; }
 }
 
 
@@ -89,6 +88,7 @@
   width: calc(100% - 32px);
   border: none;
   border-top: solid 1px var(--navbar-dark-secondary);
+
 }
 
 #nav-bar a {
@@ -98,6 +98,34 @@
 
 #nav-bar input[type="checkbox"] {
   display: none;
+}
+
+/* Accessibility: focus-visible outlines for keyboard users */
+#nav-bar :is(a, button, label, .nav-button):focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+/* Respect users that prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  #nav-bar, #nav-header, #nav-content, #nav-footer,
+  .nav-button, #nav-toggle-burger, #nav-content-highlight,
+  label[for="nav-toggle"], label[for="nav-footer-toggle"] {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Improve touch targets on devices without hover */
+@media (hover: none) {
+  .nav-button {
+    padding-right: 10px;
+  }
+  label[for="nav-toggle"],
+  label[for="nav-footer-toggle"] {
+    width: 3.25rem;
+  }
 }
 
 /* Header */
@@ -169,7 +197,6 @@ label[for="nav-toggle"] {
   position: relative;
   flex: 1;
   width: var(--navbar-width);
-  background: var(--navbar-dark-primary);
   direction: rtl; /* truco para highlight a la izquierda */
   overflow-x: hidden;
   transition: width .2s;

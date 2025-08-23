@@ -12,7 +12,7 @@ const FAQSection = () => (
       <li><strong>¿Cómo cambio mi contraseña?</strong><br />
       Comunicate con el soporte tecnico</li>
     </ul>
-    <p className="page-number">8</p>
+    <p className="page-number">9</p>
 
   </section>
 );
