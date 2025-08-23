@@ -17,7 +17,6 @@ export default function PublicLayout() {
 
         <Outlet/>
 
-     {/*  <SplashCursor/> */}
       <Footer/>
 
     </div>

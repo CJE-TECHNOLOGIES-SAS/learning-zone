@@ -83,6 +83,7 @@ export default function ContentPage() {
         className="btn-downloand-content"
         href={content?.content}
         download
+        target="_blank"
         style={{
           backgroundColor: palette.brand, // Fondo destacado (color principal)
           color: palette.text,            // Icono/Texto en color de texto

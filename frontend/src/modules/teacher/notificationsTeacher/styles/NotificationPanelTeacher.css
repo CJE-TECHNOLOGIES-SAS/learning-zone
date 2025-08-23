@@ -37,6 +37,8 @@
   justify-content: space-between;
   gap: 12px;
   border-bottom: 2px solid #10101152;
+  padding: 2rem;
+
 }
 .title-container-notifications {
   color: var(--color-dark-blue);
@@ -89,7 +91,7 @@
 /* Tablet (>=768px) */
 @media (min-width: 768px) {
   .container-panel-notifications-teacher {
-    padding: 2rem;
+    padding: 3rem;
     border-radius: 16px;
     max-width: none;
   }

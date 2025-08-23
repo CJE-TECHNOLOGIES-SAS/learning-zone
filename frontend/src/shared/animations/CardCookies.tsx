@@ -1,25 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import type { TStudentConsent } from '../../modules/types/User';
 import { authStorage } from '../Utils/authStorage';
 import './styles/CardCookies.css';
 import { useNavigationHandler } from '../../hooks/useNavigationHandler';
+import { useCookieConsent } from '../../contexts/CookieConsentContext';
 
 const CardCookies = () => {
     const handleBtnNavigate = useNavigationHandler()
+    const { setConsent } = useCookieConsent();
 
     const [clickMoreOptions,setClickMoreOptions] = useState(false)
-    const [showBanner, setShowBanner] = useState(
-        !authStorage.getCookieConsentGiven()
-    );
-
-    useEffect(() => {
-        const consentData = authStorage.getCookieConsentGiven();
-        if (consentData && consentData.accepted) {
-            setShowBanner(false);
-        } else {
-            setShowBanner(true);
-        }
-    }, []);
+    const [showBanner, setShowBanner] = useState(true);
 
     const acceptConsent = () => {
         const consent: TStudentConsent = {
@@ -27,7 +18,10 @@ const CardCookies = () => {
             timestamp: new Date().toISOString(),
             version: '1.0'
         };
+
+        // Actualizar tanto el storage local como el contexto global
         authStorage.setCookieConsentGiven(consent);
+        setConsent(consent);
 
         setShowBanner(false);
     };

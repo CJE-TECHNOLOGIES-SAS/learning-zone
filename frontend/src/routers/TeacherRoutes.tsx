@@ -40,26 +40,14 @@ export default function TeacherRoutes() {
       <Route path="home-teacher" element={<TeacherDashboard />} /> {/* Page del teacher */}
       <Route path="help-teacher" element={<HelpTeacher />} />
       <Route path="profile-teacher" element={<ProfileTeacher/>} />
-
       {/* Gestión de cursos */}
       <Route path="/courses" element={<TeacherHome />} />
       <Route path="/courses/create" element={<CourseCreator/>} />
       <Route path="/courses/:courseId" element={<CourseManagement/>} />
       <Route path="/courses/:courseId/edit" element={<CourseEdit />} />
-
       <Route path="courses/:courseId/lessons/create" element={<LessonCreate />} />
       <Route path="courses/:courseId/lessons/:lessonId/edit" element={<LessonEditor/>}/>
       <Route path="/myspace" element={<MySpace/>}/>
-
-
-
-      {/* Analytics y reportes */}
- {/*      <Route path="/analytics" element={<Analytics />} />
-      <Route path="/reports" element={<div>Reportes</div>} />
-       */}
-      {/* Notificaciones */}
-
-      {/* Configuración */}
     </Routes>
   );
 }

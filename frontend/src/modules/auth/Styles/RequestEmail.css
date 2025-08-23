@@ -1,6 +1,7 @@
 .form-email-request{
     background-image: radial-gradient( circle 1588px at -27.3% 144%,  rgba(255,22,22,1) 0%, rgba(0,0,0,1) 43.4%, rgba(0,0,0,1) 65.8%, rgba(255,22,22,1) 100.2% );
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -11,6 +12,22 @@
     width: 100%;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
+.btn-back-email-request{
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: transparent;
+    border: none;
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 10;
+    background-image: linear-gradient(transparent, rgba(255, 255, 255, 0.901), rgba(255, 251, 255, 0.756)); /* fondo semitransparente */
+    border-radius: 60%;
+    color: #230b0b78;
+    transition: transform 0.3s ease;
+
+}
+
 
 .title-Request-email{
     color: #fff;

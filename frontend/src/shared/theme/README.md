@@ -1,7 +1,7 @@
 # Sistema de Temas - Variables CSS para Backgrounds
 
 ## Descripción
-Este sistema permite cambiar entre modo claro y oscuro usando variables CSS para todos los backgrounds de la aplicación.
+Este sistema proporciona variables CSS para todos los backgrounds de la aplicación en modo claro.
 
 ## Cómo usar
 
@@ -95,39 +95,12 @@ También puedes usar las clases predefinidas:
 <div className="bg-gradient-primary">Gradiente primario</div>
 ```
 
-### 3. Cambiar Tema
 
-El tema se cambia automáticamente usando el hook `useTheme`:
-
-```tsx
-import { useTheme } from '../shared/context/ThemeContext';
-
-const MyComponent = () => {
-  const { theme, toggleTheme } = useTheme();
-
-  return (
-    <button onClick={toggleTheme}>
-      Cambiar a {theme === 'light' ? 'oscuro' : 'claro'}
-    </button>
-  );
-};
-```
-
-### 4. Detección Automática
-
-El sistema detecta automáticamente:
-- Preferencia del usuario guardada en localStorage
-- Preferencia del sistema operativo
-- Cambios en tiempo real de la preferencia del sistema
 
 ## Estructura de Archivos
 
 ```
 shared/
-├── context/
-│   └── ThemeContext.tsx          # Context del tema
-├── components/
-│   └── ThemeToggle.tsx           # Botón para cambiar tema
 ├── theme/
 │   ├── Colors.css                # Variables CSS de colores
 │   └── README.md                 # Esta documentación
@@ -138,5 +111,3 @@ shared/
 - **Solo backgrounds**: Este sistema está diseñado solo para fondos
 - **Variables CSS**: Usa variables CSS nativas para mejor rendimiento
 - **Responsive**: Funciona en todos los dispositivos
-- **Accesibilidad**: Incluye aria-labels y focus states
-- **Persistencia**: Guarda la preferencia del usuario

@@ -119,6 +119,7 @@ export default function HomeStudent() {
 
   return (
     <div className="container-home-user">
+
       <div className="home-header" ref={headerRef}>
         <div className="container-info-header-user">
           <h1 className="home-title" ref={titleRef}>
@@ -129,6 +130,7 @@ export default function HomeStudent() {
           </p>
           {/* Botón de categorías (misma UX que en AuthNavbar/TeacherDashboard) */}
           <button
+          style={{'color':'#000'}}
             ref={filterButtonRef}
             className="icon-filter-categories"
             onClick={() => setViewCategories((v) => !v)}

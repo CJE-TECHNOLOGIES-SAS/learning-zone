@@ -121,13 +121,7 @@
     gap: 24px;
   }
 
-  .btn-add-lesson-course {
-    font-size: 1.2rem;
-    position: absolute;
-    right: 36px;
-    width: 240px;
-    margin-top: 0;
-  }
+
 }
 
 /* ====== DESKTOP (>=1024px) ====== */

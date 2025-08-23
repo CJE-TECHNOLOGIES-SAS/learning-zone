@@ -3,10 +3,10 @@ import "../feedbackform/styles/Complain.css";
 import { useUser } from "../../../modules/auth/Hooks/useAuth";
 
 interface UserData {
-  name: string,
-  email: string,
-  asunto:string,
-  comment: string
+  sender: string,
+  email_sender: string,
+  subject:string,
+  content_message: string
 }
 interface ComplaintFormProps {
   onSuccess: () => void;
@@ -17,12 +17,13 @@ const VITE_API_URL = import.meta.env.VITE_API_URL;
 const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSuccess }) => {
   const {user} = useUser()
   const [userData, setUserData] = useState<UserData | null>({
-    asunto: '',
-    comment:'',
-    email:user!.email,
-    name:user!.name
+    subject: '',
+    content_message:'',
+    email_sender:user!.email,
+    sender:user!.name
 
   });
+
   const [loading, setLoading] = useState(false);
 
 /*   useEffect(() => {
@@ -50,7 +51,7 @@ const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSuccess }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({userData}),
+        body: JSON.stringify(userData),
       });
 
       if (!response.ok) {
@@ -68,14 +69,14 @@ const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSuccess }) => {
     <form onSubmit={handleSubmit} className="complaint-form">
       <h2>Completar con tus datos</h2>
 
-      <label htmlFor="asunto">Asunto</label>
+      <label htmlFor="subject">Asunto</label>
       <input
         type="text"
-        id="asunto"
-        value={userData?.asunto || ""}
+        id="subject"
+        value={userData?.subject || ""}
         onChange={(e)=>setUserData((prev)=>({
           ...prev!,
-          asunto: e.target.value
+          subject: e.target.value
 
         }) )}
       />
@@ -93,10 +94,10 @@ const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSuccess }) => {
       <textarea
         id="comment"
         rows={5}
-        value={userData?.comment}
+        value={userData?.content_message}
         onChange={(e) => setUserData((prev)=>({
           ...prev!,
-          comment:e.target.value
+          content_message:e.target.value
         }))}
         placeholder="Escribe tu queja, sugerencia u observación"
       />
