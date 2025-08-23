@@ -3,6 +3,8 @@ import './App.css' // Asegúrate de que este archivo contenga el CSS de "Quantum
 import AppRouter from './routers'
 import { Toaster } from 'react-hot-toast'
 import { useLocation } from 'react-router-dom';
+import { ThemeProvider } from './shared/context/ThemeContext';
+import './shared/theme/Colors.css';
 
 function App() {
   const location = useLocation();
@@ -16,7 +18,7 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <>
+    <ThemeProvider>
       <Toaster
         position="top-center"
         reverseOrder={false}
@@ -82,7 +84,7 @@ function App() {
         }}
       />
       <AppRouter />
-    </>
+    </ThemeProvider>
   )
 }
 
