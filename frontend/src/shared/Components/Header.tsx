@@ -2,6 +2,7 @@ import Navbar from "./Navbar";
 import './styles/Header.css'
 import { useNavigationHandler } from "../../hooks/useNavigationHandler";
 import AuthNavbar from "./AuthNavbar";
+import ThemeToggle from "./ThemeToggle";
 
 // GSAP solo para movimientos (sin tocar colores)
 import gsap from "gsap";
@@ -95,7 +96,10 @@ export default function Header({ isPublic }: THeaderProps) {
         />
       </h1>
 
-      {isPublic ? <Navbar /> : <AuthNavbar />}
+      <div className="header-controls">
+        <ThemeToggle />
+        {isPublic ? <Navbar /> : <AuthNavbar />}
+      </div>
     </header>
   );
 }

@@ -1,117 +1,103 @@
-/* Variables de Color para la Paleta del Aplicativo (basado en la imagen) */
+/* ===== COLORS CSS VARIABLES ===== */
+/* Background Colors - Light Theme (Default) */
 :root {
-    /* --- Colores Principales --- */
+  /* Main Backgrounds */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
 
-    /* Fondo Principal Oscuro (--color-primary-dark-bg): #1A2138
-       Este color azul oscuro casi negro se utiliza como la base principal del diseño oscuro.
-       Recomendado para:
-       - El fondo general de la página (`body`, `html`) si buscas un tema oscuro.
-       - El pie de página (`footer`) para anclar visualmente el contenido.
-       - Secciones de base o contenedores que requieren una alta profundidad y contraste con el contenido claro.
-       - Fondos de tarjetas o modales oscuros.
-    */
-      --color-primary-dark-bg: #202d58;
-      --color-primary-blue-dark: #0f172af7;
-      --color-primary-blue: #1D6FA3;   /* Azul principal */
-      --color-accent-yellow: #FFC600;  /* Amarillo acento */
-      --color-mint-green: #ADEFD1;
-      --color-dark-blue: #00203F;
+  /* Card & Container Backgrounds */
+  --bg-card: #ffffff;
+  --bg-container: #f8f9fa;
+  --bg-modal: #ffffff;
+  --bg-overlay: rgba(0, 0, 0, 0.5);
 
-      --color-orange-accent: #F2AA4C; /* Para #F2AA4C */
-      --color-dark-gray-brown: #2D2926; /* Para #2D2926 */
-      --color-vibrant-red-orange: #ed6f63; /* Para #ed6f63 */
-    /* Azul Principal Medio (--color-primary-blue-medium): #427BFF
-       Este azul brillante y vibrante es un color principal para secciones prominentes.
-       Recomendado para:
-       - El fondo de secciones grandes y destacadas (como la sección central amplia en la imagen).
-       - Barras de navegación principales si son de color sólido y quieren ser un punto focal.
-       - Contenedores o "cards" que necesitan sobresalir.
-       - Fondos de encabezados si no usan el color oscuro primario.
-    */
-    --color-primary-blue-medium: #427BFF;
+  /* Section Backgrounds */
+  --bg-header: #ffffff;
+  --bg-footer: #f8f9fa;
+  --bg-sidebar: #ffffff;
+  --bg-navbar: #ffffff;
 
-    /* Blanco/Gris Claro para Texto y Elementos Ligeros (--color-text-light, --color-text-light-alt):
-       --color-text-light: #E0E0E0
-       --color-text-light-alt: #FFFFFF
-       Estos colores son ideales para asegurar la legibilidad del texto sobre fondos oscuros o azules.
-       Recomendado para:
-       - Texto general de párrafos (`p`), títulos (`h1`-`h6`), listas (`ul`, `ol`, `li`) cuando el fondo es `--color-primary-dark-bg` o `--color-primary-blue-medium`.
-       - Iconos (`<i>`, `svg`) y elementos decorativos que necesitan ser visibles sobre fondos oscuros.
-       - Bordes sutiles o separadores en secciones oscuras.
-       - Texto de botones que usan colores de fondo oscuros o de acento como `--color-action-red`.
-    */
-    --color-text-light: #E0E0E0;
-    --color-text-light-alt: #FFFFFF;
+  /* Form & Input Backgrounds */
+  --bg-input: #ffffff;
+  --bg-button: #007bff;
+  --bg-button-hover: #0056b3;
+  --bg-button-secondary: #6c757d;
 
+  /* Status Backgrounds */
+  --bg-success: #d4edda;
+  --bg-warning: #fff3cd;
+  --bg-error: #f8d7da;
+  --bg-info: #d1ecf1;
 
-    /* --- Colores Secundarios y de Acción --- */
-
-    /* Rojo de Acción/Advertencia/Énfasis (--color-action-red): #8B1B2B
-       Este rojo oscuro y profundo se usa para acciones críticas o elementos que requieren atención inmediata.
-       Recomendado para:
-       - Botones de acción principales (ej. "Continuar", "Para empezar", "Enviar formulario").
-       - Mensajes de error o advertencia (`.error-message`).
-       - Destacar elementos importantes o prohibiciones.
-    */
-    --color-action-red: #8B1B2B;
-
-    /* Naranja/Amarillo de Acento (--color-accent-orange): #EEB54F
-       Un color de acento cálido que puede usarse para acciones secundarias o para atraer la mirada.
-       Recomendado para:
-       - Botones secundarios o alternativos (ej. "Ver más", "Editar perfil").
-       - Elementos interactivos que ofrecen una acción diferente a la principal.
-       - Barras de progreso, insignias o "badges" de estado.
-       - Efectos de "hover" o "active" en elementos interactivos para dar un toque cálido.
-    */
-    --color-accent-orange: #EEB54F;
-
-    /* Azul Claro/Cian de Acento (--color-accent-blue-light): #89CFF0
-       Este azul claro proporciona un toque de frescura y se usa para elementos interactivos o informativos.
-       Recomendado para:
-       - Bordes y fondos sutiles de campos de entrada de formularios (`input`, `textarea`) o cuadros de texto.
-       - Texto de enlaces (`a`) para hacerlos fácilmente identificables.
-       - Indicadores de progreso, iconos informativos.
-       - Botones con una "llamada a la acción" más suave (ej. "Aun no tienes Cuenta?").
-    */
-    --color-accent-blue-light: #89CFF0;
-
-
-    /* --- Colores Neutros/Texto Oscuro --- */
-
-    /* Negro/Gris Muy Oscuro para Texto (--color-text-dark, --color-text-darker):
-       --color-text-dark: #333333
-       --color-text-darker: #000000
-       Estos grises oscuros son para texto sobre fondos muy claros, asegurando la legibilidad sin ser demasiado duros.
-       Recomendado para:
-       - Texto principal de párrafos (`p`), títulos (`h1`-`h6`) cuando el fondo es muy claro (ej. `--color-neutral-light-gray` o blanco puro).
-       - Etiquetas de formulario (`label`).
-       - Líneas divisorias, iconos o elementos decorativos que necesitan contraste con fondos claros.
-       - `--color-text-darker` para un negro puro en situaciones específicas de alto contraste.
-    */
-    --color-text-dark: #333333;
-    --color-text-darker: #000000;
-
-
-    /* Gris Claro para Bordes/Fondos Sutiles (--color-neutral-light-gray, --color-neutral-medium-gray):
-       --color-neutral-light-gray: #F0F0F0
-       --color-neutral-medium-gray: #CCCCCC
-       Estos grises son útiles para añadir estructura y separación sin distraer.
-       Recomendado para:
-       - Fondos muy sutiles de tarjetas (`.card`), modales o secciones que necesitan un ligero contraste con el fondo principal claro.
-       - Bordes (`border`) de campos de entrada (`input`), botones o divisores.
-       - Separadores de contenido (`<hr>`).
-       - Texto de elementos menos importantes o "placeholder" (`::placeholder`).
-    */
-    --color-neutral-light-gray: #F0F0F0;
-    --color-neutral-medium-gray: #CCCCCC;
-
-    /* --- Sombras (Opcional) --- */
-    /* Sombra Oscura (--color-shadow-dark): rgba(0, 0, 0, 0.4)
-       Para crear profundidad y separación visual de elementos flotantes.
-       Recomendado para:
-       - Sombras de cajas (`box-shadow`) en modales, menús desplegables, tarjetas o elementos que se elevan sobre el fondo.
-       - Efectos visuales que simulan profundidad.
-    */
-
-    /* Colores de cursos */
+  /* Gradient Backgrounds */
+  --bg-gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --bg-gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --bg-gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 }
+
+/* Background Colors - Dark Theme */
+[data-theme="dark"] {
+  /* Main Backgrounds */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-tertiary: #404040;
+
+  /* Card & Container Backgrounds */
+  --bg-card: #2d2d2d;
+  --bg-container: #404040;
+  --bg-modal: #2d2d2d;
+  --bg-overlay: rgba(0, 0, 0, 0.7);
+
+  /* Section Backgrounds */
+  --bg-header: #1a1a1a;
+  --bg-footer: #2d2d2d;
+  --bg-sidebar: #2d2d2d;
+  --bg-navbar: #1a1a1a;
+
+  /* Form & Input Backgrounds */
+  --bg-input: #404040;
+  --bg-button: #0056b3;
+  --bg-button-hover: #004085;
+  --bg-button-secondary: #495057;
+
+  /* Status Backgrounds */
+  --bg-success: #1e4d2b;
+  --bg-warning: #4d3c00;
+  --bg-error: #4d1a1a;
+  --bg-info: #1a4d5c;
+
+  /* Gradient Backgrounds */
+  --bg-gradient-primary: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+  --bg-gradient-secondary: linear-gradient(135deg, #553c9a 0%, #b794f4 100%);
+  --bg-gradient-success: linear-gradient(135deg, #2d5a27 0%, #4a7c59 100%);
+}
+
+/* ===== UTILITY CLASSES FOR BACKGROUNDS ===== */
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-tertiary { background-color: var(--bg-tertiary); }
+
+.bg-card { background-color: var(--bg-card); }
+.bg-container { background-color: var(--bg-container); }
+.bg-modal { background-color: var(--bg-modal); }
+.bg-overlay { background-color: var(--bg-overlay); }
+
+.bg-header { background-color: var(--bg-header); }
+.bg-footer { background-color: var(--bg-footer); }
+.bg-sidebar { background-color: var(--bg-sidebar); }
+.bg-navbar { background-color: var(--bg-navbar); }
+
+.bg-input { background-color: var(--bg-input); }
+.bg-button { background-color: var(--bg-button); }
+.bg-button-hover:hover { background-color: var(--bg-button-hover); }
+.bg-button-secondary { background-color: var(--bg-button-secondary); }
+
+.bg-success { background-color: var(--bg-success); }
+.bg-warning { background-color: var(--bg-warning); }
+.bg-error { background-color: var(--bg-error); }
+.bg-info { background-color: var(--bg-info); }
+
+.bg-gradient-primary { background: var(--bg-gradient-primary); }
+.bg-gradient-secondary { background: var(--bg-gradient-secondary); }
+.bg-gradient-success { background: var(--bg-gradient-success); }
