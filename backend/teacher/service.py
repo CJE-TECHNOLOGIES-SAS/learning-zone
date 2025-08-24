@@ -1,7 +1,10 @@
+from io import BytesIO
 import json
 import logging
 from fastapi import HTTPException, UploadFile
 from typing import Optional
+
+from openpyxl import Workbook
 
 from models.evaluation_model import Evaluation, QuestionType
 from models.lesson_model import Lesson
@@ -450,3 +453,66 @@ class TeacherServices:
             }
             for student in students
         ]
+
+    async def get_all_students_data(self) -> list[dict]:
+        identifications = await self.repo.get_identifications()
+        students_data = []
+        for identification in identifications:
+            student = identification.student
+            students_data.append(
+                {
+                    "id": identification.id,
+                    "number_identification": identification.n_identification,
+                    "name": student.names if student else None,
+                    "course": "Todos",
+                    "score": (
+                        await self.student_answer_repo.get_total_score_for_student(
+                            student.id
+                        )
+                        if student
+                        else None
+                    ),
+                    "status": await self.get_status_student(
+                        identification.n_identification
+                    ),
+                }
+            )
+        return students_data
+
+    async def export_students_to_excel(
+        self, course_id: int = None
+    ) -> BytesIO:  # BytesIO hace referencia a un flujo de bytes en memoria
+        """
+        Exporta la lista de estudiantes a un archivo Excel.
+        Si no se pasa course_id, exporta todos los estudiantes de todos los cursos.
+        """
+        if course_id:
+            students = await self.get_students_by_course(course_id)
+        else:
+            students = await self.get_all_students_data()
+            # course = None
+        wb = Workbook()  # Crear un nuevo libro de Excel
+        ws = wb.active  # Obtener la hoja activa
+        ws.title = "Estudiantes"  # Establecer el título de la hoja
+
+        # Agregar encabezados
+        headers = ["ID", "Identificación", "Nombre", "Curso", "Puntaje", "Estado"]
+        ws.append(headers)  # Agregar encabezados a la hoja
+
+        for student in students:
+            status_str = "VERIFICADO" if student["status"] else "NO VERIFICADO"
+            ws.append(
+                [
+                    student["id"],
+                    student["number_identification"],
+                    student["name"],
+                    student["course"],
+                    student["score"],
+                    status_str,
+                ]
+            )
+
+        bio = BytesIO()
+        wb.save(bio)
+        bio.seek(0)
+        return bio

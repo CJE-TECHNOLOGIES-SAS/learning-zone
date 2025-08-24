@@ -616,3 +616,19 @@ class TeacherRepo:
             logger.warning(f"Curso con ID {course_id} no encontrado o sin estudiantes.")
             return []
         return course.students
+
+    # async def get_all_students_data(self) -> list[dict]:
+    #     identifications = await self.repo.get_identifications()
+    #     students_data = []
+    #     for identification in identifications:
+    #         # Aquí aseguras traer el estudiante relacionado y los campos necesarios.
+    #         student = identification.student
+    #         students_data.append({
+    #             "id": identification.id,
+    #             "number_identification": identification.n_identification,
+    #             "name": student.names if student else None,
+    #             "course": "Todos",
+    #             "score": await self.student_answer_repo.get_total_score_for_student(student.id) if student else None,
+    #             "status": await self.get_status_student(identification.n_identification)
+    #         })
+    #     return students_data

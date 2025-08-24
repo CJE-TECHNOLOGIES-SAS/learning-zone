@@ -5,7 +5,7 @@ Este modulo contiene todas la rutas con las diferentes operaciones que puede rea
 """
 
 from fastapi import APIRouter, Depends, Form, UploadFile, File, status, HTTPException
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 from typing import Optional, List
 from fastapi.security import HTTPBearer
 
@@ -729,3 +729,24 @@ async def get_students_by_course(
     """
     students = await teacher_services.get_students_by_course(course_id)
     return {"students": students}
+
+
+@router.get(
+    "/students/export",
+    dependencies=[Depends(bearer_scheme)],
+    description="Descarga la lista de estudiantes en formato Excel (.xlsx)",
+    tags=["Export"],
+)
+async def export_students_excel(
+    course_id: int = None,
+    teacher_services: TeacherServices = Depends(get_teacher_services),
+    teacher: Teacher = Depends(get_current_teacher),
+):
+    excel_file = await teacher_services.export_students_to_excel(course_id)
+    return StreamingResponse(
+        excel_file,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",  # Tipo de contenido para archivos Excel
+        headers={
+            "Content-Disposition": 'attachment; filename="estudiantes.xlsx"'
+        },  # Nombre del archivo al descargar
+    )
