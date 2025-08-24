@@ -446,8 +446,8 @@ class TeacherServices:
                 "number_identification": student.identification_number,
                 "name": student.names,
                 "status": await self.get_status_student(student.identification_number),
-                "score": await self.student_answer_repo.get_total_score_for_student(
-                    student.id
+                "score": await self.student_answer_repo.get_total_score_for_student_in_course(
+                    course_id=course.id, student_id=student.id
                 ),
                 "course": course.name,
             }
