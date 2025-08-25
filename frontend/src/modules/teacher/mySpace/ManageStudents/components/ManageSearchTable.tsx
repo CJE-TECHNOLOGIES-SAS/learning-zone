@@ -4,6 +4,8 @@ import { useManageStudents } from '../hook/useManageStudents';
 import '../styles/ManageSearchTable.css'
 import { FcFilledFilter } from "react-icons/fc";
 import OpcsFilter from './OpcsFilter';
+import { authStorage } from '../../../../../shared/Utils/authStorage';
+import { ExportAndDownloadStudentsExcel } from '../services/GenerateExportExcel.server';
 export default function ManageSearchTable() {
   const [searchValue, setSearchValue] = useState('');
   const {deleteAllStudentRegister, loadInfoStudentRegister} = useManageStudents()
@@ -24,6 +26,16 @@ export default function ManageSearchTable() {
     await deleteAllStudentRegister()
     // Aquí iría tu lógica para eliminar todos los registros
   };
+  const exportToExcel = async () => {
+    const courseFilterId = authStorage.getFilterCourse(); // obtiene id de curso
+    try {
+      await ExportAndDownloadStudentsExcel(courseFilterId ?? undefined); // dispara la descarga
+    } catch (e) {
+      console.error(e);
+      alert('Error al descargar Excel');
+    }
+  };
+
   const handleActionBtnFilter = (): void => {
       setBtnFilter((prev) => !prev);
   };
@@ -59,6 +71,8 @@ export default function ManageSearchTable() {
             <Trash2 size={16} /> Eliminar todo
           </button>
           <button className='btn-filter' onClick={()=>setBtnFilter(!btnFilter)}>{<FcFilledFilter/>}</button>
+          <button className='btn-export' onClick={exportToExcel}>Exportar</button>
+
       </div>
 
     </div>

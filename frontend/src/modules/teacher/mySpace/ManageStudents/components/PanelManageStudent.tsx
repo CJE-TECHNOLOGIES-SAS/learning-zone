@@ -44,17 +44,18 @@ export default function PanelManageStudent() {
           {/* Btn de registrar */}
           <button className='btn-register-student' onClick={()=>setOpcRegisterStudent(!opcRegisterStudent)}>Agregar</button>
         </div>
-
-                <div
-                  className="btn-arrow-infinite-container"
-                  style={{
-                    position: "absolute",
-                    top:  "90%" ,
-                    left: "60%",
-                  }}
-                >
-                  <BtnArrowInfinite color={'#333'} />
-                </div>
+                {totalStudents > 0 &&
+                  <div
+                    className="btn-arrow-infinite-container"
+                    style={{
+                      position: "absolute",
+                      top:  "90%" ,
+                      left: "60%",
+                    }}
+                  >
+                    <BtnArrowInfinite color={'#333'} />
+                  </div>
+                }
         <div className='container-table-students'>
           {infoRegisterStudents.length >0 ?
             <>

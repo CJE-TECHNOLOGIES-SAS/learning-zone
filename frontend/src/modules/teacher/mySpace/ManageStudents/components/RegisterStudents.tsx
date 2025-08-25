@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import '../styles/RegisterStudents.css';
 import { useManageStudents } from '../hook/useManageStudents';
+import toast from 'react-hot-toast';
 type Props = {
   onToggleOpcRegisterStudent: () => void; // cierra el panel externo
 };
@@ -46,6 +47,10 @@ export default function RegisterStudents({onToggleOpcRegisterStudent}:Props) {
 
         await registerStudentsFile(selectedFile!);
         onToggleOpcRegisterStudent()
+        setLoading(true)
+        toast.success('Nros Identificaciones registrados exitosamente')
+
+
     };
 
     return (

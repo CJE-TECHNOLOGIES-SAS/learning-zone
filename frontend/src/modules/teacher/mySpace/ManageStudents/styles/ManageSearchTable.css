@@ -129,6 +129,20 @@
   font-size: 36px;
   background-color: transparent;
 }
+.btn-export{
+  background-image: linear-gradient(135deg, #06293d 0%, #3892d6 100%);
+  color: #fff;
+  background-size: 200% auto;
+  padding: .6rem;
+  border-radius: 12px;
+
+}
+.btn-export:hover{
+  font-size: 17px;
+  transition: .3s ease-in-out;
+  background-image: linear-gradient(135deg, #3892d6 0%, #06293d 100%);
+
+}
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .form-search-table {

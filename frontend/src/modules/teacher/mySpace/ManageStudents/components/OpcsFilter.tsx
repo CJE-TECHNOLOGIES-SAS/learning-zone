@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import CoursesForFilter from './CoursesForFilter'
 import '../styles/OpcsFilter.css'
-import { TbArrowsDownUp, TbXboxX } from 'react-icons/tb'   // menor → mayor
-import { HiArrowsUpDown } from 'react-icons/hi2'  // mayor → menor
+/* import { TbArrowsDownUp, TbXboxX } from 'react-icons/tb'   // menor → mayor
+import { HiArrowsUpDown } from 'react-icons/hi2'  // mayor → menor */
 import { useManageStudents } from '../hook/useManageStudents'
+import { TbXboxX } from 'react-icons/tb';
 
-type TSort = 'asc' | 'desc' | null
+/* type TSort = 'asc' | 'desc' | null */
 type Props = {
   onToggleOpcFilter: () => void; // cierra el panel externo
 };
@@ -13,10 +14,10 @@ export default function OpcsFilter({onToggleOpcFilter}:Props) {
 
   const {refreshInfoStudentRegister} = useManageStudents()
   const [clickBtnFilterCourse, setClickBtnFilterCourse] = useState(false)
-  const [sort, setSort] = useState<TSort>(null)
+/*   const [sort, setSort] = useState<TSort>(null) */
 
-  const toggleAsc = () => setSort(prev => (prev === 'asc' ? null : 'asc'))
-  const toggleDesc = () => setSort(prev => (prev === 'desc' ? null : 'desc'))
+/*   const toggleAsc = () => setSort(prev => (prev === 'asc' ? null : 'asc'))
+  const toggleDesc = () => setSort(prev => (prev === 'desc' ? null : 'desc')) */
   const handleActionFilterCourse = (): void => {
       setClickBtnFilterCourse((prev) => !prev);
   };
@@ -49,10 +50,9 @@ export default function OpcsFilter({onToggleOpcFilter}:Props) {
               <CoursesForFilter onToggleCoursesForFilter ={handleActionFilterCourse}/>
           )}
 
-          <div className="container-opc-filter-score">
+      {/*     <div className="container-opc-filter-score">
             <p className="title-opc-filter-score">Puntuacion</p>
 
-            {/* Menor → mayor */}
             <button
               type="button"
               className={`btn-score-asc ${sort === 'asc' ? 'is-active' : ''}`}
@@ -63,7 +63,6 @@ export default function OpcsFilter({onToggleOpcFilter}:Props) {
               <TbArrowsDownUp />
             </button>
 
-            {/* Mayor → menor */}
             <button
               type="button"
               className={`btn-score-desc ${sort === 'desc' ? 'is-active' : ''}`}
@@ -73,7 +72,7 @@ export default function OpcsFilter({onToggleOpcFilter}:Props) {
             >
               <HiArrowsUpDown />
             </button>
-          </div>
+          </div> */}
         </div>
     </div>
   )
