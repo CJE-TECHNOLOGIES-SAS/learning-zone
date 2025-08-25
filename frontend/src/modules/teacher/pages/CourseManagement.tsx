@@ -193,7 +193,7 @@ export default function CourseManagement() {
             <FiEdit3 /> Editar
           </button>
 
-          {lessons.length >= 5 && (
+          {lessons.length >= 5 ? (
             <button
               type="button"
               title="Publicar o despublicar"
@@ -216,7 +216,28 @@ export default function CourseManagement() {
                   ? "Quitar"
                   : "Publicar"}
             </button>
-          )}
+          ):
+            <button
+            className="btn-disabled"
+              type="button"
+              disabled
+              style={{
+                backgroundColor:"#D1CECB",
+                color: "#fff",
+                fontWeight: "bold",
+                borderRadius: "6px",
+                padding: "0.5rem 1rem",
+                opacity: isUpdatingPublished ? 0.7 : 1,
+              }}>
+                Publicar
+
+
+
+              </button>
+
+
+
+          }
         </div>
 
         <div

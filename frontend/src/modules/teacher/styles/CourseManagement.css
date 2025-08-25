@@ -46,7 +46,7 @@
 }
 
 .image-course-header-teacher {
-  width: 100%;
+  width: 80%;
   max-width: 100%;
   height: auto;
   border-radius: 4%;
@@ -60,8 +60,31 @@
 
 .crud-actions button {
   background-color: transparent;
+  position: relative;
 }
 
+.btn-disabled {
+  position: relative;      /* necesario para posicionar el ::after */
+  cursor: not-allowed;     /* que se vea como bloqueado */
+}
+
+.btn-disabled:hover::after {
+  position: absolute;
+  top: 120%;               /* debajo del botón */
+  left: 50%;               /* centrado */
+  transform: translateX(-50%);
+  content: '⚠️ Debes agregar 5 lecciones primero';
+  background-color: #fff3cd;  /* amarillo claro tipo warning */
+  color: #b91c1c;             /* rojo oscuro */
+  border: 1px solid #f87171;  /* rojo suave */
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
 
 .btn-add-lesson-course {
   position: static;
@@ -112,7 +135,7 @@
   }
 
   .image-course-header-teacher {
-    width: 80%;
+    width: 64%;
     height: auto;
   }
 

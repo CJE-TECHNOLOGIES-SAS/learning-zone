@@ -58,7 +58,7 @@ export function useFormCreateCourse() {
   // Manejar cambios en campos de texto/select
   // ----------------------
   const handleInputChange = (
-    field: keyof typeof formData, // El campo a actualizar (name, description, etc.)
+    field: keyof typeof formData,
     value: string | TPaletteNames | TColorPalette // El nuevo valor (puede ser string, nombre de paleta o colores)
   ) => {
     setFormData(prev => ({
@@ -111,7 +111,6 @@ export function useFormCreateCourse() {
   // ----------------------
   // Manejar el envío del formulario
   // ----------------------
-  // [NUEVO]: tipamos el evento como HTMLFormElement para acceder a e.nativeEvent.submitter
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Evita recargar la página
     console.log(formData)
@@ -136,7 +135,7 @@ export function useFormCreateCourse() {
 
     // Paso 3: Preparar datos para enviar al backend
     const coursesend: TCourseTeacherSend = {
-      name: formData.name,
+      name: formData.name.trim(),
       description: formData.description,
       category: formData.category,
       image: formData.image,
