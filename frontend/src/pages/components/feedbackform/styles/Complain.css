@@ -12,116 +12,294 @@
 }
 
 .complaint-page {
-  background-color: var(--color-background);
-  padding: 2rem 1rem;
+  background-image: url('https://res.cloudinary.com/dhznpt8rr/image/upload/v1756232158/backgroundSugerences_hqscvb.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 1rem 0.5rem;
   min-height: 100vh;
-  box-sizing: border-box;
+  position: relative;
+  z-index: 0;
 }
-.btn-back-complain{
-    position: absolute;
-    top: 14rem;
-    left: 2rem;
-    background-color: transparent;
-    border: none;
-    font-size: 46px;
-    color: var(--color-text-dark);
-    cursor: pointer;
-    z-index: 10;
-    transition: transform 0.3s ease;
+
+
+.btn-back-complain {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #ffb31b;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.3s ease;
+  padding: 0.5rem;
+}
+
+.btn-back-complain:hover {
+  transform: scale(1.1);
+}
+
+.complaint-header {
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+  background-color: rgba(4, 4, 4, 0.349);
 }
 
 .complaint-header h1 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
-  color: var(--color-primary);
+  color: #ffb31b;
   margin-bottom: 0.5rem;
+  line-height: 1.2;
 }
 
 .complaint-header p {
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.5;
   text-align: center;
-  color: #222;
-  margin-top: 0.5rem;
-  margin-bottom: 2rem;
+  color: #e3dfd6;
+  margin: 0.5rem 0 1.5rem 0;
 }
 
 .complaint-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 2rem;
-  margin: 2rem 1rem;
-  background-color: #6d7aee7e;
+  padding: 1.5rem;
+  margin: 0 0.5rem 1rem 0.5rem;
+  background-color: #fed39c6e;
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
   max-width: var(--max-width-form);
   box-sizing: border-box;
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .complaint-form {
-    margin: 3rem auto;
-  }
+  width: calc(100% - 1rem);
 }
 
 .complaint-form h2 {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   text-align: center;
   margin-bottom: 1rem;
-  color: #000;
+  color: #ffffff;
+  line-height: 1.2;
 }
 
 .complaint-form label {
   font-weight: 600;
-  color: #333;
-  margin-bottom: 0.2rem;
+  color: #fff;
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
 }
 
 .complaint-form input,
 .complaint-form textarea {
-  padding: 0.75rem;
+  padding: 0.8rem;
   font-size: 1rem;
   border: 1px solid var(--color-input-border);
   border-radius: 8px;
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--color-input-bg);
+  background-color: transparent;
   transition: border-color 0.2s ease;
+  min-height: 44px; /* Mejora accesibilidad táctil */
+}
+.complaint-form input::placeholder,
+.complaint-form textarea::placeholder{
+  color: #fff;
+}
+.complaint-form textarea {
+  min-height: 100px;
+  resize: vertical;
 }
 
 .complaint-form input:focus,
 .complaint-form textarea:focus {
-  border-color: var(--color-primary);
+  border-color: #fff;
   outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 249, 249, 0.578);
 }
 
 .complaint-form button {
-  background-color: var(--color-primary);
-  color: #fff;
+  color: #333;
   font-weight: bold;
   font-size: 1rem;
-  padding: 0.75rem;
+  padding: 1rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  min-height: 48px; /* Mejora accesibilidad táctil */
+  margin-top: 0.5rem;
+  background-color: transparent;
+  background-color: #fc9300;
+
+
 }
 
 .complaint-form button:hover {
-  background-color: var(--color-primary-dark);
+  border: none;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.complaint-form button:active {
+  transform: translateY(0);
 }
 
 .error-text {
   color: var(--color-error);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   text-align: center;
+  margin-top: 0.5rem;
 }
 
 .success-text {
   color: var(--color-success);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   text-align: center;
-  margin-top: -0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Media queries mejorados */
+@media (min-width: 480px) {
+  .complaint-page {
+    padding: 1.5rem 1rem;
+  }
+
+  .btn-back-complain {
+    top: 1.5rem;
+    left: 1.5rem;
+    font-size: 2.5rem;
+  }
+
+  .complaint-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .complaint-form {
+    padding: 2rem;
+    margin: 0 1rem 1.5rem 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .complaint-page {
+    padding: 2rem 1.5rem;
+  }
+
+  .btn-back-complain {
+    top: 2rem;
+    left: 2rem;
+    font-size: 3rem;
+  }
+
+  .complaint-header h1 {
+    font-size: 2rem;
+  }
+
+  .complaint-header p {
+    font-size: 1.1rem;
+  }
+
+  .complaint-form {
+    margin: 2rem auto;
+    padding: 2.5rem;
+  }
+
+  .complaint-form h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .complaint-page {
+    padding: 3rem 2rem;
+  }
+
+  .btn-back-complain {
+    top: 3rem;
+    left: 3rem;
+    font-size: 3.5rem;
+  }
+
+  .complaint-form {
+    margin: 3rem auto;
+    padding: 3rem;
+  }
+}
+
+/* Mejoras para pantallas muy pequeñas */
+@media (max-width: 360px) {
+  .complaint-page {
+    padding: 0.5rem 0.25rem;
+  }
+
+  .btn-back-complain {
+    top: 0.5rem;
+    left: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .complaint-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .complaint-header p {
+    font-size: 0.9rem;
+  }
+
+  .complaint-form {
+    padding: 1rem;
+    margin: 0 0.25rem 0.5rem 0.25rem;
+    gap: 0.75rem;
+  }
+
+  .complaint-form h2 {
+    font-size: 1.2rem;
+  }
+
+  .complaint-form input,
+  .complaint-form textarea {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .complaint-form button {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Orientación landscape en móviles */
+@media (max-height: 500px) and (orientation: landscape) {
+  .complaint-page {
+    padding: 0.5rem 1rem;
+  }
+
+  .btn-back-complain {
+    top: 0.5rem;
+    left: 1rem;
+    font-size: 2rem;
+  }
+
+  .complaint-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .complaint-header h1 {
+    font-size: 1.3rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .complaint-header p {
+    font-size: 0.9rem;
+    margin: 0.25rem 0 1rem 0;
+  }
+
+  .complaint-form {
+    padding: 1rem;
+    margin: 0 0.5rem 0.5rem 0.5rem;
+    gap: 0.75rem;
+  }
 }
