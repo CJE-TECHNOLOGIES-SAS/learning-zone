@@ -18,10 +18,7 @@ const CardCookies = () => {
             timestamp: new Date().toISOString(),
             version: '1.0'
         };
-
-        // Actualizar tanto el storage local como el contexto global
         authStorage.setCookieConsentGiven(consent);
-        setConsent(consent);
 
         setShowBanner(false);
     };
