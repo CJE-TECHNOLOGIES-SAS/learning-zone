@@ -4,11 +4,118 @@
 .container-home-course {
   padding: 20px;
   position: relative;
-  display: block; /* Permite posicionar elementos absolutos internamente */
+  display: block;
+  /* Permite posicionar elementos absolutos internamente */
   min-height: 90dvh;
   height: 100%;
-  overflow-x: hidden; /* Evita scroll horizontal */
-  overflow-y: auto;   /* Permite desplazamiento vertical */
+  overflow-x: hidden;
+  /* Evita scroll horizontal */
+  overflow-y: auto;
+  /* Permite desplazamiento vertical */
+  z-index: 0;
+}
+
+.container-animation-orb,
+.container-animation-Diploma,
+.container-animation-frasco,
+.container-animation-atom,
+.container-animation-atom2,
+.container-animation-lightbulb,
+.container-animation-abacus,
+.container-animation-microscope,
+.container-animation-horse,
+.container-animation-rocket,
+.container-animation-planet,
+.container-animation-helix,
+.container-animation-globe,
+.container-animation-Tessel,
+.container-animation-blackboard,
+.container-animation-erlenmeyer{
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.container-animation-blackboard{
+  top: 70%;
+  left: 5%;
+
+}
+.container-animation-erlenmeyer{
+  top: 40%;
+  left: 5%;
+
+}
+.container-animation-orb {
+  top: 10%;
+  left: 5%;
+}
+
+.container-animation-Diploma {
+  top: 20%;
+  right: 8%;
+}
+
+.container-animation-frasco {
+  bottom: 30%;
+  left: 10%;
+}
+
+.container-animation-atom2 {
+  bottom: 50%;
+  right: 14%;
+}
+
+.container-animation-atom {
+  top: 70%;
+  right: 19%;
+}
+
+.container-animation-lightbulb {
+  top: 50%;
+  right: 23%;
+}
+
+.container-animation-abacus {
+  top: 80%;
+  right: 12%;
+  ;
+}
+
+.container-animation-microscope {
+  top: 15%;
+  left: 12%;
+  ;
+}
+
+.container-animation-horse {
+  top: 85%;
+  left: 15%;
+}
+
+.container-animation-rocket {
+  top: 30%;
+  left: 20%;
+}
+
+.container-animation-planet {
+  top: 50%;
+  left: 20%;
+}
+
+.container-animation-helix {
+  top: 30%;
+  right: 12%;
+}
+
+.container-animation-globe {
+  top: 58%;
+  left: 60%;
+}
+
+.container-animation-Tessel {
+  top: 20%;
+  left: 60%;
 }
 
 /* ===============================
@@ -17,12 +124,14 @@
 .map-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 1450 / 2090; /* Mantiene la proporción del mapa */
+  aspect-ratio: 1450 / 2090;
+  /* Mantiene la proporción del mapa */
 }
 
 .path-svg-course {
   position: absolute;
-  inset: 0; /* top:0, left:0, right:0, bottom:0 */
+  inset: 0;
+  /* top:0, left:0, right:0, bottom:0 */
   width: 100%;
   height: 100%;
   z-index: 0;
@@ -38,7 +147,8 @@
    =============================== */
 .container-lessons-course {
   position: relative;
-  height: 900px; /* Ajustable dinámicamente según cantidad de lecciones */
+  height: 900px;
+  /* Ajustable dinámicamente según cantidad de lecciones */
 }
 
 /* ===============================
@@ -63,7 +173,8 @@
     Botón / Ícono central de lección
    =============================== */
 .btn-icon-lesson-course {
-  width: 64px;  /* Tamaño fijo para evitar saltos al cambiar íconos */
+  width: 64px;
+  /* Tamaño fijo para evitar saltos al cambiar íconos */
   height: 64px;
   display: flex;
   align-items: center;
