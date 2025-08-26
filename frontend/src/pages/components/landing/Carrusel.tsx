@@ -5,6 +5,7 @@ import imgIcon2 from "../../assets/Carrusel/img-ier-2.jpg";
 import imgIcon3 from "../../assets/Carrusel/img-ier-3.jpg";
 import imgIcon4 from "../../assets/Carrusel/img-ier-4.jpg";
 import "./styles/Carrusel.css";
+import { useNavigate } from "react-router-dom";
 
 const items = [
   {
@@ -37,6 +38,7 @@ export default function Carrusel() {
   const [current, setCurrent] = useState(0);
   const total = items.length;
   const listRef = useRef<HTMLUListElement>(null);
+  const navigate = useNavigate();
 
   const goTo = (idx: number) => {
     const newIndex = (idx + total) % total;
@@ -50,8 +52,29 @@ export default function Carrusel() {
     return () => clearInterval(interval);
   }, [current]);
 
+  const handleCickContinue =()=>{
+    navigate('/redirect')
+
+  }
+
   return (
     <section className="section-carrusel">
+      <section className="hero-landing">
+        <div className="hero-landing__content">
+          <h1 className="hero-landing__title">
+            Aprende, Crea <br />
+            Y Conquista El Mundo Digital
+          </h1>
+          <p className="hero-landing__subtitle">
+            Cursos interactivos, evaluaciones en tiempo real y herramientas para estudiantes y docentes.
+            Prepárate para el futuro, hoy.
+          </p>
+          <div className="hero-landing__ctas">
+            <a onClick={handleCickContinue} className="btn btn--primary">Comenzar ahora</a>
+            <a onClick={handleCickContinue} className="btn btn--ghost">Ver cursos</a>
+          </div>
+        </div>
+      </section>
       <div className="container-carrusel">
         <ul
           ref={listRef}

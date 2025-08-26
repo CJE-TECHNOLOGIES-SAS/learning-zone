@@ -30,8 +30,8 @@ export default function StepsToRegister() {
                 console.log(step);
             }}
             onFinalStepCompleted={() => console.log("All steps completed!")}
-            backButtonText="Previous"
-            nextButtonText="Next"
+            backButtonText="Atras"
+            nextButtonText="Siguiente"
             >
                 <Step>
                     <Magnet padding={50} disabled={false} magnetStrength={50}>
