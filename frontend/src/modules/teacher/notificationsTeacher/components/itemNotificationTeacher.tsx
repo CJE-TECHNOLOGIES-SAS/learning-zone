@@ -1,17 +1,11 @@
-// ✅ Importa el ícono de eliminar
 import { MdDelete } from "react-icons/md";
 import { useState } from "react";
 
-// ✅ Hook del profe (sin polling) para eliminar
-
-// ✅ Estilos (puedes reutilizar los del student o crear unos del teacher)
 import "../styles/NotificationItemTeacher.css";
 
-// ✅ Tipo de notificación (igual al payload que retorna el backend)
 import type { TNotification } from "../../../notifications/types/Notifications";
 import useNotificationsTeacher from "../hooks/useNotificationTeacher";
 
-// ✅ Props
 type TNotificationItemTeacherProps = {
   notification: TNotification;
 };

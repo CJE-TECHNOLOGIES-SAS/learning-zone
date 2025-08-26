@@ -159,7 +159,7 @@
     position: absolute;
     width: 300px;
     top: 4rem;
-    right: 16rem;
+    right: 22rem;
     padding: 2rem;
     gap: 14px;
     max-width: 520px;
@@ -195,10 +195,11 @@
 /* Mobile */
 @media (max-width: 480px) {
   .container-form-create-notification {
-    top: 0;
-    right: 18rem;
+    top: 10px;
+    right: 22rem;
     gap: 12px;
-    max-width: 360px;
+    max-width: 460px;
+
   }
   .title-create-notification {
     font-size: 1.5rem;
@@ -231,9 +232,11 @@
 /* Mobile muy pequeño */
 @media (max-width: 360px) {
   .container-form-create-notification {
+    top:260px;
+    right: 300px;
     padding: 1rem;
     gap: 10px;
-    max-width: 320px;
+    max-width: 3210px;
   }
   .title-create-notification {
     font-size: 1.35rem;
