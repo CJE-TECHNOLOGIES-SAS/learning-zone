@@ -1,0 +1,38 @@
+/* POPUP */
+.educational-confirm-popup {
+  background: #fff !important;
+  color: #111827 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,.2) !important;
+  padding: 1.5rem 1.5rem 1rem !important;
+}
+
+/* TÍTULO / CONTENIDO */
+.educational-confirm-title { font-weight:700 !important; font-size:1.3rem !important; margin-bottom:.5rem !important; }
+.educational-confirm-content { margin-top:.5rem !important; font-size:1rem !important; color:#4b5563 !important; }
+
+/* BOTONES */
+.educational-confirm-btn {
+  border: 0; border-radius: 8px; padding: 10px 20px; font-weight: 600;
+  font-size: .95rem; cursor: pointer; transition: all .2s ease;
+  margin: 0 .3rem; color: #fff; min-width: 100px; display: inline-flex; align-items:center; justify-content:center;
+}
+
+/* VARIANTES */
+.educational-confirm-primary { background:#3b82f6 !important; }
+.educational-confirm-primary:hover { background:#2563eb !important; }
+.educational-confirm-success { background:#22c55e !important; }
+.educational-confirm-success:hover { background:#16a34a !important; }
+.educational-confirm-warning { background:#f59e0b !important; color:#111827 !important; }
+.educational-confirm-warning:hover { background:#d97706 !important; color:#fff !important; }
+.educational-confirm-danger { background:#ef4444 !important; }
+.educational-confirm-danger:hover { background:#dc2626 !important; }
+.educational-confirm-neutral { background:#6b7280 !important; }
+.educational-confirm-neutral:hover { background:#4b5563 !important; }
+
+/* CANCELAR */
+.educational-confirm-cancel { background:#e5e7eb !important; color:#111827 !important; }
+.educational-confirm-cancel:hover { background:#d1d5db !important; }
+
+/* Layout de botones */
+.swal2-actions { gap:.5rem !important; justify-content:center !important; }
