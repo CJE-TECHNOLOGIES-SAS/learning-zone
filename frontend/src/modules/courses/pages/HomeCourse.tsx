@@ -17,7 +17,22 @@ import { educationalPalettes } from "../../../shared/theme/ColorPalettesCourses"
 
 import type { TCourse } from "../types/CourseStudent";
 import "../styles/HomeCourse.css";
-
+import Diploma from '../../../shared/animations/DiplomaAnimation'
+import Atom from '../../../shared/animations/AtomAnimation'
+import Frasco from '../../../shared/animations/Frasco'
+import Atom2 from '../../../shared/animations/Atom2Animation'
+import Globe from '../../../shared/animations/Globe'
+import LightBulb from '../../../shared/animations/LightBulb'
+import Planet from '../../../shared/animations/Planet'
+import Microscope from '../../../shared/animations/Microscope'
+import Helix from '../../../shared/animations/Helix'
+import Abacus from '../../../shared/animations/Abacus'
+import Horse from '../../../shared/animations/Horseshoe'
+import Rocket from '../../../shared/animations/Rocket'
+import Tassel from '../../../shared/animations/Tassel'
+import Blackboard from '../../../shared/animations/Blackboard'
+import Erlenmeyer from '../../../shared/animations/Erlenmeyer'
+import Adn from '../../../shared/animations/Adn'
 // ✅ GSAP (path + lecciones)
 import gsap from "gsap";
 
@@ -168,7 +183,8 @@ export default function CourseHomePage() {
       ref={containerRef}
       className="container-home-course"
       style={{ backgroundColor: palette.surface, color: palette.text }}
-    >
+      >
+
       <HeaderCourse
         key={idCourse}
         title={nameCourse}
@@ -176,8 +192,156 @@ export default function CourseHomePage() {
         palette={palette}
       />
 
+
       <div className="map-container">
         {/* SVG del camino */}
+
+    <div className="container-animation-Diploma">
+      <Diploma
+        hoverIntensity={0.5}
+        rotateOnHover={true}
+        hue={0}
+        forceHoverState={false}
+    />
+    </div>
+    
+    <div className="container-animation-Tassel">
+      <Tassel
+        hoverIntensity={0.5}
+        rotateOnHover={true}
+        hue={0}
+        forceHoverState={false}
+    />
+    </div>
+    
+    <div className="container-animation-frasco">
+      <Frasco
+      hoverIntensity={0.5}
+      rotateOnHover={true}
+      hue={0}
+      forceHoverState={false}
+      />
+      </div>
+
+      <div className="container-animation-erlenmeyer">
+      <Erlenmeyer
+      hoverIntensity={0.5}
+      rotateOnHover={true}
+      hue={0}
+      forceHoverState={false}
+      />
+      </div>
+
+
+      
+      <div className="container-animation-adn">
+      <Adn
+      hoverIntensity={0.5}
+      rotateOnHover={true}
+      hue={0}
+      forceHoverState={false}
+      />
+      </div>
+    
+    <div className="container-animation-lightbulb">
+      <LightBulb
+      hoverIntensity={0.5}
+      rotateOnHover={true}
+      hue={0}
+      forceHoverState={false}
+      />
+      </div>
+
+      <div className="container-animation-abacus">
+      <Abacus
+      hoverIntensity={0.5}
+      rotateOnHover={true}
+      hue={0}
+      forceHoverState={false}
+      />
+      </div>
+
+    <div className="container-animation-microscope">
+      <Microscope
+      hoverIntensity={0.5}
+      rotateOnHover={true}
+      hue={0}
+      forceHoverState={false}
+      />
+      </div>
+
+      <div className="container-animation-horse">
+      <Horse
+      hoverIntensity={0.5}
+      rotateOnHover={true}
+      hue={0}
+      forceHoverState={false}
+      />
+      </div>
+
+    <div className="container-animation-rocket">
+      <Rocket
+      hoverIntensity={0.5}
+      rotateOnHover={true}
+      hue={0}
+      forceHoverState={false}
+      />
+      </div>
+      
+      <div className="container-animation-planet">
+      <Planet
+      hoverIntensity={0.5}
+      rotateOnHover={true}
+      hue={0}
+      forceHoverState={false}
+      />
+      </div>
+
+<div className="container-animation-atom2">
+  <Atom2 
+  hoverIntensity={0.5}
+  rotateOnHover={true}
+  hue={0}
+  forceHoverState={false}
+  />
+  </div>
+
+<div className="container-animation-helix">
+  <Helix
+  hoverIntensity={0.5}
+  rotateOnHover={true}
+  hue={0}
+  forceHoverState={false}
+  />
+  </div>
+</div>
+
+<div className="container-animation-atom">
+  <Atom
+  hoverIntensity={0.5}
+  rotateOnHover={true}
+  hue={0}
+  forceHoverState={false}
+  />
+</div>
+
+<div className="container-animation-globe">
+  <Globe
+  hoverIntensity={0.5}
+  rotateOnHover={true}
+  hue={0}
+  forceHoverState={false}
+  />
+</div>
+
+<div className="container-animation-blackboard">
+  <Blackboard
+  hoverIntensity={0.5}
+  rotateOnHover={true}
+  hue={0}
+  forceHoverState={false}
+  />
+</div>
         <svg
           className="path-svg-course"
           viewBox="0 0 1450 2090"
@@ -201,10 +365,10 @@ export default function CourseHomePage() {
         {/* Botones de lecciones (mismo layout, ahora con hover animado) */}
         {visualLessons.map((lesson, i) => (
           <div
-            key={lesson.id}
-            title={lesson.name}
-            className="lesson-course"
-            style={{
+          key={lesson.id}
+          title={lesson.name}
+          className="lesson-course"
+          style={{
               top: `${lesson.position.top}%`,
               left: `${lesson.position.left}%`,
             }}
@@ -217,7 +381,7 @@ export default function CourseHomePage() {
                 );
               }
             }}
-          >
+            >
             <button
               className={`btn-icon-lesson-course ${
                 lesson.progressState === "complete"
@@ -246,6 +410,6 @@ export default function CourseHomePage() {
           </div>
         ))}
       </div>
-    </div>
+
   );
 }
