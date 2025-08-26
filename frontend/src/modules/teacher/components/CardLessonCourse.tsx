@@ -7,8 +7,8 @@ import toast from "react-hot-toast";
 import { FiEdit3 } from "react-icons/fi";
 import { MdOutlineDelete } from "react-icons/md";
 import { authStorage } from "../../../shared/Utils/authStorage";
-import Swal from "sweetalert2";
 import '../styles/CardLessonCourse.css';
+import { windowModalDelete } from "../../../shared/animations/WindowModalDelete";
 
 type CardLessonCourseProps = {
   idLesson: TLessonTeacherResponse['id'];
@@ -33,49 +33,12 @@ export default function CardLessonCourse({ idCourse, idLesson, name }: CardLesso
   };
 
   const handleClickDelete = async () => {
-    const result = await Swal.fire({
-      title: "¿Eliminar lección?",
-      text: "Esta acción no se puede deshacer",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Sí, eliminar",
-      cancelButtonText: "Cancelar",
-      reverseButtons: true,
-      focusCancel: true,
 
-      // Estilos personalizados
-      customClass: {
-        popup: "educational-confirm-popup",
-        title: "educational-confirm-title",
-        content: "educational-confirm-content",
-        confirmButton: "educational-confirm-delete",
-        cancelButton: "educational-confirm-cancel",
-      },
 
-      backdrop: `
-        rgba(30, 58, 138, 0.4)
-        url("/images/nyan-cat.gif")
-        left top
-        no-repeat
-      `,
-
-      showClass: {
-        popup: "animate__animated animate__zoomIn animate__faster",
-      },
-      hideClass: {
-        popup: "animate__animated animate__zoomOut animate__faster",
-      },
-
-      buttonsStyling: false,
-      timer: 15000,
-      timerProgressBar: true,
-      allowOutsideClick: false,
-      allowEscapeKey: true,
-      stopKeydownPropagation: false,
-    });
+    const result = await windowModalDelete({title:'¿Eliminar lección?', text:'Esta acción no se puede deshacer'})
 
     // Si cancela o rechaza, cortamos el flujo
-    if (!result.isConfirmed) {
+    if (!result) {
       return;
     }
 
