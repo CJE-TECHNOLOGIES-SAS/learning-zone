@@ -35,7 +35,7 @@ oauth2_scheme_register = OAuth2PasswordBearer(
 
 
 def encode_access_token(
-    payload: dict, exp_time: int = 3600, is_teacher: bool = False
+    payload: dict, exp_time: int = 604800, is_teacher: bool = False
 ) -> str:
     """
     Codifica un token de acceso.

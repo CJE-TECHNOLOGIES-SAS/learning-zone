@@ -21,7 +21,7 @@ from .service import TeacherServices
 oauth2_scheme_register = OAuth2PasswordBearer(tokenUrl="api/v1/teacher/verify_email")
 
 
-def encode_access_token(payload: dict, exp_time: int = 3600) -> str:
+def encode_access_token(payload: dict, exp_time: int = 604800) -> str:
     """
     Codifica un token de acceso para profesor.
 
