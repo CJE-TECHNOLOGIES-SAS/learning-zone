@@ -15,6 +15,7 @@ import GetCourseTeacherAPI from "../services/Course/GetCourseTeacher.server";
 import "../styles/CourseManagement.css";
 import BtnArrowInfinite from "../../../shared/animations/ButtonArrowInfinitive";
 import { COURSE_CATEGORY_LABELS } from "../../../shared/constant/CategoriesCourses";
+import { windowModalDelete } from "../../../shared/animations/WindowModalDelete";
 
 export default function CourseManagement() {
   const {
@@ -101,10 +102,10 @@ export default function CourseManagement() {
   };
 
   const handleClickDeleteCourse = async () => {
-    if (!window.confirm("¿Estás seguro de que quieres eliminar este curso?")) {
+    const result = await windowModalDelete({title:'¿Eliminar Curso?', text:'Esta acción no se puede deshacer'})
+    if (!result) {
       return;
     }
-
     const response = await DeleteCourseAPI(idCourse);
     toast.success(response.message || "Curso eliminado correctamente");
 

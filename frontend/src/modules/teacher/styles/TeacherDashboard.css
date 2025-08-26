@@ -5,7 +5,6 @@
   align-items: center;
   width: 100%;
   padding: 8rem;
-  border-radius: 30px;
   text-align: center;
 
   background-image: linear-gradient(31deg , #fffffd, #0766ffb1);
@@ -95,6 +94,9 @@
   align-items: center;
   gap: var(--spacing-md);
   width: 100%;
+  background-color: rgba(235, 244, 243, 0.447);
+  backdrop-filter: blur(5px);
+  padding: 4rem;
 }
 
 /* Título de la sección "Mis Cursos" */
@@ -135,7 +137,6 @@
 
   .btn-add-course {
     font-size: 1.6rem;
-    padding: 0.5rem 1rem;
   }
 
   .container-courses-teacher {
@@ -207,9 +208,10 @@
   }
 
   .btn-add-course {
-    font-size: 1.2rem;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    margin-top: var(--spacing-sm);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 2.6rem;
+    padding: var(--spacing-xs) var(--spacing-xs);
   }
 
   .title-container-courses-teacher {
