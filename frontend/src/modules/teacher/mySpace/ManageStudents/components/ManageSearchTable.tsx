@@ -6,6 +6,8 @@ import { FcFilledFilter } from "react-icons/fc";
 import OpcsFilter from './OpcsFilter';
 import { authStorage } from '../../../../../shared/Utils/authStorage';
 import { ExportAndDownloadStudentsExcel } from '../services/GenerateExportExcel.server';
+import toast from 'react-hot-toast';
+import { windowModalDelete } from '../../../../../shared/animations/WindowModalDelete';
 export default function ManageSearchTable() {
   const [searchValue, setSearchValue] = useState('');
   const {deleteAllStudentRegister, loadInfoStudentRegister} = useManageStudents()
@@ -21,10 +23,20 @@ export default function ManageSearchTable() {
   };
 
   const handleClearAll =async () => {
-    console.log('Eliminar todos los registros');
-    alert('ten cuidado, incluir logica de estas seguro?')
-    await deleteAllStudentRegister()
-    // Aquí iría tu lógica para eliminar todos los registros
+         const result = await windowModalDelete({title:'¿Eliminación Total?', text:'Esta acción no se puede deshacer'})
+         if (!result) {
+           return;
+         }
+        try {
+
+          await deleteAllStudentRegister()
+
+          // Recargar lecciones del curso
+          toast.success("Estudiantes eliminados correctamente");
+        } catch (error) {
+          console.error("Error al eliminar Estudiante :", error);
+          toast.error("Error al eliminar la Estudiante");
+        }
   };
   const exportToExcel = async () => {
     const courseFilterId = authStorage.getFilterCourse(); // obtiene id de curso

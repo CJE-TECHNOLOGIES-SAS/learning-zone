@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 export default function RegisterStudent() {
     const [numberId, setNumberId] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
-    const [loading, setLoading] = useState(false);
+    const [loading] = useState(false);
      const {registerStudent}  = useManageStudents()
 
 

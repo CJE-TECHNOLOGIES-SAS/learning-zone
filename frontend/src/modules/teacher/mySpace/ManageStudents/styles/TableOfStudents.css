@@ -5,6 +5,7 @@
 	border-radius: 16px;
 	box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
 	max-height: 40dvh;
+  max-width: 140dvh;
 	overflow-y: auto;
 	overflow-x: auto;
 	scrollbar-width: thin;
@@ -180,11 +181,19 @@
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+  .container-table-students-registers{
+    max-width: 110dvh;
+  }
   .edit-form { padding: 1.5rem; }
   .edit-title { font-size: 1.45rem; }
 }
 
 @media (max-width: 480px) {
+    .container-table-students-registers{
+    max-width: 110dvh;
+    background-color: red;
+
+  }
   .edit-form { padding: 1rem; }
   .edit-title { font-size: 1.3rem; }
   .edit-buttons { grid-template-columns: 1fr; }
@@ -193,8 +202,8 @@
 
 /* Extra small devices */
 @media (max-width: 480px) {
-  .container-table-students-registers {
-    padding: 0.75rem;
+  .container-table-students-registers{
+    max-width: 110dvh;
   }
 
   .students-table thead th,

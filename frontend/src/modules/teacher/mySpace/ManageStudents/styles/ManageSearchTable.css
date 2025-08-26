@@ -1,4 +1,4 @@
-/* ===== CONTENEDOR GENERAL ===== */
+/* ===== BASE (mobile-first) ===== */
 .container-control-table {
   width: 100%;
   display: flex;
@@ -9,10 +9,9 @@
   position: relative;
 }
 
-/* ===== FORM ===== */
 .form-search-table {
   width: 100%;
-  max-width: 720px;
+  max-width: 100%;          /* en mobile ocupa todo el ancho disponible */
   display: flex;
   align-items: flex-end;
   gap: 12px;
@@ -22,7 +21,7 @@
 
 .container-label-input-search {
   position: relative;
-  flex: 1 1 22px;
+  flex: 1 1 160px;          /* base: cada input puede crecer y encoger */
   min-width: 160px;
 }
 
@@ -58,7 +57,7 @@
   transform-origin: left top;
 }
 
-/* Flota si hay foco o si el placeholder no está mostrado (hay contenido) */
+/* Flotante */
 .container-label-input-search input:focus + label,
 .container-label-input-search input:not(:placeholder-shown) + label {
   color: var(--color-text-light);
@@ -89,7 +88,6 @@
   height: 46px;
 }
 
-/* Buscar: azul */
 .btn-search {
   background-image: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   color: #fff;
@@ -100,12 +98,13 @@
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(37, 99, 235, 0.25);
 }
+
 .container-opc-fil-delete{
   display: flex;
   align-items: center;
   gap: 12px;
 }
-/* Eliminar todo: rojo */
+
 .btn-delete-all {
   background-image: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   color: #fff;
@@ -117,7 +116,6 @@
   box-shadow: 0 5px 15px rgba(220, 38, 38, 0.25);
 }
 
-/* Disabled states */
 .btn-search:disabled,
 .btn-delete-all:disabled {
   opacity: 0.6;
@@ -125,68 +123,99 @@
   transform: none;
   box-shadow: none;
 }
+
 .btn-filter{
   font-size: 36px;
   background-color: transparent;
 }
+.btn-filter:hover{
+  background-position: right center;
+  transform: translateY(-2px);
+}
+
 .btn-export{
   background-image: linear-gradient(135deg, #06293d 0%, #3892d6 100%);
   color: #fff;
   background-size: 200% auto;
   padding: .6rem;
   border-radius: 12px;
-
 }
 .btn-export:hover{
   font-size: 17px;
   transition: .3s ease-in-out;
   background-image: linear-gradient(135deg, #3892d6 0%, #06293d 100%);
-
-}
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .form-search-table {
-    max-width: 560px;
-    gap: 10px;
-  }
-
-  .container-label-input-search {
-    flex: 1 1 100%;
-    min-width: 100%;
-  }
-
-  .btn-search,
-  .btn-delete-all {
-    flex: 1 1 auto;
-  }
 }
 
-@media (max-width: 480px) {
+/* ===== BREAKPOINTS ===== */
+
+/* ≥480px */
+@media (min-width: 480px) {
   .form-search-table {
     max-width: 420px;
-    gap: 8px;
+  }
+}
+
+/* ≥700px (lo que pedías “mayor de 700”) */
+@media (min-width: 700px) {
+  .form-search-table {
+    max-width: 160px;         /* ya no ocupa todo el ancho */
   }
 
+  .container-opc-fil-delete {
+    flex-direction: row;      /* vuelve horizontal los botones */
+  }
+}
+
+/* ≥1024px */
+@media (min-width: 1024px) {
+  .form-search-table {
+    max-width: 720px;
+  }
+}
+
+/* ≤768px (solo lo necesario en downscale) */
+@media (max-width: 768px) {
+  .form-search-table {
+    max-width: 260px;
+    gap: 10px;
+  }
+  .container-label-input-search {
+    flex: 1 1 100%;
+    min-width: 70%;
+  }
+  .container-opc-fil-delete{
+    flex-direction: column;
+  }
+}
+
+/* ≤480px */
+@media (max-width: 480px) {
+  .form-search-table {
+    max-width: 240px;
+    gap: 8px;
+  }
+  .container-opc-fil-delete{
+    flex-direction: column;
+  }
   .btn-search,
   .btn-delete-all {
     width: 100%;
   }
 }
 
-/* Extra small devices */
+/* ≤360px */
 @media (max-width: 360px) {
   .form-search-table {
-    max-width: 320px;
+    max-width: 120px;
     gap: 6px;
   }
-
   .container-label-input-search input {
-    padding: 12px 8px 4px 8px;
     font-size: 0.95rem;
   }
-
   .btn-search,
-  .btn-delete-all {
+  .btn-delete-all,
+  .btn-export,
+  .btn-filter {
     height: 42px;
     font-size: 13px;
   }

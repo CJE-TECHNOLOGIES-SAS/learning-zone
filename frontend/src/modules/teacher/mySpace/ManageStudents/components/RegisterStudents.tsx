@@ -48,7 +48,7 @@ export default function RegisterStudents({onToggleOpcRegisterStudent}:Props) {
         await registerStudentsFile(selectedFile!);
         onToggleOpcRegisterStudent()
         setLoading(true)
-        toast.success('Nros Identificaciones registrados exitosamente')
+        toast.success("Identificaciones Registrados Exitosamente");
 
 
     };

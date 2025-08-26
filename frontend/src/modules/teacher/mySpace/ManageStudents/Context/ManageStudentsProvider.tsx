@@ -88,7 +88,6 @@ export const ManageStudentsProvider = ({ children }: Props) => {
   const loadInfoStudentRegister = async (id: TStudentRegisterResponse["id"]) => {
     try {
       const item = await GetSingleStudentAPI(id);
-      console.log('El que me trae el backend',item)
       item.color =true
       // Filtrar duplicados antes de agregar el nuevo item
       setInfoRegisterStudents((prev) => {
@@ -112,7 +111,7 @@ export const ManageStudentsProvider = ({ children }: Props) => {
       const id_course = idCourse
       const students = await GetInfoRegisterStudentsByCourseAPI(id_course);
       if(students.length === 0){
-        toast.success('No hay estudiantes registrados aun')
+        toast.error('No hay estudiantes registrados aun')
         return
       }
       authStorage.setFilterCourse(idCourse)
@@ -147,7 +146,6 @@ export const ManageStudentsProvider = ({ children }: Props) => {
       const res = await RegisterStudentsAPI(file);
       // Compatibilidad: si retorna status (200) o solo message
       if ((typeof res === "number" && res === 200) || typeof res === "string" || typeof res === "object") {
-        toast.success("Identificaciones Registrados Exitosamente");
         await refreshInfoStudentRegister();
         return;
       }
@@ -182,7 +180,6 @@ export const ManageStudentsProvider = ({ children }: Props) => {
     try {
       const res = await DeleteIdentificationNumberAPI(id);
       if (res?.status === 200 || typeof res?.message === "string") {
-        toast.success("Identificación eliminada");
         await refreshInfoStudentRegister();
         return;
       }
@@ -199,7 +196,6 @@ export const ManageStudentsProvider = ({ children }: Props) => {
       const res = await DeleteIdentificationNumberAPI();
       if (res?.status === 200 || typeof res?.message === "string") {
         await refreshInfoStudentRegister();
-        toast.success("Identificaciones eliminadas");
         return;
       }
       await refreshInfoStudentRegister();
