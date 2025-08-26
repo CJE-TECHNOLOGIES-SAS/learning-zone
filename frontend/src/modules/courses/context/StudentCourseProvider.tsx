@@ -176,7 +176,6 @@ export const StudentCourseProvider = ({ children }: Props) => {
       if (token) {
         // Limpiar cache de cursos antes de solicitar nuevos datos
         authStorage.removeCoursesStudent();
-
         const dataCourses = await GetCoursesAPI();
         authStorage.setCoursesStudent(dataCourses);
         setCourses(dataCourses);
