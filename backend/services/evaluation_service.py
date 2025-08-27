@@ -405,7 +405,7 @@ class EvaluationService:
                     f"ValueError al convertir a int: '{porcentaje_texto}' para pregunta: '{question}'"
                 )
 
-            aprobado = porcentaje >= 70  # Umbral de aprobación (ajustable)
+            aprobado = porcentaje >= 65  # Umbral de aprobación (ajustable)
 
             return {
                 "porcentaje_correcto": float(
