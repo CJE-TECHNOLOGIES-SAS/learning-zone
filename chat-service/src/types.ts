@@ -29,6 +29,12 @@ export type TUpdateDelete ={
   text:TComment['text']
 }
 
+// 🚫 NUEVO: Tipo para comentarios bloqueados por contenido inapropiado
+export type TCommentBlocked = {
+  message: string;
+  originalText: string;
+  timestamp: string;
+}
 
 export type TIStudentsConnect ={
     id:number

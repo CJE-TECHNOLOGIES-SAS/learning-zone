@@ -7,6 +7,39 @@ import { TComment, TCommentDelete, TCommentSend, TUpdateComment } from './types'
 
 dotenv.config();
 
+// 🚫 FILTRO DE PALABRAS PROHIBIDAS
+// Lista de palabras que no se permiten en el chat
+const BAD_WORDS = [
+  "groseria1", "groseria2", "tonto", "idiota", "estupido", "imbecil",
+  "pendejo", "hijo de puta", "puta", "mierda", "carajo", "coño",
+  "verga", "pendeja", "huevon", "huevona", "gilipollas", "cabron",
+  "cabrona", "malparido", "malparida", "hijueputa", "gonorrea",
+  "marica", "maricon", "maricona", "lesbiana", "gay", "puto",
+  "puta", "perra", "perro", "zorra", "zorro", "bastardo", "bastarda"
+];
+
+/**
+ * Función que sanitiza un mensaje detectando palabras prohibidas
+ * @param message - El mensaje a verificar
+ * @returns El mensaje sanitizado o null si contiene palabras prohibidas
+ */
+function sanitizeMessage(message: string): string | null {
+  // Convertimos todo a minúsculas para comparar
+  const lowerMessage = message.toLowerCase();
+
+  // Verificamos si contiene alguna palabra prohibida
+  for (const badWord of BAD_WORDS) {
+    // Usamos regex para buscar la palabra exacta (con límites de palabra)
+    const regex = new RegExp(`\\b${badWord}\\b`, 'gi');
+    if (regex.test(lowerMessage)) {
+      console.log(`🚫 Mensaje bloqueado por palabra prohibida: "${badWord}"`);
+      return null; // Bloquear el mensaje completamente
+    }
+  }
+
+  return message; // Mensaje limpio, permitir
+}
+
 type TCommentResponse = {
   id: TComment['id'];
   name_student: TComment['nameStudent'];
@@ -98,10 +131,27 @@ export const registerSocketHandlers = (io: Server) => {
         return;
       }
 
+      // 🚫 FILTRAR MENSAJE ANTES DE ENVIARLO
+      const sanitizedText = sanitizeMessage(text);
+      if (sanitizedText === null) {
+        // Mensaje bloqueado por contenido inapropiado
+        console.log(`🚫 Mensaje bloqueado: "${text}"`);
+
+        // Enviamos un mensaje especial al frontend indicando que fue bloqueado
+        socket.emit('commentBlocked', {
+          message: 'Comentario eliminado por contenido inapropiado',
+          originalText: text,
+          timestamp: new Date().toISOString()
+        });
+
+        // NO enviamos el mensaje al backend, solo notificamos al usuario
+        return;
+      }
+
       try {
         const res = await api.post<TNewCommentResponse>(
           '/api/v1/comments',
-          { text, parent_id: parentId, course_id: courseId },
+          { text: sanitizedText, parent_id: parentId, course_id: courseId },
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
@@ -164,8 +214,25 @@ export const registerSocketHandlers = (io: Server) => {
         return;
       }
 
+      // 🚫 FILTRAR MENSAJE ANTES DE ACTUALIZARLO
+      const sanitizedText = sanitizeMessage(text);
+      if (sanitizedText === null) {
+        // Mensaje bloqueado por contenido inapropiado
+        console.log(`🚫 Actualización bloqueada: "${text}"`);
+
+        // Enviamos un mensaje especial al frontend indicando que fue bloqueado
+        socket.emit('commentBlocked', {
+          message: 'Comentario eliminado por contenido inapropiado',
+          originalText: text,
+          timestamp: new Date().toISOString()
+        });
+
+        // NO enviamos la actualización al backend, solo notificamos al usuario
+        return;
+      }
+
       try {
-        const res = await updateCommentRequest(idComment, idCourse, text, token);
+        const res = await updateCommentRequest(idComment, idCourse, sanitizedText, token);
 
         const comment: TComment = {
           id: res.data.comment.id,
