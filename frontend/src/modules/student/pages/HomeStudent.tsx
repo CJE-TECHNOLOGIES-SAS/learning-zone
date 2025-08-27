@@ -130,7 +130,7 @@ export default function HomeStudent() {
           </p>
           {/* Botón de categorías (misma UX que en AuthNavbar/TeacherDashboard) */}
           <button
-          style={{'color':'#000'}}
+          style={{'color':'#fff', 'zIndex':33}}
             ref={filterButtonRef}
             className="icon-filter-categories"
             onClick={() => setViewCategories((v) => !v)}

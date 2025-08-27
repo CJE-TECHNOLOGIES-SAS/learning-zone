@@ -1,19 +1,29 @@
 /* ===== HOME DASHBOARD ===== */
-.container-home-user {
+.container-home-user { display: flex; flex-direction: column; align-items: center; text-align: center; padding: var(--spacing-md); flex: 1; background-image: url("https://res.cloudinary.com/dhznpt8rr/image/upload/v1756310863/bacgroundHomeStudent_iokfmo.png"); background-position: center center; background-repeat: no-repeat; background-size: cover; min-height: 100dvh; }
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+/* 🎨 Overlay negro degradado a los lados */
+.container-home-user::before {
+  content: "";
+  position: absolute;
+  inset: 0;
 
-  padding: var(--spacing-md);
-  flex: 1;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100dvh;
+  background: linear-gradient(
+    to right,
+    rgba(178, 34, 34, 0.104) 0%,    /* negro fuerte a la izquierda */
+    rgba(0, 0, 0, 0) 15%,   /* empieza a suavizar */
+    rgba(0, 0, 0, 0.559) 40%,     /* centro limpio */
+    rgba(0, 0, 0, 0.559) 60%,     /* centro limpio */
+    rgba(255, 196, 196, 0.04) 85%,   /* vuelve opacidad */
+    rgba(254, 183, 183, 0.082) 100%   /* negro fuerte a la derecha */
+  );
 
+  pointer-events: none;
 }
+
+.container-home-user > * {
+}
+
+
 .background-style{
   max-height: 500%;
   height: 154%;

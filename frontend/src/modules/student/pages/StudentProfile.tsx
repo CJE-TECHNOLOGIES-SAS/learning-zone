@@ -25,7 +25,7 @@ export default function StudentProfile() {
   return (
     /* Reemplazar campos por lo del backend */
     <div className="container-profile-user">
-        <h2 className="title-profile-user">Que te trae por aqui {user?.name}</h2>
+        <h2 className="title-profile-user">¿ Que te trae por aqui {user?.name} ?</h2>
         <div className="container-about-user">
             <section className="section-progress">
               <h2 className="title-progress">Proceso</h2>
