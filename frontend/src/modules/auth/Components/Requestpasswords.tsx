@@ -4,6 +4,7 @@ import { authStorage } from '../../../shared/Utils/authStorage';
 import useRecoverPassword from '../Hooks/useRecoverPassword';
 import '../Styles/RequestPassword.css'
 import toast from 'react-hot-toast';
+import { IoArrowBackCircleSharp } from 'react-icons/io5';
 
 export default function Requestpasswords() {
   const {
@@ -13,6 +14,7 @@ export default function Requestpasswords() {
     setConfirmPassword,
     errors,
     handleSubmitRequestPasswords,
+    loading
   } = useRecoverPassword();
 
   const handleBtnNavigate = useNavigationHandler();
@@ -27,6 +29,15 @@ useEffect(() => {
 
   return (
     <form className='form-password-request' onSubmit={handleSubmitRequestPasswords}>
+    {/* Botón de regreso */}
+    <button
+      type="button"
+      className="btn-back-password-request"
+      onClick={() => handleBtnNavigate('/')}
+    >
+      <IoArrowBackCircleSharp />
+    </button>
+
       <h2 className='title-request-password'>Ingresa tu nueva contraseña</h2>
       <div className="container-label-input-p">
         <input
@@ -52,7 +63,12 @@ useEffect(() => {
         {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
       </div>
 
-      <input type="submit" value="Confirmar" className="btn-confirm-request" />
+       <button
+            className={`btn-confirm-request`}
+            type="submit"
+            disabled={loading}>
+            {loading ? 'Verificando…' :'Verificar'}
+          </button>
     </form>
   );
 }

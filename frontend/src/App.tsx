@@ -24,7 +24,7 @@ function App() {
           position="top-center"
           reverseOrder={false}
           containerStyle={{
-            top: '130px', // Ajusta este valor (ej. 50px, 80px, 100px) para moverlo más abajo
+            top: '50px', // Ajusta este valor (ej. 50px, 80px, 100px) para moverlo más abajo
           }}
           toastOptions={{
             // Duración por defecto para todos los toasts (4 segundos para que se aprecie el diseño)

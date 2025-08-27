@@ -13,6 +13,24 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
+
+.btn-back-email-request{
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #ffffff;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.3s ease;
+  padding: .1rem;
+}
+
+.btn-back-email-request:hover {
+  transform: scale(1.1);
+}
 .title-Request-email{
     color: #fff;
     font-size: 2rem;
@@ -46,7 +64,10 @@
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-
+.btn-email-verify:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
 /* ===== RESPONSIVE BREAKPOINTS ===== */
 
 /* Tablet (768px y menor) */

@@ -55,8 +55,13 @@ useEffect(() => {
             onChange={(e)=>{setNIdentification(Number(e.target.value))}}/>
             <label htmlFor="nIdentification">N Identificacion</label>
         </div>
-        <input type="submit" value={'Verify'}  className='btn-verify-register'/>
-        <CircleLoader color="#fff" loading={loading}/>
+        <button
+            className={`btn-verify-register`}
+            type="submit"
+            disabled={loading}>
+            {loading ? 'Verificando…' :'Verificar'}
+        </button>
+        {loading && <CircleLoader color="#fff" loading={loading}/>}
       </form>
       :
       <>
@@ -121,7 +126,13 @@ useEffect(() => {
                 {showPassword ? <GrView /> : <GrFormViewHide />}
               </span> */}
             </div>
-            <input type="submit" value={'Register'} className='btn-verify-register' />
+            <button
+                className={`btn-verify-register`}
+                type="submit"
+                disabled={loading}>
+                {loading ? 'Registrando...' :'Registrar'}
+            </button>
+            {loading && <CircleLoader color="#fff"  loading={loading}/>}
           </form>
 
         </div>

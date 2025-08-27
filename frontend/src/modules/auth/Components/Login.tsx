@@ -3,6 +3,7 @@ import '../Styles/Login.css'; // Asegúrate de que este archivo exista
 /* import { GrView } from 'react-icons/gr';
 import { GrFormViewHide } from 'react-icons/gr'; */
 import useFormLogin from '../Hooks/useFormLogin';
+import { CircleLoader } from 'react-spinners';
 
 export default function Login() {
   const {email,
@@ -14,7 +15,8 @@ export default function Login() {
       /* togglePasswordVisibility, */
       handleSubmitLogin,
       errors,
-      viewSucessMessage
+      viewSucessMessage,
+      loading
     } = useFormLogin()
 
   return (
@@ -99,9 +101,16 @@ export default function Login() {
           </span> */}
         </div>
         <p className='paragraph-forgot-a' onClick={()=>handleBtnNavigate('/emailNewPassword')}>Forgot password</p>
-        <input className='btn-login' type="submit" value={'Login'} />
+        <button
+          className={`btn-login`}
+          type="submit"
+          disabled={loading}>
+          {loading ? 'Login...' :'Login'}
+        </button>
         <p onClick={()=>handleBtnNavigate('/register')} className='paragraph-create-account'>Don´t have an Account <a>Register</a></p>
         <a onClick={()=>handleBtnNavigate('/sitePolicies')}  className='paragraph-policies-login'>Términos y condiciones Política de Privacidad</a>
+          {loading && <CircleLoader color="#fff"  loading={loading}/>}
+
       </form>
 
 

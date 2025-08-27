@@ -12,6 +12,7 @@ export default function RequestEmail() {
         errors,
         viewSucessMessage,
         handleSubmitRequestEmail,
+        loading
   } = useRecoverPassword();
   const handleBtnNavigate = useNavigationHandler();
 
@@ -51,7 +52,12 @@ export default function RequestEmail() {
             <label htmlFor="email">Email</label>
             {errors.email && <span className="error">{errors.email}</span>}
         </div>
-        <input className='btn-email-verify' type="submit" value={'Verificar'} />
+          <button
+            className={`btn-email-verify ${loading ? 'is-loading' : ''}`}
+            type="submit"
+            disabled={loading}>
+            {loading ? 'Verificando…' :'Verificar'}
+          </button>
 
     </form>
   )
