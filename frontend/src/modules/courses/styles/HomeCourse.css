@@ -13,6 +13,36 @@
   overflow-y: auto;
   /* Permite desplazamiento vertical */
   z-index: 0;
+
+  background:
+    /* banda superior (oscura → clara) */
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,0.32) 0%,
+      rgba(0,0,0,0.16) 20%,
+      rgba(255,255,255,0.08) 55%,
+      rgba(0,0,0,0.12) 100%
+    ),
+    /* viñetas laterales */
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,0.22) 0%,
+      transparent 22%,
+      transparent 78%,
+      rgba(0,0,0,0.22) 100%
+    ),
+    /* diagonal sutil para profundidad */
+    linear-gradient(
+      120deg,
+      rgba(255,255,255,0.10) 0%,
+      rgba(0,0,0,0.14) 65%,
+      rgba(0,0,0,0.18) 100%
+    ),
+    /* base: tu variable del frontend */
+    var(--surface);
+
+  /* mezcla para que los tonos se integren con --surface */
+  background-blend-mode: overlay, multiply, soft-light, normal;
 }
 
 .container-animation-orb,

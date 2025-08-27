@@ -3,7 +3,8 @@ import { getSocket } from './socket';
 import Comment from './comment';
 import CommentForm from './commentForm';
 import UserList from './userList';
-import type { TComment, TStudentAllComents } from './types';
+import BlockedComment from './BlockedComment';
+import type { TComment, TStudentAllComents, TCommentBlocked } from './types';
 import '../comments/styles/commentPage.css';
 import { authStorage } from '../../../shared/Utils/authStorage';
 import type { TStudent } from '../../types/User';
@@ -26,6 +27,9 @@ export default function CommentPage({ courseId, nameCourse, palette }: CommentPa
   const [allStudents, setAllStudents] = useState<TStudentAllComents[]>([]);
   const [listStudentsConnects, setListStudentsConnects] = useState<TStudent['id'][]>([]);
   const [openUpdateFormId, setOpenUpdateFormId] = useState<number | null>(null);
+
+  // 🚫 NUEVO: Estado para comentarios bloqueados
+  const [blockedComments, setBlockedComments] = useState<TCommentBlocked[]>([]);
 
   const student = authStorage.getUser();
   const socket = getSocket();
@@ -75,6 +79,15 @@ export default function CommentPage({ courseId, nameCourse, palette }: CommentPa
     socket.on('commentSuccess', (d: { message: string }) => toast.success(d.message));
     socket.on('commentError', (d: { message: string }) => toast.error(d.message));
 
+    // 🚫 NUEVO: Listener para comentarios bloqueados por contenido inapropiado
+    socket.on('commentBlocked', (blockedData: TCommentBlocked) => {
+      toast.error(blockedData.message);
+      console.log('🚫 Comentario bloqueado:', blockedData.originalText);
+
+      // Agregar el comentario bloqueado al estado para mostrarlo en la UI
+      setBlockedComments(prev => [...prev, blockedData]);
+    });
+
     // Limpieza de listeners
     return () => {
       socket.off('commentList');
@@ -83,6 +96,7 @@ export default function CommentPage({ courseId, nameCourse, palette }: CommentPa
       socket.off('commentUpdated');
       socket.off('commentSuccess');
       socket.off('commentError');
+      socket.off('commentBlocked');
     };
   }, [student?.name, courseId]);
 
@@ -219,6 +233,16 @@ export default function CommentPage({ courseId, nameCourse, palette }: CommentPa
             // overflowY: 'auto',
           }}
         >
+          {/* 🚫 NUEVO: Mostrar comentarios bloqueados primero */}
+          {blockedComments.map((blockedComment, index) => (
+            <BlockedComment
+              key={`blocked-${index}`}
+              timestamp={blockedComment.timestamp}
+              userName={student?.name || 'Usuario'}
+            />
+          ))}
+
+          {/* Comentarios normales */}
           {comments
             .filter(c => c.parentId === null)
             .map(c => (

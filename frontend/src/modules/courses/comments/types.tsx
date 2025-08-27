@@ -40,3 +40,10 @@ export type TStudentAllComents ={
     prefixProfile: string; // Campo útil para mostrar iniciales, títulos o avatar textual
     stateConnect: boolean
 };
+
+// 🚫 NUEVO: Tipo para comentarios bloqueados por contenido inapropiado
+export type TCommentBlocked = {
+  message: string;
+  originalText: string;
+  timestamp: string;
+};

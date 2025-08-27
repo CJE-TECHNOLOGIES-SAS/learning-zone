@@ -69,6 +69,7 @@ const lessonsPositions = [
 function generateSmoothPath(points: { left: number; top: number }[]): string {
   if (points.length < 2) return "";
 
+
   const scaleX = 1450 / 100;
   const scaleY = 2090 / 100;
 
@@ -92,7 +93,7 @@ function generateSmoothPath(points: { left: number; top: number }[]): string {
 
 export default function CourseHomePage() {
   const { lessons, renderContent, loadLessonsCourse, setPalette, setLessons } =
-    useStudentCourseContext();
+  useStudentCourseContext();
   const { id } = useParams();
   const idCourse = Number(id);
 
@@ -130,6 +131,7 @@ export default function CourseHomePage() {
   // ✅ Animación del path (draw-on) al montar
   useEffect(() => {
     if (!pathRef.current) return;
+
 
     const length = pathRef.current.getTotalLength();
 
@@ -178,12 +180,21 @@ export default function CourseHomePage() {
     gsap.to(e.currentTarget, { scale: 1, y: 0, duration: 0.18, ease: "power2.out" });
   };
 
+  window.scrollTo({ top: 330, behavior: "smooth" });
   return (
     <div
-      ref={containerRef}
-      className="container-home-course"
-      style={{ backgroundColor: palette.surface, color: palette.text }}
-      >
+    ref={containerRef}
+    className="container-home-course"
+    style={
+      {
+        backgroundColor: palette.surface, // fallback directo
+        color: palette.text,              // fallback directo
+        ["--surface" as any]: palette.surface,
+        ["--text" as any]: palette.text
+      } as React.CSSProperties
+    }
+    >
+
 
       <HeaderCourse
         key={idCourse}
@@ -193,155 +204,154 @@ export default function CourseHomePage() {
       />
 
 
-      <div className="map-container">
+  <div className="map-container">
         {/* SVG del camino */}
 
     <div className="container-animation-Diploma">
-      <Diploma
-        hoverIntensity={0.5}
-        rotateOnHover={true}
-        hue={0}
-        forceHoverState={false}
-    />
-    </div>
-    
-    <div className="container-animation-Tassel">
-      <Tassel
-        hoverIntensity={0.5}
-        rotateOnHover={true}
-        hue={0}
-        forceHoverState={false}
-    />
-    </div>
-    
-    <div className="container-animation-frasco">
-      <Frasco
-      hoverIntensity={0.5}
-      rotateOnHover={true}
-      hue={0}
-      forceHoverState={false}
+        <Diploma
+          hoverIntensity={0.5}
+          rotateOnHover={true}
+          hue={0}
+          forceHoverState={false}
       />
+    </div>
+
+    <div className="container-animation-Tassel">
+        <Tassel
+          hoverIntensity={0.5}
+          rotateOnHover={true}
+          hue={0}
+          forceHoverState={false}
+      />
+    </div>
+
+    <div className="container-animation-frasco">
+        <Frasco
+        hoverIntensity={0.5}
+        rotateOnHover={true}
+        hue={0}
+        forceHoverState={false}
+        />
       </div>
 
       <div className="container-animation-erlenmeyer">
-      <Erlenmeyer
-      hoverIntensity={0.5}
-      rotateOnHover={true}
-      hue={0}
-      forceHoverState={false}
-      />
+        <Erlenmeyer
+        hoverIntensity={0.5}
+        rotateOnHover={true}
+        hue={0}
+        forceHoverState={false}
+        />
       </div>
 
 
-      
+
       <div className="container-animation-adn">
-      <Adn
-      hoverIntensity={0.5}
-      rotateOnHover={true}
-      hue={0}
-      forceHoverState={false}
-      />
+        <Adn
+        hoverIntensity={0.5}
+        rotateOnHover={true}
+        hue={0}
+        forceHoverState={false}
+        />
       </div>
-    
-    <div className="container-animation-lightbulb">
-      <LightBulb
-      hoverIntensity={0.5}
-      rotateOnHover={true}
-      hue={0}
-      forceHoverState={false}
-      />
+
+      <div className="container-animation-lightbulb">
+        <LightBulb
+        hoverIntensity={0.5}
+        rotateOnHover={true}
+        hue={0}
+        forceHoverState={false}
+        />
       </div>
 
       <div className="container-animation-abacus">
-      <Abacus
-      hoverIntensity={0.5}
-      rotateOnHover={true}
-      hue={0}
-      forceHoverState={false}
-      />
+        <Abacus
+        hoverIntensity={0.5}
+        rotateOnHover={true}
+        hue={0}
+        forceHoverState={false}
+        />
       </div>
 
-    <div className="container-animation-microscope">
-      <Microscope
-      hoverIntensity={0.5}
-      rotateOnHover={true}
-      hue={0}
-      forceHoverState={false}
-      />
+     <div className="container-animation-microscope">
+        <Microscope
+        hoverIntensity={0.5}
+        rotateOnHover={true}
+        hue={0}
+        forceHoverState={false}
+        />
       </div>
 
       <div className="container-animation-horse">
-      <Horse
-      hoverIntensity={0.5}
-      rotateOnHover={true}
-      hue={0}
-      forceHoverState={false}
-      />
+        <Horse
+        hoverIntensity={0.5}
+        rotateOnHover={true}
+        hue={0}
+        forceHoverState={false}
+        />
       </div>
 
-    <div className="container-animation-rocket">
-      <Rocket
-      hoverIntensity={0.5}
-      rotateOnHover={true}
-      hue={0}
-      forceHoverState={false}
-      />
+      <div className="container-animation-rocket">
+        <Rocket
+        hoverIntensity={0.5}
+        rotateOnHover={true}
+        hue={0}
+        forceHoverState={false}
+        />
       </div>
-      
+
       <div className="container-animation-planet">
-      <Planet
+        <Planet
+        hoverIntensity={0.5}
+        rotateOnHover={true}
+        hue={0}
+        forceHoverState={false}
+        />
+      </div>
+
+    <div className="container-animation-atom2">
+    <Atom2
+    hoverIntensity={0.5}
+    rotateOnHover={true}
+    hue={0}
+    forceHoverState={false}
+    />
+    </div>
+
+    <div className="container-animation-helix">
+      <Helix
       hoverIntensity={0.5}
       rotateOnHover={true}
       hue={0}
       forceHoverState={false}
       />
-      </div>
-
-<div className="container-animation-atom2">
-  <Atom2 
-  hoverIntensity={0.5}
-  rotateOnHover={true}
-  hue={0}
-  forceHoverState={false}
-  />
+    </div>
   </div>
 
-<div className="container-animation-helix">
-  <Helix
-  hoverIntensity={0.5}
-  rotateOnHover={true}
-  hue={0}
-  forceHoverState={false}
-  />
-  </div>
-</div>
+    <div className="container-animation-atom">
+      <Atom
+      hoverIntensity={0.5}
+      rotateOnHover={true}
+      hue={0}
+      forceHoverState={false}
+      />
+    </div>
+    <div className="container-animation-globe">
+      <Globe
+      hoverIntensity={0.5}
+      rotateOnHover={true}
+      hue={0}
+      forceHoverState={false}
+      />
+    </div>
 
-<div className="container-animation-atom">
-  <Atom
-  hoverIntensity={0.5}
-  rotateOnHover={true}
-  hue={0}
-  forceHoverState={false}
-  />
-</div>
-
-<div className="container-animation-globe">
-  <Globe
-  hoverIntensity={0.5}
-  rotateOnHover={true}
-  hue={0}
-  forceHoverState={false}
-  />
-</div>
-
-<div className="container-animation-blackboard">
-  <Blackboard
-  hoverIntensity={0.5}
-  rotateOnHover={true}
-  hue={0}
-  forceHoverState={false}
-  />
-</div>
+    <div className="container-animation-blackboard">
+      <Blackboard
+      hoverIntensity={0.5}
+      rotateOnHover={true}
+      hue={0}
+      forceHoverState={false}
+      />
+    </div>
         <svg
           className="path-svg-course"
           viewBox="0 0 1450 2090"

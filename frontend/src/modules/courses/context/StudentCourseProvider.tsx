@@ -97,7 +97,6 @@ export const StudentCourseProvider = ({ children }: Props) => {
     }
   }, []);
 
-  // ✅ LISTENER DE EVENTOS: Escuchar cambios en localStorage para cursos filtrados (ESTUDIANTES)
   useEffect(() => {
     // Función que se ejecuta cuando detecta cambios en localStorage
     const handleStorageChange = () => {
@@ -126,7 +125,7 @@ export const StudentCourseProvider = ({ children }: Props) => {
     };
   }, []); // Se ejecuta solo una vez al montar el componente
 
-  // ✅ POLLING DE RESPALDO: Sistema de verificación automática cada 500ms (ESTUDIANTES)
+  // POLLING DE RESPALDO: Sistema de verificación automática cada 500ms (ESTUDIANTES)
   useEffect(() => {
     // Función que verifica si localStorage y contexto están sincronizados
     const pollLocalStorage = () => {
@@ -137,7 +136,6 @@ export const StudentCourseProvider = ({ children }: Props) => {
       // Contar cursos en localStorage
       const storedCoursesLength = storedCourses ? storedCourses.length : 0;
 
-      // ⚠️ DETECCIÓN DE DESINCRONIZACIÓN: Si hay diferencia entre localStorage y contexto
       // Esto puede pasar si los eventos no se dispararon correctamente
       if (storedCourses && (currentCoursesLength !== storedCoursesLength)) {
         // Sincronizar: Actualizar contexto con los datos de localStorage
