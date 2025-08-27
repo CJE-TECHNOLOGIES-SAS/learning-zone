@@ -18,23 +18,17 @@ export default function ViewCategories() {
   const role: TUserProfileToken['role'] | null = authStorage.getRole();
 
   const handleGetCoursesCategory = async (category: TCourse['category']) => {
-    console.log('🔍 ViewCategories - Iniciando filtrado:', { category, role });
-
     try {
       // ===== MANEJO PARA ESTUDIANTES =====
       if (role === 'student') {
-        console.log('👨‍🎓 ViewCategories - Procesando como estudiante');
-
         let data; // Variable para almacenar los cursos obtenidos
 
         // 🔄 LÓGICA DE DECISIÓN: ¿Qué servicio usar para estudiantes?
         if (category === 'vertodo') {
           // Si seleccionó "Ver Todo", obtener TODOS los cursos del estudiante
-          console.log('📚 ViewCategories - Cargando todos los cursos del estudiante');
           data = await GetCoursesAPI(); // Servicio que trae todos los cursos del estudiante
         } else {
           // Si seleccionó una categoría específica, filtrar por esa categoría
-          console.log('🔍 ViewCategories - Filtrando por categoría:', category);
           data = await GetCoursesStudentByCategoryAPI(category); // Servicio que filtra
         }
 
@@ -54,13 +48,9 @@ export default function ViewCategories() {
         try {
           // Actualizar el contexto local con los nuevos datos
           setCourses(data); // Actualizar contexto de estudiantes
-          console.log('ViewCategories - Updated student context')
-
           // 📡 DISPARAR EVENTO PERSONALIZADO: Notificar al provider que localStorage cambió
           // Este evento es capturado por StudentCourseProvider para sincronizar el contexto global
-          console.log('ViewCategories - Dispatching coursesStudentUpdated event')
           window.dispatchEvent(new CustomEvent('coursesStudentUpdated'));
-          console.log('ViewCategories - Student event dispatched successfully')
         } catch (error) {
           // Si hay error en la sincronización, el polling del provider lo resolverá
           console.error('ViewCategories - Error updating student context or dispatching event:', error);
@@ -98,9 +88,7 @@ export default function ViewCategories() {
 
           // 📡 DISPARAR EVENTO PERSONALIZADO: Notificar al provider que localStorage cambió
           // Este evento es capturado por TeacherCourseProvider para sincronizar el contexto global
-          console.log('ViewCategories - Dispatching coursesTeacherUpdated event')
           window.dispatchEvent(new CustomEvent('coursesTeacherUpdated'));
-          console.log('ViewCategories - Event dispatched successfully')
         } catch (error) {
           // Si hay error en la sincronización, el polling del provider lo resolverá
           console.error('ViewCategories - Error updating context or dispatching event:', error);
@@ -116,7 +104,7 @@ export default function ViewCategories() {
       if (error instanceof TypeError) {
         toast.error('Error de conexión. Verifica tu internet.');
       } else if (error instanceof Error) {
-        toast.error(`Error: ${error.message}`);
+        toast.error(`No hay cursos asociados a ${category}`);
       } else {
         toast.error('Ups, ocurrió un error inesperado al cargar los cursos.');
       }

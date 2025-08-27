@@ -58,10 +58,10 @@ export default function Footer() {
               </div>
             <div className="contenedor-redes">
               <ul>
-                <a className="tikTok">{<FaTiktok className='icon' />}</a>
-                <a className="facebook">{<FaFacebookF className='icon' />}</a>
-                <a className="instagram">{<FaInstagram className='icon' />}</a>
-                <a className="gitHub"  href='https://github.com/edierGuerra/learning-zone' target='_blank'>{<FiGithub className='icon'/>}</a>
+                <a className="tikTok"href='#'>{<FaTiktok className='icon' />}</a>
+                <a className="facebook" href='#'>{<FaFacebookF className='icon' />}</a>
+                <a className="instagram" href='#'>{<FaInstagram className='icon' />}</a>
+                <a className="gitHub"  href='https://github.com/CJE-TECHNOLOGIES-SAS/learning-zone' target='_blank'>{<FiGithub className='icon'/>}</a>
               </ul>
             </div>
         </section>
