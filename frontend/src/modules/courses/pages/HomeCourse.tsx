@@ -191,11 +191,10 @@ export default function CourseHomePage() {
         idCourse={idCourse}
         palette={palette}
       />
-
-
+      <div className="container-responsive">
       <div className="map-container">
         {/* SVG del camino */}
-
+        </div>
     <div className="container-animation-Diploma">
       <Diploma
         hoverIntensity={0.5}
@@ -342,6 +341,8 @@ export default function CourseHomePage() {
   forceHoverState={false}
   />
 </div>
+
+
         <svg
           className="path-svg-course"
           viewBox="0 0 1450 2090"
@@ -361,6 +362,7 @@ export default function CourseHomePage() {
             }}
           />
         </svg>
+        
 
         {/* Botones de lecciones (mismo layout, ahora con hover animado) */}
         {visualLessons.map((lesson, i) => (
@@ -381,6 +383,7 @@ export default function CourseHomePage() {
                 );
               }
             }}
+            
             >
             <button
               className={`btn-icon-lesson-course ${
@@ -408,6 +411,7 @@ export default function CourseHomePage() {
             </button>
             <span className="span-lesson-course">{`Lección ${i + 1}`}</span>
           </div>
+          
         ))}
       </div>
 
