@@ -1,8 +1,8 @@
 /* ===== CONTENEDOR PRINCIPAL ===== */
 .container-create-notification{
     position: absolute;
-    left: 36rem;
-    top:14rem;
+    left: 26rem;
+    top:15rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -158,9 +158,9 @@
   .container-form-create-notification {
     position: absolute;
     width: 300px;
-    top: 4rem;
-    right: 22rem;
-    padding: 2rem;
+    top: 1.6rem;
+    right: 1rem;
+    padding: 1rem;
     gap: 14px;
     max-width: 520px;
   }
@@ -195,10 +195,11 @@
 /* Mobile */
 @media (max-width: 480px) {
   .container-form-create-notification {
+
     top: 10px;
     right: 22rem;
     gap: 12px;
-    max-width: 460px;
+    max-width: 410px;
 
   }
   .title-create-notification {
@@ -232,11 +233,11 @@
 /* Mobile muy pequeño */
 @media (max-width: 360px) {
   .container-form-create-notification {
-    top:260px;
+    top:200px;
     right: 300px;
     padding: 1rem;
     gap: 10px;
-    max-width: 3210px;
+    max-width: 320px;
   }
   .title-create-notification {
     font-size: 1.35rem;

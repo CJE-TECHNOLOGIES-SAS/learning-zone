@@ -27,7 +27,6 @@ export default async function GetCoursesTeacherByCategoryAPI(category:TCourse['c
         if (!responseData.courses || !Array.isArray(responseData.courses)) {
             throw new Error('Respuesta del servidor inválida: estructura de datos incorrecta');
         } */
-        console.log(response.data)
         return response.data;
 
     } catch (error) {

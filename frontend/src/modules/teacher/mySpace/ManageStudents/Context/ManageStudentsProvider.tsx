@@ -65,6 +65,7 @@ export const ManageStudentsProvider = ({ children }: Props) => {
       const data = await GetInfoRegisterStudentsAPI();
       authStorage.setInfoStudentsRegister(data);
       setInfoRegisterStudents(data);
+      toast.success("Cursos cargados");
     } catch (e) {
       console.error("Error refrescando info:", e);
       toast.error("No se pudo refrescar la información");
@@ -119,7 +120,7 @@ export const ManageStudentsProvider = ({ children }: Props) => {
       setInfoRegisterStudents(students);
       // También actualizar el storage sin duplicados
       /* authStorage.setInfoStudentsRegister(students); */
-      toast.success("Estudiante cargado");
+      toast.success("Curso cargado Exitosamente");
     } catch (e) {
       console.error("Error cargando estudiante:", e);
       toast.error("Ups! Parece que ese id no se encuentra Registrado");
@@ -133,6 +134,8 @@ export const ManageStudentsProvider = ({ children }: Props) => {
       const res = await RegisterStudentAPI(n_identification);
       if(res){
         await refreshInfoStudentRegister();
+        toast.success('N Identificacion registrado exitosamente')
+
       }
     } catch (e) {
       console.error("Error registrando estudiante:", e);

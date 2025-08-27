@@ -58,7 +58,7 @@ export default function NotificationPanelTeacher() {
               {loading && <LoaderNotifications />}
             </div>
           ) : (
-            <h3>No hay notificaciones</h3>
+            <h3 className="title-not-notifications">No hay notificaciones</h3>
           )}
         </>
       ) : (

@@ -57,18 +57,22 @@ export default function TeacherDashboard() {
   const handleClickBtnAddCourse = () => {
     navigate('/teacher/courses/create');
   };
+  window.scrollTo(0, 0); // Scroll a 700px desde el top
 
   return (
 
 
     <div className="container-teacher-dashboard">
+
+
       {/* Header */}
       <div className="header-teacher-dashboard">
         <button
           className="btn-space-teacher"
           onClick={() => navigate('/teacher/myspace')}
+          title='Espacio Administrativo'
         >
-          Mi Espacio
+          Gestion
         </button>
 
         <h2 className="title-welcome-teacher">Bienvenido {user?.name}</h2>
@@ -80,10 +84,11 @@ export default function TeacherDashboard() {
               onClick={() => setViewCategories(v => !v)}
               aria-expanded={viewCategories}
               aria-controls="panel-categorias"
+              title='Ver Categorias'
             >
               <RiMenuSearchLine />
             </button>
-            <button className="btn-add-course" onClick={handleClickBtnAddCourse}>
+            <button className="btn-add-course" onClick={handleClickBtnAddCourse} title='Agregar Curso'>
               <IoIosAdd />
             </button>
         </div>

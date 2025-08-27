@@ -86,7 +86,10 @@
   transform: none;
   box-shadow: none;
 }
-
+.title-not-notifications{
+  margin-left: 10px;
+  color: #fff;
+}
 /* ===== BREAKPOINTS ===== */
 
 /* Tablet (>=768px) */

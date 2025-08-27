@@ -21,6 +21,11 @@ export default function OpcsFilter({onToggleOpcFilter}:Props) {
   const handleActionFilterCourse = (): void => {
       setClickBtnFilterCourse((prev) => !prev);
   };
+  const selectAllCourses =()=>{
+    refreshInfoStudentRegister()
+    onToggleOpcFilter()
+
+  }
 
   return (
     <div className="container-filter">
@@ -31,7 +36,7 @@ export default function OpcsFilter({onToggleOpcFilter}:Props) {
 
           <button
             className="btn-filter-all"
-            onClick={refreshInfoStudentRegister}
+            onClick={selectAllCourses}
             aria-expanded={clickBtnFilterCourse}
             aria-controls="courses-filter-panel"
           >
@@ -47,7 +52,7 @@ export default function OpcsFilter({onToggleOpcFilter}:Props) {
             Curso
           </button>
           {clickBtnFilterCourse && (
-              <CoursesForFilter onToggleCoursesForFilter ={handleActionFilterCourse}/>
+              <CoursesForFilter onToggleCoursesForFilter ={handleActionFilterCourse, onToggleOpcFilter}/>
           )}
 
       {/*     <div className="container-opc-filter-score">

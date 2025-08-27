@@ -191,7 +191,6 @@
 @media (max-width: 480px) {
     .container-table-students-registers{
     max-width: 110dvh;
-    background-color: red;
 
   }
   .edit-form { padding: 1rem; }

@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import '../styles/RegisterStudent.css';
 import { useManageStudents } from '../hook/useManageStudents';
-import toast from 'react-hot-toast';
 
 export default function RegisterStudent() {
     const [numberId, setNumberId] = useState<string>('');
@@ -35,11 +34,10 @@ export default function RegisterStudent() {
     }
     await registerStudent(Number(numberId));
     setNumberId('');
-    toast.success('N Identificacion registrado exitosamente')
     }
   return (
     <form
-      className="dmin-register-student-form"
+      className="admin-register-student-form"
       onSubmit={handleSubmit}
     >
       <h2 className="admin-register-title">Registrar estudiante</h2>

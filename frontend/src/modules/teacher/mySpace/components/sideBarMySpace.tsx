@@ -32,7 +32,7 @@ export default function SideBarMySpace() {
       {/* Header */}
       <div id="nav-header">
         <a id="nav-title" href="#" onClick={(e) => e.preventDefault()}>
-          Mi Espacio
+          Gestion
         </a>
         <label htmlFor="nav-toggle">
           <span id="nav-toggle-burger"></span>

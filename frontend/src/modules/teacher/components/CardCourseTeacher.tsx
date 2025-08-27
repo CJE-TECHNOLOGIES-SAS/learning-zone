@@ -34,6 +34,7 @@ export default function CardCourseTeacher({
     { label: category, color: palette.accent };
   return (
     <div
+    title="Curso"
       onClick={handleClickCourseTeacher}
       className="container-card-course-teacher"
       style={{
@@ -44,6 +45,7 @@ export default function CardCourseTeacher({
     >
       {/* Imagen del curso */}
       <img
+        title="Imagen Curso"
         className="image-course-card-teacher"
         src={image}
         alt={`Imagen del curso ${name}`}
@@ -51,6 +53,7 @@ export default function CardCourseTeacher({
 
       {/* Título del curso */}
       <h3
+        title="Titulo"
         className="title-course-card-teacher"
         style={{ color: palette.brand }}
       >
@@ -59,12 +62,14 @@ export default function CardCourseTeacher({
 
       {/* Descripción */}
       <p
+        title="Descripcion"
         className="description-course-card-teacher"
         style={{ color: palette.text }}
       >
         {description}
       </p>
       <span
+        title="Categoria"
         className="category-course-teacher"
         style={{
           color: '#fff',
