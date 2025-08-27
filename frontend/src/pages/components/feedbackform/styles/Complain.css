@@ -20,6 +20,10 @@
   min-height: 100vh;
   position: relative;
   z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }
 
 
@@ -34,7 +38,7 @@
   cursor: pointer;
   z-index: 10;
   transition: transform 0.3s ease;
-  padding: 0.5rem;
+  padding: .1rem;
 }
 
 .btn-back-complain:hover {
@@ -164,7 +168,7 @@
 /* Media queries mejorados */
 @media (min-width: 480px) {
   .complaint-page {
-    padding: 1.5rem 1rem;
+    padding: 2rem 2rem;
   }
 
   .btn-back-complain {
@@ -185,13 +189,14 @@
 
 @media (min-width: 768px) {
   .complaint-page {
-    padding: 2rem 1.5rem;
+    padding: 2rem 2rem;
   }
 
   .btn-back-complain {
     top: 2rem;
     left: 2rem;
     font-size: 3rem;
+
   }
 
   .complaint-header h1 {
@@ -214,12 +219,12 @@
 
 @media (min-width: 1024px) {
   .complaint-page {
-    padding: 3rem 2rem;
+    padding: 3rem 3rem;
   }
 
   .btn-back-complain {
-    top: 3rem;
-    left: 3rem;
+    top: 1rem;
+    left: 1rem;
     font-size: 3.5rem;
   }
 

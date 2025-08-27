@@ -11,8 +11,8 @@ const SuccessMessage: React.FC<Props> = ({ onReset }) => {
     const handleBtnNavigate = useNavigationHandler()
 
   return (
-    <div className="success-message">
-      <button className="btn-back-message" onClick={()=>handleBtnNavigate('/back')}>{<TbXboxX/>}</button>
+    <div className="success-message-sugerence">
+      <button className="btn-back-message-sugerence" onClick={()=>handleBtnNavigate('/back')}>{<TbXboxX/>}</button>
 
       <h2>¡Gracias por tu mensaje!</h2>
       <p>Tu queja ha sido registrada correctamente.</p>

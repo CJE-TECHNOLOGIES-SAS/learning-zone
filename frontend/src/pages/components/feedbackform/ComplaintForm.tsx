@@ -81,15 +81,6 @@ const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSuccess }) => {
         }) )}
       />
 
-{/*       <label htmlFor="correo">Correo electrónico:</label>
-      <input
-        type="email"
-        id="correo"
-        value={userData?.email || ""}
-        readOnly
-        placeholder="Cargando correo..."
-      /> */}
-
       <label htmlFor="comment ">Comentario:</label>
       <textarea
         id="comment"
