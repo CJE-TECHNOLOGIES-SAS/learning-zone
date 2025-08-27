@@ -45,6 +45,11 @@
   background-blend-mode: overlay, multiply, soft-light, normal;
 }
 
+
+.container-responsive{
+  padding: 28px;
+}
+
 .container-animation-orb,
 .container-animation-Diploma,
 .container-animation-frasco,
@@ -58,31 +63,146 @@
 .container-animation-planet,
 .container-animation-helix,
 .container-animation-globe,
-.container-animation-Tessel,
+.container-animation-Tassel,
 .container-animation-blackboard,
-.container-animation-erlenmeyer{
+.container-animation-erlenmeyer,
+.Orb-container
+{
   position: absolute;
   z-index: 0;
   pointer-events: none;
+  min-height: 50%;
+  min-width: auto;
+  max-width: 20%;
+  max-height: auto;
+}
+
+/* Responsive figuras */
+@media (min-width:1200px) {
+  .container-animation-orb
+  {
+    min-height: auto;
+    min-width: 28%;
+  }
+
+  .container-animation-Diploma
+  {
+    min-height: auto;
+    min-width: 28%;
+  }
+
+  .container-animation-frasco
+    {
+    min-height: auto;
+    min-width: 28%;
+  }
+
+  .container-animation-atom
+    {
+    min-height: auto;
+    min-width: 28%;
+  }
+
+  .container-animation-atom2
+    {
+    min-height: auto;
+    min-width: 28%;
+  }
+
+  .container-animation-lightbulb
+    {
+    min-height: auto;
+    min-width: 28%;
+  }
+
+  .container-animation-abacus
+    {
+    min-height: auto;
+    min-width: 28%;
+  }
+
+  .container-animation-microscope
+    {
+    min-height: auto;
+    min-width: 28%;
+  }
+
+  .container-animation-horse
+    {
+    min-height: auto;
+    min-width: 28%;
+  }
+
+  .container-animation-rocket
+    {
+    min-height: auto;
+    min-width: 28%;
+  }
+
+  .container-animation-planet
+    {
+    min-height: auto;
+    min-width: 28%;}
+
+  .container-animation-helix
+    {
+    min-height: auto;
+    min-width: 28%;
+  }
+
+  .container-animation-globe
+    {
+    min-height: auto;
+    min-width: 28%;
+  }
+  .container-animation-Tassel
+    {
+    min-height: auto;
+    min-width: 28%;
+  }
+  .container-animation-blackboard
+    {
+    min-height: auto;
+    min-width: 28%;
+  }
+
+  .container-animation-erlenmeyer
+    {
+    min-height: auto;
+    min-width: 28%;
+  }
+
+  .Orb-container
+  {
+    min-height: auto;
+    min-width: 28%;
+  }
+}
+
+/* Posicion */
+.Orb-container{
+  top: 14%;
+  left:10%;
+
 }
 
 .container-animation-blackboard{
   top: 70%;
   left: 5%;
-
 }
+
 .container-animation-erlenmeyer{
   top: 40%;
   left: 5%;
-
 }
+
 .container-animation-orb {
   top: 10%;
   left: 5%;
 }
 
 .container-animation-Diploma {
-  top: 20%;
+  top: 0%;
   right: 8%;
 }
 
@@ -92,13 +212,13 @@
 }
 
 .container-animation-atom2 {
-  bottom: 50%;
-  right: 14%;
+  bottom: 20%;
+  right: 15%;
 }
 
 .container-animation-atom {
-  top: 70%;
-  right: 19%;
+  top: 90%;
+  right: 12%;
 }
 
 .container-animation-lightbulb {
@@ -113,9 +233,8 @@
 }
 
 .container-animation-microscope {
-  top: 15%;
+  top: 9%;
   left: 12%;
-  ;
 }
 
 .container-animation-horse {
@@ -124,8 +243,8 @@
 }
 
 .container-animation-rocket {
-  top: 30%;
-  left: 20%;
+  top: 9%;
+  left: 80%;
 }
 
 .container-animation-planet {
@@ -171,6 +290,7 @@
 .path-svg-course path {
   transition: d 0.6s ease-in-out;
 }
+
 
 /* ===============================
     Contenedor de las lecciones
