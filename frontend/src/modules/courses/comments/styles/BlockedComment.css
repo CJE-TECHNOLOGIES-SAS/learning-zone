@@ -1,0 +1,117 @@
+/* BlockedComment.css */
+/* Estilos para comentarios que fueron bloqueados por contenido inapropiado */
+
+.blocked-comment {
+  background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+  border: 1px solid #feb2b2;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 12px 0;
+  box-shadow: 0 2px 8px rgba(254, 178, 178, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.blocked-comment::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #e53e3e 0%, #fc8181 100%);
+}
+
+.blocked-comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 0.875rem;
+}
+
+.blocked-user-name {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.blocked-timestamp {
+  color: #718096;
+  font-size: 0.75rem;
+}
+
+.blocked-comment-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.blocked-icon {
+  font-size: 1.5rem;
+  animation: pulse 2s infinite;
+}
+
+.blocked-message {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.blocked-text {
+  font-weight: 600;
+  color: #e53e3e;
+  font-size: 1rem;
+}
+
+.blocked-reason {
+  color: #718096;
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+.blocked-comment-footer {
+  border-top: 1px solid #fed7d7;
+  padding-top: 12px;
+}
+
+.blocked-note {
+  color: #a0aec0;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* Animación de pulso para el ícono */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .blocked-comment {
+    padding: 12px;
+    margin: 8px 0;
+  }
+
+  .blocked-comment-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .blocked-comment-content {
+    gap: 8px;
+  }
+
+  .blocked-icon {
+    font-size: 1.25rem;
+  }
+}
