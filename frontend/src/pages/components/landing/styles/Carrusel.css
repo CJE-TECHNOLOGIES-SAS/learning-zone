@@ -1,12 +1,35 @@
 .section-carrusel {
   width: 100%;
   min-height: 80vh;
-  background: #000000;
-  background-repeat: no-repeat;
+  background: #000;
+  background-image: url("https://res.cloudinary.com/dhznpt8rr/image/upload/v1756304595/backgroundCarrusel_p9yg2z.png");
   background-position: center center;
+  background-size: cover;
   display: flex;
   position: relative;
   overflow-x: hidden;
+}
+
+/* 🎨 Overlay negro degradado sesgado */
+.section-carrusel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,                      /* ángulo sesgado */
+    rgba(0, 0, 0, 0.95) 0%,      /* negro casi sólido izquierda */
+    rgba(0, 0, 0, 0.75) 25%,     /* fuerte pero más suave */
+    rgba(0, 0, 0, 0.45) 50%,     /* degradado hacia el centro */
+    rgba(0, 0, 0, 0.15) 75%,     /* ya muy leve */
+    rgba(0, 0, 0, 0) 100%        /* totalmente transparente a la derecha */
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section-carrusel > * {
+  position: relative;
+  z-index: 2;
 }
 
 .container-carrusel {
@@ -129,7 +152,7 @@
   display: flex;
   align-items: center;
  }
-
+/*
 .hero-landing::before {
   content: "";
   position: absolute;
@@ -137,9 +160,9 @@
   background: linear-gradient(45deg, transparent 30%, rgba(222, 231, 249, 0.03) 50%, transparent 70%),
     linear-gradient(-45deg, transparent 30%, rgba(143, 46, 46, 0.02) 50%, transparent 70%);
   animation: heatWave 8s ease-in-out infinite alternate;
-}
+} */
 
-.hero-landing::after {
+/* .hero-landing::after {
   content: "";
   position: absolute;
   width: 100%;
@@ -152,7 +175,7 @@
   background-size: 150px 100px;
   animation: particleFloat 20s linear infinite;
   opacity: 1;
-}
+} */
 /*
 @keyframes heatWave {
   0% {
@@ -163,14 +186,14 @@
   }
 } */
 
-@keyframes particleFloat {
+/* @keyframes particleFloat {
   0% {
     transform: translateY(0px) rotate(0deg);
   }
   100% {
     transform: translateY(-100px) rotate(360deg);
   }
-}
+} */
 
 .hero-landing__content {
 
@@ -179,19 +202,8 @@
   margin-left: 5%;
   color: #fff;
   z-index: 10;
-  /* animation: contentSlideIn 1.2s ease-out; */
 }
 
-/* @keyframes contentSlideIn {
-  0% {
-    opacity: 0;
-    transform: translateX(-50px) translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0) translateY(0);
-  }
-} */
 
 .hero-landing__title {
   font-size: 77px;
@@ -254,11 +266,13 @@
   letter-spacing: 1px;
   font-size: 0.9rem;
 }
+/*  */
 
 .btn--primary {
-  background: linear-gradient(135deg, #ffc803 0%, #da9808 100%);
   color: #000;
+  background: linear-gradient(135deg, #ffc803 0%, #da9808 100%);
 }
+
 
 .btn--primary::before {
   content: "";
