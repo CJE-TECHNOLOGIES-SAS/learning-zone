@@ -59,7 +59,7 @@ export default function Footer() {
             <div className="contenedor-redes">
               <ul>
                 <a className="tikTok"href='#'>{<FaTiktok className='icon' />}</a>
-                <a className="facebook" href='#'>{<FaFacebookF className='icon' />}</a>
+                <a className="facebook" href='https://www.facebook.com/profile.php?id=61556774485896' target='_blank'>{<FaFacebookF className='icon' />}</a>
                 <a className="instagram" href='#'>{<FaInstagram className='icon' />}</a>
                 <a className="gitHub"  href='https://github.com/CJE-TECHNOLOGIES-SAS/learning-zone' target='_blank'>{<FiGithub className='icon'/>}</a>
               </ul>
