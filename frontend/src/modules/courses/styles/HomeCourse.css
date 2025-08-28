@@ -7,10 +7,6 @@
   display: block;
   /* Permite posicionar elementos absolutos internamente */
   min-height: 90dvh;
-  height: 100%;
-  overflow-x: hidden;
-  /* Evita scroll horizontal */
-  overflow-y: auto;
   /* Permite desplazamiento vertical */
   z-index: 0;
 
@@ -48,6 +44,8 @@
 
 .container-responsive{
   padding: 28px;
+  top: 300px;
+  position: absolute;
 }
 
 .container-animation-orb,
@@ -323,9 +321,9 @@
     Botón / Ícono central de lección
    =============================== */
 .btn-icon-lesson-course {
-  width: 64px;
+  width:84px;
   /* Tamaño fijo para evitar saltos al cambiar íconos */
-  height: 64px;
+  height: 84px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -346,21 +344,20 @@
   font-weight: 600;
   font-size: 0.9rem;
   text-align: center;
+  color: #fff;
 }
 
 /* ===============================
     Estados de las lecciones
    =============================== */
 .course-complete {
-  border: 2px solid;
 }
 
 .course-in_progress {
-  border: 2px solid;
   font-weight: bold;
 }
 
 .course-blocked {
-  opacity: 0.6;
+  opacity: 0.9;
   cursor: not-allowed;
 }

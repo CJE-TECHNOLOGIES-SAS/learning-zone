@@ -163,7 +163,7 @@ export default function HeaderCourse({ title, idCourse, palette }: THeaderCourse
       {/* Título del curso (entra desde arriba con fade) */}
       <h2
         className="title-course"
-        style={{ color: palette.text }}
+        style={{ color: palette. accent}}
       >
         Curso de {title}
       </h2>
@@ -173,7 +173,7 @@ export default function HeaderCourse({ title, idCourse, palette }: THeaderCourse
         <p
           ref={progressNumberRef}
           className="progress-course-number"
-          style={{ color: palette.text }}
+          style={{ color: "#fff" }}
         >
           {/* Valor inicial; GSAP lo animará a {progress}% */}
           {typeof progress === 'number' ? `${Math.round(progress)}%` : '0%'}
