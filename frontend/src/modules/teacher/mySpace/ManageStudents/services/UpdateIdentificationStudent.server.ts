@@ -17,8 +17,6 @@ export default async function UpdateStudentIdentificationAPI(
 
 ): Promise<TUpdateIdentificationAPIResponse['status']> {
   try {
-    alert(new_number_identification)
-
     const response = await axios.put(
       `${VITE_TEACHER_ENDPOINT}/students/identification/${id}`,
       {new_number_identification}

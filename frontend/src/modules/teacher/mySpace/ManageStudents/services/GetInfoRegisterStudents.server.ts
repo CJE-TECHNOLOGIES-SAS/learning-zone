@@ -10,7 +10,6 @@ type GetInfoRegisterStudentsAPIResponse = {
 export default async function GetInfoRegisterStudentsAPI():Promise<GetInfoRegisterStudentsAPIResponse['students']> {
     try{
         const response = await axios.get(`${VITE_TEACHER_ENDPOINT}/students/identifications`)
-        console.log('Estaaa',response.data)
         if (response.status !== 200) {
             throw new Error(`HTTP ${response.status}: ${response.data?.message || 'Error desconocido'}`);
         }

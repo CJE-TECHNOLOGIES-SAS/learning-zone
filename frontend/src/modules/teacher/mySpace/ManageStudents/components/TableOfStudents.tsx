@@ -42,6 +42,10 @@ export default function TableOfStudents() {
   const MAX_LEN = 10;
 
   const handleEditClick = (student: TStudentRegisterResponse) => {
+    if(student.status === true){
+      toast.error('Ups! no se puede editar, se encuentra registrado')
+      return
+      }
     setInfoRegisterEdit({
       id: student.id,
       currentId: student.number_identification,
@@ -87,7 +91,6 @@ export default function TableOfStudents() {
     try {
       setUpdatingId(infoRegisterEdit.id); // 🔄 loading solo para este estudiante
       await updateStudentRegister(infoRegisterEdit.id, Number(newNumberId));
-      toast.success("Identificación actualizada correctamente");
       setInfoRegisterEdit(null);
       setNewNumberId("");
     } catch (err) {

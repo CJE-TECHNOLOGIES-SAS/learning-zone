@@ -93,7 +93,6 @@ export const ManageStudentsProvider = ({ children }: Props) => {
       // Filtrar duplicados antes de agregar el nuevo item
       setInfoRegisterStudents((prev) => {
         const filteredPrev = prev.filter(student => student.number_identification !== item.number_identification);
-        console.log('ni se sabe',filteredPrev)
         return [item, ...filteredPrev];
       });
 
