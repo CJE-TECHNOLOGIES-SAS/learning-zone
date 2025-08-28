@@ -91,6 +91,7 @@ export type TUserContext = {
   notifications: TNotificationsStudent;
   setNotifications: React.Dispatch<React.SetStateAction<TNotifications>>;
   numberNotifications: number;
-  initSession: ()=>Promise<boolean>
+  initSession: ()=>Promise<boolean>,
+  refreshNotifications: () => Promise<void>
 
 };

@@ -1,5 +1,5 @@
 /* agregar consulta al backend del rol y retornarlo */
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { UserContext } from "./userContext";
 import { authStorage } from "../../../shared/Utils/authStorage";
 import type { TUser, TUserRole } from "../../types/User";
@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { GetRoleUserAPI } from "../Services/GetRoleUser.server";
 import { GetTeacherAPI } from "../Services/GetInformationTeacher.server";
 import type { TNotificationsStudent } from "../../notifications/types/Notifications";
+import GetNotificationsAPI from "../../notifications/services/GetNotifications.server";
 
 // Props que recibe el Provider
 type Props = {
@@ -103,6 +104,12 @@ const initSession = async (): Promise<boolean> => {
 
     setIsReady(true);
   }, []);
+  const refreshNotifications = useCallback(async () => {
+        const updated = await GetNotificationsAPI();
+        setNotifications(updated);
+        authStorage.setNotificationsStudent(updated);
+    }, [setNotifications]); // Solo cambia si cambia `setNotifications`
+
 
   // Verifica si el usuario está logueado
   const isLoggedIn = !!user && !!role;
@@ -141,7 +148,8 @@ const initSession = async (): Promise<boolean> => {
         setNotifications,
         notifications,
         numberNotifications,
-        initSession // Se expone al contexto para uso posterior
+        initSession, // Se expone al contexto para uso posterior
+        refreshNotifications
       }}
     >
       {isReady ? children : null}
