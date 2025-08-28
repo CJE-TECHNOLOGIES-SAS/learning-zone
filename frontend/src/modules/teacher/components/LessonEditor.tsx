@@ -106,7 +106,7 @@ export default function LessonEditor() {
                   }
                   className="select-native"
                 >
-                  <option value="video">Video</option>
+                 {/*  <option value="video">Video</option> */}
                   <option value="image">Imagen</option>
                 </select>
               </div>

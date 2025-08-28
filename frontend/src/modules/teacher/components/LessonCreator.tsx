@@ -6,7 +6,6 @@ import {
 } from "lucide-react";
 
 import {
-  Button,
   Input,
   Card,
   CardContent,
@@ -109,7 +108,7 @@ export default function LessonCreate() {
                   }
                   className="select-native"
                 >
-                  <option value="video">Video</option>
+                  {/* <option value="video">Video</option> */}
                   <option value="image">Imagen</option>
                 </select>
               </div>
