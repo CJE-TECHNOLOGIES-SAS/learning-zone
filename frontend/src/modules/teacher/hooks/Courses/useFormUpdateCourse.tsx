@@ -91,7 +91,7 @@ export function useFormUpdateCourse() {
       name_palette: formData.palette,
       palette: formData.paletteColors
     };
-    console.log("courseToSend", courseToSend);
+            // console.log("courseToSend", courseToSend);
 
     try {
       const idCourse = await UpdateCourseAPI({id_course, courseToSend});

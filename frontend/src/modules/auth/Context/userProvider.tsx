@@ -43,7 +43,7 @@ const initSession = async (): Promise<boolean> => {
     const roleUser = await GetRoleUserAPI();
     authStorage.setRole(roleUser);
     setRole(roleUser);
-    alert(roleUser)
+            // alert(roleUser)
 
     if (roleUser === "student") {
       const data = await GetStudentAPI();

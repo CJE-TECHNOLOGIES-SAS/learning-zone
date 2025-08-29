@@ -73,7 +73,7 @@ export default function useFormNotificationTeacher() {
 
     try {
       const resp = await createNotificationAPI({ title, message });
-      console.log(resp)
+              // console.log(resp)
       if (resp.notification_id) {
         toast.success(resp.message ?? "Notificación enviada");
         setTitle("");

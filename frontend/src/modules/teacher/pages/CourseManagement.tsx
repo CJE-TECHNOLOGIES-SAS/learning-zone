@@ -31,7 +31,7 @@ export default function CourseManagement() {
   const [isUpdatingPublished, setIsUpdatingPublished] =
     useState<boolean>(false);
 
-  console.log(lessons);
+          // console.log(lessons);
 
   const { courseId } = useParams<{ courseId: string }>();
   const idCourse = Number(courseId);

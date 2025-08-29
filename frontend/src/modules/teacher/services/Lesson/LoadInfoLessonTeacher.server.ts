@@ -30,7 +30,7 @@ export default async function LoadInfoLessonTeacherAPI( idLesson: TLessonTeacher
         if (!responseData || !Array.isArray(responseData)) {
             throw new Error('Respuesta del servidor inválida: estructura de datos incorrecta');
         } */
-       console.log(response)
+               // console.log(response)
         return response.data;
 
     } catch (error) {

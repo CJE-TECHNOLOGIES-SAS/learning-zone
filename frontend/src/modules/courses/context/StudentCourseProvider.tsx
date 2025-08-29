@@ -275,7 +275,7 @@ export const StudentCourseProvider = ({ children }: Props) => {
   }
 
   const renderEvaluation =async(idCourse:TCourse['id'], idLesson:TLessonStudent['id'])=>{
-    alert(idCourse)
+            // alert(idCourse)
 
     await loadLessonEvaluation(idCourse,idLesson);
     /* Rederigir a la page del contenido */

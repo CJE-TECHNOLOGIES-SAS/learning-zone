@@ -16,7 +16,7 @@ export default async function GetCourseTeacherAPI(
 ): Promise<TCourseTeacherResponse> {
   try {
     const response = await axios.get(`${VITE_TEACHER_ENDPOINT}/courses/${idCourse}`);
-    console.log('response', response)
+            // console.log('response', response)
 
 
     if (response.status !== 200) {

@@ -167,7 +167,7 @@ const loadLessonsCourse = async (idCourse: TCourseTeacherResponse["id"]) => {
       /* Logica que trae el contenido de la leccion*/
 
       const contentLesson = await LoadInfoLessonTeacherAPI(idLesson)
-      console.log(contentLesson)
+              // console.log(contentLesson)
       const contentStorage:Omit<TLessonTeacherSend, 'idCourse'>= {
         name:contentLesson.name,
         content:{
@@ -176,7 +176,7 @@ const loadLessonsCourse = async (idCourse: TCourseTeacherResponse["id"]) => {
           text:contentLesson.content.text
        }
       }
-      console.log('Contentt.',contentStorage)
+              // console.log('Contentt.',contentStorage)
       /* Logica que trae la evaluacion */
       const evaluationLesson = await LoadEvaluationLessonAPI(idCourse,idLesson)
      /*  const opcReal = JSON.parse(evaluationLesson.options || '[]'); */
@@ -199,13 +199,13 @@ const loadLessonsCourse = async (idCourse: TCourseTeacherResponse["id"]) => {
       setFormLesson(formDataLesson)
       /* Setearlo en el localStorage */
       authStorage.setFormLessonInfo(formDataLesson)
-      console.log(formDataLesson)
+              // console.log(formDataLesson)
       /* Redirigir al page de editar lesson */ /* ENVIAR POR PARAMETRO DE RUTA LOS IDES  */
 
 
 
     }catch(error){
-        console.log(error)
+        // console.log(error)
         toast.error('Ups no se pudo cargar')
     }
   };

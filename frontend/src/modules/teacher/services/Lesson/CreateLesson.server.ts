@@ -48,7 +48,7 @@ export default async function CreateLessonAPI({
         },
       }
     );
-    console.log(response);
+            // console.log(response);
 
     // Validar status code
     if (response.status !== 200) {

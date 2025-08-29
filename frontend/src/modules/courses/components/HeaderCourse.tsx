@@ -136,7 +136,7 @@ export default function HeaderCourse({ title, idCourse, palette }: THeaderCourse
     authStorage.setAllStudents(studentStorage);
 
     if (idCourse) navigate(`/student/comments/${idCourse}`);
-    else alert('No se encontró el curso correspondiente.');
+            // else alert('No se encontró el curso correspondiente.');
   };
 
   return (

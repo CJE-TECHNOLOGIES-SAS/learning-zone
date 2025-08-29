@@ -13,7 +13,7 @@ export async function GetTeacherNotificationsAPI(): Promise<TNotificationsTeache
     if (status !== 200 && status !== 404) {
       throw new Error('Error al obtener notificaciones del profesor');
     }
-    console.log(data)
+            // console.log(data)
     return data;
   } catch (error) {
     console.error('GetTeacherNotificationsAPI error', error);

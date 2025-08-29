@@ -27,7 +27,7 @@ export default async function CreateCourseAPI(course: TCourseTeacherSend): Promi
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(response)
+            // console.log(response)
 
     if (response.status !== 200) {
       throw new Error(`HTTP ${response.status}: ${response.data?.message || 'Error desconocido'}`);

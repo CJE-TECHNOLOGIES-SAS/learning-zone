@@ -44,7 +44,7 @@ export default function ManageSearchTable() {
       await ExportAndDownloadStudentsExcel(courseFilterId ?? undefined); // dispara la descarga
     } catch (e) {
       console.error(e);
-      alert('Error al descargar Excel');
+              // alert('Error al descargar Excel');
     }
   };
 
