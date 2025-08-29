@@ -1,0 +1,143 @@
+/* Estilos base comunes para todas las páginas de error */
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-primary-blue-medium) 100%);
+  color: var(--color-text-light-alt);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.error-animation {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 10px 20px var(--color-shadow-dark));
+}
+
+.error-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px var(--color-shadow-dark);
+  color: var(--color-text-light-alt);
+}
+
+.error-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  opacity: 0.95;
+  color: var(--color-text-light);
+}
+
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.error-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.primary-button {
+  background: linear-gradient(45deg, var(--color-action-red), var(--color-vibrant-red-orange));
+  color: var(--color-text-light-alt);
+  box-shadow: 0 4px 15px rgba(139, 27, 43, 0.4);
+}
+
+.primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 27, 43, 0.6);
+}
+
+.secondary-button {
+  background: transparent;
+  color: var(--color-text-light-alt);
+  border: 2px solid var(--color-text-light-alt);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.secondary-button:hover {
+  background: var(--color-text-light-alt);
+  color: var(--color-primary-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .error-page {
+    padding: 1rem;
+  }
+
+  .error-animation {
+    width: 250px;
+    height: 250px;
+  }
+
+  .error-title {
+    font-size: 2rem;
+  }
+
+  .error-text {
+    font-size: 1rem;
+  }
+
+  .error-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .error-button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error-page {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.error-animation {
+  animation: fadeIn 1s ease-out 0.2s both;
+}
+
+.error-title {
+  animation: fadeIn 1s ease-out 0.4s both;
+}
+
+.error-text {
+  animation: fadeIn 1s ease-out 0.6s both;
+}
+
+.error-actions {
+  animation: fadeIn 1s ease-out 0.8s both;
+}
