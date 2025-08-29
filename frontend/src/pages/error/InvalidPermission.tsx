@@ -1,21 +1,41 @@
 import Lottie from "lottie-react";
-import unauthorizedAnimation from "../error/styles/Animations/search for employee.json";
+import Animation from "./styles/Animations/search for employee.json";
 import "./styles/InvalidPermission.css";
-import { useNavigationHandler } from "../../hooks/useNavigationHandler";
+import { useNavigate } from "react-router-dom";
 
 const InvalidPermission = () => {
-  const handleBtnNavigate = useNavigationHandler();
+  const navigate = useNavigate();
+
+  const handleGoHome = () => {
+    navigate("/", { replace: true });
+  };
+
+  const handleGoBack = () => {
+    if (window.history.length > 2) {
+      navigate(-1);
+    } else {
+      navigate("/", { replace: true });
+    }
+  };
 
   return (
     <div className="error-page invalid-permission-page">
       <div className="error-animation invalid-permission-animation">
-        <Lottie animationData={unauthorizedAnimation} loop={true} />
+        <Lottie animationData={Animation} loop={true} />
       </div>
-      <h1 className="invalid-permission-title">🚫 Error 403 Acceso denegado🚫</h1>
-      <p className="invalid-permission-text">Tienes sesión iniciada, pero no tienes permisos para ver esta sección</p>
-        <button className="error-button invalid-permission-button" onClick={() => handleBtnNavigate("/back")}>
-        Volver al inicio
+      <h1 className="error-title invalid-permission-title">Acceso denegado</h1>
+      <p className="error-text invalid-permission-text">
+        ¡Error 401! No tienes permisos para acceder a esta página.
+        Por favor, inicia sesión con una cuenta que tenga los permisos necesarios.
+      </p>
+      <div className="error-actions">
+        <button className="error-button primary-button" onClick={handleGoHome}>
+          Ir al inicio
         </button>
+        <button className="error-button secondary-button" onClick={handleGoBack}>
+          Volver atrás
+        </button>
+      </div>
     </div>
   );
 };

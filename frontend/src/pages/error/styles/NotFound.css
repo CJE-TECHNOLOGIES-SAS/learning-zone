@@ -1,107 +1,19 @@
+@import './ErrorBase.css';
 
-.error404-container.notfound-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  text-align: center;
-  position: relative;
+/* Estilos específicos para la página 404 */
+.notfound-page {
+  background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-primary-blue-medium) 100%);
 }
 
 .notfound-animation {
-  width: 80%;
-  max-width: 400px;
-  margin-bottom: var(--spacing-md);
-  z-index: 2;
+  animation: float 3s ease-in-out infinite;
 }
 
-@media (min-width: 768px) {
-  .notfound-animation {
-    max-width: 500px;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
   }
-}
-
-@media (min-width: 1024px) {
-  .notfound-animation {
-    max-width: 600px;
+  50% {
+    transform: translateY(-20px);
   }
-}
-
-/* .floating se mantiene si se usa en otros lados */
-
-.notfound-title {
-  font-size: var(--font-size-2xl);
-  font-weight: bold;
-  margin-bottom: var(--spacing-xs);
-  color: #000;
-  z-index: 2;
-}
-
-@media (min-width: 768px) {
-  .notfound-title {
-    font-size: var(--font-size-3xl);
-  }
-}
-
-@media (min-width: 1024px) {
-  .notfound-title {
-    font-size: var(--font-size-4xl);
-  }
-}
-
-.notfound-text {
-  font-size: var(--font-size-base);
-  color: #05080e;
-  z-index: 2;
-  margin-bottom: var(--spacing-md);
-}
-
-@media (min-width: 768px) {
-  .notfound-text {
-    font-size: var(--font-size-lg);
-  }
-}
-
-
-.notfound-button {
-  background-color: #2b6b85;
-  color: white;
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s ease, transform 0.2s ease;
-  z-index: 2;
-  font-size: var(--font-size-base);
-}
-
-.notfound-button:hover {
-  background-color: #2b18ff;
-  transform: translateY(-2px);
-}
-
-
-.fade-in {
-  opacity: 0;
-  animation: fadeIn 2s ease-in forwards;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes floating {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0); }
-}
-
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }

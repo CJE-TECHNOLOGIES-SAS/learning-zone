@@ -3,7 +3,7 @@ import InvalidPermission from "../pages/error/InvalidPermission";
 import UnauthorizedAccess from "../pages/error/UnauthorizedAccess";
 import ServerError from "../pages/error/ServerError";
 import WebsiteMaintenance from "../pages/error/WebsiteMaintenance";
-import NotFound from "../pages/error/NotFount";
+import NotFound from "../pages/error/NotFound";
 
 const errorsRouters = [
   <Route key="401" path="/401" element={<InvalidPermission />} />,

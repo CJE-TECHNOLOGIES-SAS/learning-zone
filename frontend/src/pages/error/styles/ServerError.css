@@ -1,71 +1,19 @@
+@import './ErrorBase.css';
 
-
-/* ========== Error Page Layout ========== */
-.error-page.server-error-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  /* Para que no sobrepase header/footer */
-  min-height: calc(100vh - 120px); /* Ajusta según alto real de tu header + footer */
-  padding: var(--spacing-lg) var(--spacing-sm);
-  text-align: center;
-  width: 100%;
-  max-width: 100%;
+/* Estilos específicos para la página de error del servidor */
+.server-error-page {
+  background: linear-gradient(135deg, var(--color-action-red) 0%, var(--color-vibrant-red-orange) 100%);
 }
 
-/* Animación Lottie */
 .server-error-animation {
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: var(--spacing-md);
-  animation: floating 3s ease-in-out infinite;
+  animation: shake 0.5s ease-in-out infinite alternate;
 }
 
-/* Responsive animation */
-@media (max-width: 380px) {
-  .server-error-animation {
-    max-width: 300px;
+@keyframes shake {
+  0% {
+    transform: translateX(0);
   }
-}
-
-/* Título */
-.server-error-title {
-  font-size: var(--font-size-3xl);
-  margin-bottom: var(--spacing-sm);
-  color: var(--color-error);
-}
-
-/* Texto */
-.server-error-text {
-  font-size: var(--font-size-lg);
-  margin-bottom: var(--spacing-md);
-  max-width: 700px;
-}
-
-/* Botón */
-.server-error-button {
-  padding: 0.75rem 1.5rem;
-  background-color: var(--color-primary);
-  color: white;
-  text-decoration: none;
-  border-radius: var(--radius);
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  font-size: var(--font-size-base);
-  border: none;
-  cursor: pointer;
-}
-
-.server-error-button:hover {
-  background-color: var(--color-primary-dark);
-  transform: translateY(-2px);
-}
-
-/* Animación de flotación */
-@keyframes floating {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0); }
+  100% {
+    transform: translateX(10px);
+  }
 }

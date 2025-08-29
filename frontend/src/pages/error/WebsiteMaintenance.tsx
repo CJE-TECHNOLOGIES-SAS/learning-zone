@@ -1,23 +1,41 @@
 import Lottie from "lottie-react";
-import Animation from "../error/styles/Animations/Under Maintenance.json";
-import "./styles/ServerError.css";
-import { useNavigationHandler } from "../../hooks/useNavigationHandler";
+import Animation from "./styles/Animations/Under Maintenance.json";
+import "./styles/WebsiteMaintenance.css";
+import { useNavigate } from "react-router-dom";
 
 const WebsiteMaintenance = () => {
-  const handleBtnNavigate = useNavigationHandler();
+  const navigate = useNavigate();
+
+  const handleGoHome = () => {
+    navigate("/", { replace: true });
+  };
+
+  const handleGoBack = () => {
+    if (window.history.length > 2) {
+      navigate(-1);
+    } else {
+      navigate("/", { replace: true });
+    }
+  };
 
   return (
-    <div className="error-page maintenance-page">
-      <div className="error-animation maintenance-animation">
+    <div className="error-page website-maintenance-page">
+      <div className="error-animation website-maintenance-animation">
         <Lottie animationData={Animation} loop={true} />
       </div>
-      <h1 className="maintenance-title">Error 503 Servicio no disponible</h1>
-      <p className="maintenance-text">El servidor está temporalmente fuera de servicio.
-        Estamos trabajando para solucionar el problema lo antes posible.
-        Por favor, intenta de nuevo en unos minutos.</p>
-        <button className="error-button maintenance-button" onClick={() => handleBtnNavigate("/back")}>
-        Volver al inicio
+      <h1 className="error-title website-maintenance-title">Sitio en mantenimiento</h1>
+      <p className="error-text website-maintenance-text">
+        ¡Error 503! Estamos realizando mantenimiento en nuestro sitio web.
+        Por favor, vuelve más tarde. Gracias por tu paciencia.
+      </p>
+      <div className="error-actions">
+        <button className="error-button primary-button" onClick={handleGoHome}>
+          Ir al inicio
         </button>
+        <button className="error-button secondary-button" onClick={handleGoBack}>
+          Volver atrás
+        </button>
+      </div>
     </div>
   );
 };

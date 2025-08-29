@@ -46,26 +46,15 @@
   cursor: pointer;
 }
 
-.maintenance-button:hover {
-  background-color: var(--color-primary-dark);
+.website-maintenance-animation {
+  animation: rotate 4s linear infinite;
 }
 
-/* Responsive: pantallas pequeñas */
-@media (max-width: 380px) {
-  .maintenance-animation {
-    max-width: 280px;
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
   }
-
-  .maintenance-title {
-    font-size: 1.8rem;
-  }
-
-  .maintenance-text {
-    font-size: 1rem;
-  }
-
-  .maintenance-button {
-    font-size: 0.95rem;
-    padding: 0.6rem 1.2rem;
+  to {
+    transform: rotate(360deg);
   }
 }

@@ -9,6 +9,7 @@ import ConfirmEmailRegister from "../modules/auth/pages/ConfirmEmailRegister";
 import ConfirmEmailRequest from "../modules/auth/pages/ConfirmEmailRequest";
 import RecoverPassword from "../modules/auth/pages/RecoverPassword";
 import RoleRedirect from "./RoleRedirect";
+import ErrorTestPage from "../pages/error/ErrorTestPage";
 // Importamos el arreglo de rutas de errores (401, 403, 500, 503 y 404 catch-all)
 // Mantener centralizado en "src/routers/Errors.tsx" facilita su mantenimiento.
 import errorsRouters from "./Errors";
@@ -26,6 +27,7 @@ export default function RoutersPublic() {
                 <Route path="/confirmEmailRequest" element={<ConfirmEmailRequest/>}/>
                 <Route path="/login" element={<LoginAndRegister opcAuth ={true}/>}/>
                 <Route path="/redirect" element={<RoleRedirect />} />
+                <Route path="/test-errors" element={<ErrorTestPage />} />
                 {sharedRoutes}
 
                 {/**

@@ -16,7 +16,7 @@ export default function useNotificationsTeacher() {
     setLoading(true);
     try {
       const data = await GetTeacherNotificationsAPI();
-              // console.log(data)
+      console.log(data)
       setNotificationsTeacher(data);
       authStorage.setNotificationsTeacher(data); // quítalo si no quieres cache local
     } catch {
