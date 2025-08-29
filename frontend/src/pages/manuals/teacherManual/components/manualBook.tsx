@@ -2,9 +2,14 @@ import HTMLFlipBook from "react-pageflip";
 import pages from "../components/pagesData";
 import "../components/styles/coverPage.css"
 import { useEffect, useRef } from "react";
+import { useNavigationHandler } from "../../../../hooks/useNavigationHandler";
+import { IoArrowBackCircleSharp } from "react-icons/io5";
+
 
 const ManualBookTeacher = () => {
   const bookRef = useRef<any>(null);
+  const handleBtnNavigate = useNavigationHandler()
+
 
   const nextPage = () => {
     bookRef.current?.pageFlip().flipNext();
@@ -30,6 +35,8 @@ const ManualBookTeacher = () => {
 
   return (
     <div className="book-container">
+      <button className="btn-back-manuals" onClick={()=>handleBtnNavigate('/back')}>{<IoArrowBackCircleSharp/>}</button>
+
       <div>
         <HTMLFlipBook
           ref={bookRef}
@@ -61,6 +68,8 @@ const ManualBookTeacher = () => {
 
             return (
               <div key={index} className={pageClass}>
+                
+
                 <div className="page-content">{page.component}</div>
               </div>
             );

@@ -45,8 +45,20 @@
   line-height: 1.6;
   font-size: 1rem;
 }
+.btn-back-manuals {
+  position: absolute;
+  top: 12rem;
+  left: 12rem;
+  background-color: transparent;
+  border: none;
+  font-size: 4rem;
+  color: #050505;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.3s ease;
+  padding: .1rem;
 
-/* ---------------- RESPONSIVIDAD ---------------- */
+}
 
 /* Tablets */
 @media (max-width: 992px) {
@@ -62,10 +74,20 @@
   }
 }
 
+@media (max-width: 780px) {
+   .book-container {
+    height:auto ;/* se sube */
+    margin-top:25px;
+  }
+}
+
 /* Móviles */
-@media (max-width: 600px) {
-  .book-container {
+@media (max-width: 300px) {
+  .book-container
+  {
     padding: 20px 10px;
+    min-height: auto;
+    min-width: 28%;
   }
 
   .page {
@@ -82,5 +104,47 @@
   .page-content {
     font-size: 0.9rem;
     line-height: 1.4;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .btn-back-manuals {
+    left: 20px;             /* Lo acercamos un poco */
+    font-size: 1.5rem;      /* Reducimos tamaño */
+    min-width: 30%;         /* Botón más ancho relativo */
+  }
+}
+
+@media (max-width: 461px) {
+  .btn-back-manuals {
+    position: relative;     /* Para que no quede fijo en un lugar */
+    left: auto;             /* Quitamos el offset */
+    display: block;         /* Lo hacemos bloque */
+    margin: 10px auto;      /* Centrado */
+    width: 80%;             /* Botón ocupa el 80% de la pantalla */
+    font-size: clamp(1rem, 4vw, 1.3rem); /* Texto fluido */
+  }
+}
+@media (max-width: 461px) {
+  .btn-back-manuals {
+    top: 10px; /* se sube */
+  }
+}
+
+
+/* 📱 Pantallas pequeñas */
+@media (max-width: 461px) {
+  .btn-back-manuals {
+    font-size: 1.5rem;   /* más pequeño */
+    padding: 8px 16px;
+  }
+}
+
+/* 💻 Pantallas grandes */
+@media (min-width: 1024px) {
+  .btn-back-manuals {
+    font-size: 3rem;    /* más grande */
+    padding: 14px 28px;
   }
 }

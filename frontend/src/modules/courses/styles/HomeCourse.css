@@ -41,13 +41,6 @@
   background-blend-mode: overlay, multiply, soft-light, normal;
 }
 
-
-.container-responsive{
-  padding: 28px;
-  top: 300px;
-  position: absolute;
-}
-
 .container-animation-orb,
 .container-animation-Diploma,
 .container-animation-frasco,
@@ -350,8 +343,6 @@
 /* ===============================
     Estados de las lecciones
    =============================== */
-.course-complete {
-}
 
 .course-in_progress {
   font-weight: bold;
@@ -360,4 +351,11 @@
 .course-blocked {
   opacity: 0.9;
   cursor: not-allowed;
+}
+
+
+@media(max-width: 322){
+  .map-container {
+    margin: 19px;
+}
 }
