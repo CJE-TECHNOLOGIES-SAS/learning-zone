@@ -27,9 +27,9 @@ export default function StepsToRegister() {
             <Stepper  data-aos="zoom-out-up"
             initialStep={1}
             onStepChange={(step) => {
-                console.log(step);
+                // console.log(step);
             }}
-            onFinalStepCompleted={() => console.log("All steps completed!")}
+                          onFinalStepCompleted={() => {/* console.log("All steps completed!") */}}
             backButtonText="Atras"
             nextButtonText="Siguiente"
             >

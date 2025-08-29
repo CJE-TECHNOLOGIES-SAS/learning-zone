@@ -8,7 +8,7 @@ export default function HelpTeacher() {
     const navigate = useNavigate()
       // Función que se ejecuta cuando el usuario salta o finaliza la ayuda.
     const handleSkip = () => {
-        console.log('Finalizó o saltó la ayuda');
+        // console.log('Finalizó o saltó la ayuda');
         // Redirige al usuario a la ruta "/redirect".
         navigate('/redirect');
     };

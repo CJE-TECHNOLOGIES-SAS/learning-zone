@@ -43,7 +43,7 @@ const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSuccess }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    console.log('dato listos para enviar', userData)
+            // console.log('dato listos para enviar', userData)
 
     try {
       const response = await fetch(`${VITE_API_URL}/suggestions/send`, {

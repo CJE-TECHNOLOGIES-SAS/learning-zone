@@ -8,7 +8,7 @@ export default function Help() {
   const navigate = useNavigate()
 
   const handleSkip = () => {
-    console.log('Finalizó o saltó la ayuda');
+    // console.log('Finalizó o saltó la ayuda');
     navigate('/redirect');
   };
 
