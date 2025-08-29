@@ -84,7 +84,7 @@ export default function ViewCategories() {
         try {
           // Actualizar el contexto local con los nuevos datos
           setCoursesTeacher(data);
-          console.log('ViewCategories - Updated context')
+          // console.log('ViewCategories - Updated context')
 
           // 📡 DISPARAR EVENTO PERSONALIZADO: Notificar al provider que localStorage cambió
           // Este evento es capturado por TeacherCourseProvider para sincronizar el contexto global

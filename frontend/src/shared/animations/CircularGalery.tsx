@@ -705,7 +705,7 @@ export default function CircularGallery({
   borderRadius = 0.05,
   font = "bold 30px GeneralSans",
 }: CircularGalleryProps) {
-  console.log('items', items)
+      // console.log('items', items)
   const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!containerRef.current) return;
